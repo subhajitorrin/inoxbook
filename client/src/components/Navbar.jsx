@@ -6,8 +6,14 @@ import { IoTicketOutline } from "react-icons/io5";
 
 function Navbar() {
   return (
-    <div className="select-none flex justify-between items-center text-[14px] font-[500] py-[1rem]">
-      <div className="flex items-center text-[20px]">INOX <div className="text-[30px]"><IoTicketOutline /></div> BOOK</div>
+    <div className="select-none flex justify-between items-center text-[14px] font-[500] py-[1rem] ">
+      <div className="flex items-center text-[20px]">
+        INOX{" "}
+        <div className="text-[30px]">
+          <IoTicketOutline />
+        </div>{" "}
+        BOOK
+      </div>
       <div className="border border-[#bcbcbc] rounded-[20px] items-center flex h-[40px]">
         <input
           type="text"
@@ -22,7 +28,7 @@ function Navbar() {
       </div>
       <div className="flex items-center gap-[20px]">
         <button className="flex items-center gap-[3px]">
-          Kolkata{" "}
+          Kolkata
           <div className="relative text-[20px] top-[1px]">
             <RiArrowDropDownFill />
           </div>
