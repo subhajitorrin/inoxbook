@@ -87,20 +87,40 @@ function MovieDetail() {
               <p>{movieDetail.synopsis}</p>
             </div>
           </div>
-          <div className="w-[70%] flex flex-col gap-[1rem] h-full">
-            <div className="h-[450px] w-[100%]  rounded-[10px] overflow-hidden">
+          <div className="w-[70%] flex flex-col gap-[1rem] h-full ">
+            <div className=" h-[450px] w-[100%]  rounded-[10px] overflow-hidden">
               <YouTube
                 videoId={getYouTubeId(movieDetail.trailerUrl)}
                 opts={opts}
               />
             </div>
-            <div className=" flex justify-center w-full flex-col items-center gap-[5px]">
+            <div className="flex justify-center w-full flex-col items-center gap-[5px]">
               <button className="bg-[#da4b63] text-white hover:bg-[#b94155] transition-all duration-200 ease-linear  font-[500] w-[60%] cursor-pointer py-[10px] rounded-[5px]">
                 Book Ticket
               </button>
               <p className="font-[600] text-[13px]">
                 *Get ready to secure your spot! Check timings now.
               </p>
+            </div>
+            <div className="border-b border-[#00000057] "></div>
+            <div className=" flex flex-col gap-[1rem] items-start ml-[3rem]">
+              <p className="text-[20px] font-bold">Starring</p>
+              <div className="flex gap-[2rem]">
+                {movieDetail.cast.map((item, index) => {
+                  return (
+                    <div className="flex flex-col gap-[5px]">
+                      <div className="h-[100px] w-[100px] rounded-[50%] overflow-hidden">
+                        <img
+                          src={item.imageUrl}
+                          alt=""
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <p className="font-[500]">{item.name}</p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
