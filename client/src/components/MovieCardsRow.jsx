@@ -1,7 +1,7 @@
 import React from "react";
 import MovieCard from "./MovieCard";
 
-function MovieCardsRow({ movierow,rowtitle }) {
+function MovieCardsRow({ movierow, rowtitle }) {
   return (
     <div className="mt-[1rem]">
       <div className="font-bold text-[20px] mb-[10px]">
@@ -11,6 +11,8 @@ function MovieCardsRow({ movierow,rowtitle }) {
         {movierow.map((item, index) => {
           return (
             <MovieCard
+            key={index}
+              id={item.id}
               title={item.title}
               languages={item.language}
               rating={item.rating}
