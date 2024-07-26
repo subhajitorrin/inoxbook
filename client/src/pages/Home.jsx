@@ -12,7 +12,7 @@ function Home() {
   return (
     <div className=" min-h-screen px-[15%] w-full overflow-y-hidden ">
       <Navbar />
-      <div className="h-[300px] w-full border border-black my-[1rem]"></div>
+      <div className="h-[250px] w-full border border-black my-[1rem]"></div>
       <MovieCardsRow movierow={currentMovies} rowtitle="Recommended Movies" />
       <MovieCardsRow movierow={currentMovies} rowtitle="Recommended Movies" />
       <MovieCardsRow movierow={currentMovies} rowtitle="Recommended Movies" />

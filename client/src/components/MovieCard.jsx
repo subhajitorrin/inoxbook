@@ -1,5 +1,6 @@
 import React from "react";
 import { MdOutlineStarPurple500 } from "react-icons/md";
+import { GoInfo } from "react-icons/go";
 
 function MovieCard({ title, img, languages, rating }) {
   return (
@@ -17,9 +18,14 @@ function MovieCard({ title, img, languages, rating }) {
           return index > 2 ? "" : <p>{item}</p>;
         })}
       </div>
-      <button className="bg-[#da4b63] text-white hover:bg-[#b94155] transition-all duration-200 ease-linear mt-[15px] font-[500] w-full cursor-pointer py-[5px] rounded-[5px]">
-        Book Ticket
-      </button>
+      <div className="flex justify-between items-center  mt-[15px]">
+        <button className="bg-[#da4b63] text-white hover:bg-[#b94155] transition-all duration-200 ease-linear  font-[500] w-[80%] cursor-pointer py-[5px] rounded-[5px]">
+          Book Ticket
+        </button>
+        <div className="border border-[#00000032] h-[35px] w-[35px] text-[20px] flex items-center justify-center rounded-[10px] text-[#b94155]">
+          <GoInfo />
+        </div>
+      </div>
     </div>
   );
 }

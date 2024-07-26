@@ -421,7 +421,6 @@
         "genre": [
             "Biography",
             "Drama"
-            
         ],
         "duration": 155,
         "language": [
@@ -503,7 +502,6 @@
         "genre": [
             "Comedy",
             "Horror"
-            
         ],
         "duration": 135,
         "language": [
@@ -666,7 +664,6 @@
         "genre": [
             "Drama",
             "Thriller"
-            
         ],
         "duration": 134,
         "language": [
@@ -749,7 +746,7 @@
             "Action",
             "Comedy",
             "Suspense",
-            "Thriller"            
+            "Thriller"
         ],
         "duration": 132,
         "language": [
@@ -825,5 +822,4 @@
             }
         ]
     }
-
 ]
