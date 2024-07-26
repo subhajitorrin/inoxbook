@@ -6,7 +6,7 @@ import { IoTicketOutline } from "react-icons/io5";
 
 function Navbar() {
   return (
-    <div className="select-none flex justify-between items-center text-[14px] font-[500] py-[1rem] ">
+    <div className="select-none flex justify-between items-center text-[14px] font-[500] py-[1rem] px-[15%]">
       <div className="flex items-center text-[20px]">
         INOX{" "}
         <div className="text-[30px]">
