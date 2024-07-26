@@ -23,7 +23,7 @@ function MovieDetail() {
     height: "450",
     width: "100%",
     playerVars: {
-      autoplay: 1,
+      autoplay: 0,
     },
   };
 
@@ -34,17 +34,57 @@ function MovieDetail() {
     return match ? match[1] : null;
   }
 
+  function formatMinutesToHours(minutes) {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${hours}hr ${mins}m`;
+  }
+
   return (
     movieDetail && (
       <div className="min-h-screen px-[15%] my-[1rem]">
-        <div className="h-[550px]  flex justify-between w-full ">
-          <div className="w-[30%] ">
+        <div className="flex justify-between w-full ">
+          <div className="w-[30%] flex flex-col gap-[10px]">
             <div className="h-[550px] w-[90%]  rounded-[10px] overflow-hidden">
               <img
                 src={movieDetail.posterUrl}
                 className="h-full w-full object-cover"
                 alt=""
               />
+            </div>
+            <div className="flex gap-[10px]  items-center ">
+              <p className="text-[25px] font-bold">{movieDetail.title}</p>
+              <p className="">•</p>
+              <p className="text-[15px] font-bold">
+                <span className="bg-[yellow] mr-[5px] p-[5px] rounded-[7px]">
+                  {movieDetail.rating}
+                </span>
+                IMDB
+              </p>
+            </div>
+            <div className="flex gap-[10px] font-[600]">
+              {formatMinutesToHours(movieDetail.duration)}
+              <p>•</p>
+              <div className=" flex gap-[10px]">
+                {movieDetail.language.map((item, index) => {
+                  return index < 3 && <p>{item}</p>;
+                })}
+              </div>
+              <p>•</p>
+              <p>{movieDetail.releaseDate}</p>
+            </div>
+            <div className="flex gap-[15px] text-[13px]">
+              {movieDetail.genre.map((item, index) => {
+                return (
+                  <div className="py-[5px] px-[10px] bg-[#d7d7d7df] rounded-[7px] cursor-pointer font-[500]">
+                    {item}
+                  </div>
+                );
+              })}
+            </div>
+            <div className=" w-[90%] mt-[1rem]">
+              <p className="font-[500]">About the movie</p>
+              <p>{movieDetail.synopsis}</p>
             </div>
           </div>
           <div className="w-[70%] flex flex-col gap-[1rem] h-full">
