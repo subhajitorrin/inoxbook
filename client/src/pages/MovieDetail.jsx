@@ -2,10 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import YouTube from "react-youtube";
+import MovieCardsRow from "../components/MovieCardsRow";
 
 function MovieDetail() {
   const { id } = useParams();
   const [movieDetail, setmovieDetail] = useState(null);
+  const [currentMovies, setcurrentMovies] = useState([]);
+
   useEffect(() => {
     async function getMovieDetailById() {
       try {
@@ -18,6 +21,18 @@ function MovieDetail() {
     }
     getMovieDetailById();
   }, [id]);
+
+  useEffect(() => {
+    async function fetchCurrentMovies() {
+      try {
+        const res = await axios.get("http://localhost:5000/getcurrentmovies");
+        setcurrentMovies(shuffleArray(res.data));
+      } catch (error) {
+        console.log("Error while fetching currentmoves", error);
+      }
+    }
+    fetchCurrentMovies();
+  }, []);
 
   const opts = {
     height: "450",
@@ -38,6 +53,14 @@ function MovieDetail() {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return `${hours}hr ${mins}m`;
+  }
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
 
   return (
@@ -123,6 +146,12 @@ function MovieDetail() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="mt-[3rem]">
+          <MovieCardsRow
+            movierow={currentMovies}
+            rowtitle="Recommended Movies"
+          />
         </div>
       </div>
     )
