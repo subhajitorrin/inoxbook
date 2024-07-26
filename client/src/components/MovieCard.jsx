@@ -7,9 +7,9 @@ function MovieCard({ id, title, img, languages, rating }) {
   const navigate = useNavigate();
   function handleCardClick(e) {
     if (e.target.tagName.toLowerCase() === "button") {
-      navigate(`/bookticket/${id}`);
+      navigate(`/timings/${id}`);
     } else {
-      navigate(`/movieinsights/${id}`);
+      navigate(`/moviedetail/${id}`);
     }
   }
   return (

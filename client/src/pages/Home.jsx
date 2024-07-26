@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import currentMoviesData from "../data/moviedata.json";
-import MovieCard from "../components/MovieCard";
 import MovieCardsRow from "../components/MovieCardsRow";
+import axios from "axios";
 
 function Home() {
   const [currentMovies, setcurrentMovies] = useState([]);
   useEffect(() => {
-    setcurrentMovies(currentMoviesData);
+    async function fetchCurrentMovies() {
+      try {
+        const res = await axios.get("http://localhost:5000/getcurrentmovies");
+        setcurrentMovies(res.data);
+      } catch (error) {
+        console.log("Error while fetching currentmoves", error);
+      }
+    }
+    fetchCurrentMovies();
   }, []);
   return (
     <div className=" min-h-screen px-[15%] w-full overflow-y-hidden ">
