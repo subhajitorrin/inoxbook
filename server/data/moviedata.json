@@ -43,40 +43,79 @@
                 "comment": "Great visuals and storytelling."
             }
         ],
-        "theaters": [
+        "timings": [
             {
-                "theaterId": "101",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-23",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "103",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "104",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "105",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             },
             {
-                "theaterId": "102",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-24",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -128,40 +167,79 @@
                 "comment": "Great visuals and storytelling."
             }
         ],
-        "theaters": [
+        "timings": [
             {
-                "theaterId": "101",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-23",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "103",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "104",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "105",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             },
             {
-                "theaterId": "102",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-24",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -209,40 +287,79 @@
                 "comment": "I went in just for 'Tauba Tauba' and it was the best decision I have ever made."
             }
         ],
-        "theaters": [
+        "timings": [
             {
-                "theaterId": "101",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-23",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "103",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "104",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "105",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             },
             {
-                "theaterId": "102",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-24",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -295,40 +412,79 @@
                 "comment": "First half kuncham slow start but second half archkamm - Visual Treat and Wonders: Suspense Characters and Nag Ashwin Cinema will reach more heights"
             }
         ],
-        "theaters": [
+        "timings": [
             {
-                "theaterId": "101",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-23",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "103",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "104",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "105",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             },
             {
-                "theaterId": "102",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-24",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -378,40 +534,79 @@
                 "comment": "#Wellmade #OneTimeWatch."
             }
         ],
-        "theaters": [
+        "timings": [
             {
-                "theaterId": "101",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-23",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "103",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "104",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "105",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             },
             {
-                "theaterId": "102",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-24",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -421,7 +616,6 @@
         "genre": [
             "Biography",
             "Drama"
-            
         ],
         "duration": 155,
         "language": [
@@ -460,40 +654,79 @@
                 "comment": "Average Movie one time can watch,I think it's remark from tamil Surya Movie."
             }
         ],
-        "theaters": [
+        "timings": [
             {
-                "theaterId": "101",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-23",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "103",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "104",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "105",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             },
             {
-                "theaterId": "102",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-24",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -503,7 +736,6 @@
         "genre": [
             "Comedy",
             "Horror"
-            
         ],
         "duration": 135,
         "language": [
@@ -542,40 +774,79 @@
                 "comment": "Average Movie one time can watch,I think it's remark from tamil Surya Movie."
             }
         ],
-        "theaters": [
+        "timings": [
             {
-                "theaterId": "101",
-                "showDates": {
-                    "2024-08-15": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-08-16": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-23",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "103",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "104",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "105",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             },
             {
-                "theaterId": "102",
-                "showDates": {
-                    "2024-08-15": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-08-16": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-24",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -623,40 +894,79 @@
                 "comment": "Avoid working with EveryMedia. They are fraud and never pay to vendors fraud everymedia."
             }
         ],
-        "theaters": [
+        "timings": [
             {
-                "theaterId": "101",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-23",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "103",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "104",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "105",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             },
             {
-                "theaterId": "102",
-                "showDates": {
-                    "2024-07-23": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-07-24": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-24",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -666,7 +976,6 @@
         "genre": [
             "Drama",
             "Thriller"
-            
         ],
         "duration": 134,
         "language": [
@@ -705,40 +1014,79 @@
                 "comment": "Average Movie one time can watch,I think it's remark from tamil Surya Movie."
             }
         ],
-        "theaters": [
+        "timings": [
             {
-                "theaterId": "101",
-                "showDates": {
-                    "2024-08-02": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-08-03": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-23",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "103",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "104",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "105",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             },
             {
-                "theaterId": "102",
-                "showDates": {
-                    "2024-08-02": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-08-03": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-24",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -749,7 +1097,7 @@
             "Action",
             "Comedy",
             "Suspense",
-            "Thriller"            
+            "Thriller"
         ],
         "duration": 132,
         "language": [
@@ -788,42 +1136,80 @@
                 "comment": "Average Movie one time can watch."
             }
         ],
-        "theaters": [
+        "timings": [
             {
-                "theaterId": "101",
-                "showDates": {
-                    "2024-08-02": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-08-03": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-23",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "103",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "104",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "105",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             },
             {
-                "theaterId": "102",
-                "showDates": {
-                    "2024-08-02": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ],
-                    "2024-08-03": [
-                        "11:00 AM",
-                        "2:00 PM",
-                        "5:00 PM",
-                        "8:00 PM"
-                    ]
-                }
+                "date": "2024-07-24",
+                "theaters": [
+                    {
+                        "theaterId": "101",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    },
+                    {
+                        "theaterId": "102",
+                        "timings": [
+                            "11:00 AM",
+                            "2:00 PM",
+                            "5:00 PM",
+                            "8:00 PM"
+                        ]
+                    }
+                ]
             }
         ]
     }
-
 ]

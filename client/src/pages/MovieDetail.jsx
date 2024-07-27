@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import YouTube from "react-youtube";
 import MovieCardsRow from "../components/MovieCardsRow";
+import { useNavigate } from "react-router-dom";
 
 function MovieDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [movieDetail, setmovieDetail] = useState(null);
   const [currentMovies, setcurrentMovies] = useState([]);
 
@@ -118,7 +120,12 @@ function MovieDetail() {
               />
             </div>
             <div className="flex justify-center w-full flex-col items-center gap-[5px]">
-              <button className="bg-[#da4b63] text-white hover:bg-[#b94155] transition-all duration-200 ease-linear  font-[500] w-[60%] cursor-pointer py-[10px] rounded-[5px]">
+              <button
+                className="bg-[#da4b63] text-white hover:bg-[#b94155] transition-all duration-200 ease-linear  font-[500] w-[60%] cursor-pointer py-[10px] rounded-[5px]"
+                onClick={() => {
+                  navigate(`/timings/${id}`);
+                }}
+              >
                 Book Ticket
               </button>
               <p className="font-[600] text-[13px]">
