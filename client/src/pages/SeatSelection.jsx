@@ -6,6 +6,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 function SeatSelection() {
+  const [seatmatrix, setseatmatrix] = useState([]);
   const [movieDetail, setmovieDetail] = useState(null);
   const [theaterDetail, settheaterDetail] = useState(null);
   const [params, setparams] = useState([]);
@@ -49,8 +50,27 @@ function SeatSelection() {
   }, [params]);
 
   useEffect(() => {
+    async function getSeatmatrixById() {
+      try {
+        if (params.length > 0) {
+          const res = await axios.get(
+            `http://localhost:5000/getseatmatrixbyid/${params[1]}`
+          );
+          setseatmatrix(res.data.seatmatrix);
+        }
+      } catch (error) {
+        console.log("Error while fetching movie detail", error);
+      }
+    }
+    getSeatmatrixById();
+  }, [params]);
+
+  useEffect(() => {
     setseat(seatmatrixarr[0]);
   }, [seatmatrixarr]);
+  useEffect(() => {
+    console.log(seatmatrix);
+  }, [seatmatrix]);
 
   function formatDate(dateStr) {
     const monthNames = [
@@ -77,6 +97,7 @@ function SeatSelection() {
     return;
   }
   return (
+    seatmatrix.length > 0 &&
     params &&
     movieDetail &&
     theaterDetail && (
@@ -138,13 +159,13 @@ function SeatSelection() {
                       {row.row}
                     </div>
                     <div className="flex">
-                      {row.seats.map((seat) =>
+                      {row.seats.map((seat, index) =>
                         seat.seat === 2 ? (
                           <>
                             <Seat
                               key={seat.seat}
                               seatNumber={seat.seat}
-                              available={seat.available}
+                              available={seatmatrix[seat.id]}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -152,7 +173,7 @@ function SeatSelection() {
                           <Seat
                             key={seat.seat}
                             seatNumber={seat.seat}
-                            available={seat.available}
+                            available={seatmatrix[seat.id]}
                           />
                         )
                       )}
@@ -177,7 +198,7 @@ function SeatSelection() {
                       {row.row}
                     </div>
                     <div className="flex">
-                      {row.seats.map((seat) =>
+                      {row.seats.map((seat,index) =>
                         seat.seat === 2 ||
                         seat.seat === 7 ||
                         seat.seat === 20 ? (
@@ -185,7 +206,7 @@ function SeatSelection() {
                             <Seat
                               key={seat.seat}
                               seatNumber={seat.seat}
-                              available={seat.available}
+                              available={seatmatrix[seat.id]}
                             />
                             <div className="w-[50px] "></div>
                           </>
@@ -193,7 +214,7 @@ function SeatSelection() {
                           <Seat
                             key={seat.seat}
                             seatNumber={seat.seat}
-                            available={seat.available}
+                            available={seatmatrix[seat.id]}
                           />
                         )
                       )}
@@ -226,7 +247,7 @@ function SeatSelection() {
                             <Seat
                               key={seat.seat}
                               seatNumber={seat.seat}
-                              available={seat.available}
+                              available={seatmatrix[seat.id]}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -234,7 +255,7 @@ function SeatSelection() {
                           <Seat
                             key={seat.seat}
                             seatNumber={seat.seat}
-                            available={seat.available}
+                            available={seatmatrix[seat.id]}
                           />
                         )
                       )}
@@ -264,7 +285,7 @@ function SeatSelection() {
                             <Seat
                               key={seat.seat}
                               seatNumber={seat.seat}
-                              available={seat.available}
+                              available={seatmatrix[seat.id]}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -272,7 +293,7 @@ function SeatSelection() {
                           <Seat
                             key={seat.seat}
                             seatNumber={seat.seat}
-                            available={seat.available}
+                            available={seatmatrix[seat.id]}
                           />
                         )
                       )}
