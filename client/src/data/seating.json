@@ -349,128 +349,126 @@
             {
                 "row": "D",
                 "seats": [
-                    [
-                        {
-                            "id": 66,
-                            "seat": 1,
-                            "available": true
-                        },
-                        {
-                            "id": 67,
-                            "seat": 2,
-                            "available": true
-                        },
-                        {
-                            "id": 68,
-                            "seat": 3,
-                            "available": true
-                        },
-                        {
-                            "id": 69,
-                            "seat": 4,
-                            "available": true
-                        },
-                        {
-                            "id": 70,
-                            "seat": 5,
-                            "available": true
-                        },
-                        {
-                            "id": 71,
-                            "seat": 6,
-                            "available": true
-                        },
-                        {
-                            "id": 72,
-                            "seat": 7,
-                            "available": true
-                        },
-                        {
-                            "id": 73,
-                            "seat": 8,
-                            "available": true
-                        },
-                        {
-                            "id": 74,
-                            "seat": 9,
-                            "available": false
-                        },
-                        {
-                            "id": 75,
-                            "seat": 10,
-                            "available": false
-                        },
-                        {
-                            "id": 76,
-                            "seat": 11,
-                            "available": true
-                        },
-                        {
-                            "id": 77,
-                            "seat": 12,
-                            "available": true
-                        },
-                        {
-                            "id": 78,
-                            "seat": 13,
-                            "available": true
-                        },
-                        {
-                            "id": 79,
-                            "seat": 14,
-                            "available": true
-                        },
-                        {
-                            "id": 80,
-                            "seat": 15,
-                            "available": true
-                        },
-                        {
-                            "id": 81,
-                            "seat": 16,
-                            "available": true
-                        },
-                        {
-                            "id": 82,
-                            "seat": 17,
-                            "available": true
-                        },
-                        {
-                            "id": 83,
-                            "seat": 18,
-                            "available": true
-                        },
-                        {
-                            "id": 84,
-                            "seat": 19,
-                            "available": true
-                        },
-                        {
-                            "id": 85,
-                            "seat": 20,
-                            "available": true
-                        },
-                        {
-                            "id": 86,
-                            "seat": 21,
-                            "available": true
-                        },
-                        {
-                            "id": 87,
-                            "seat": 22,
-                            "available": true
-                        },
-                        {
-                            "id": 88,
-                            "seat": 23,
-                            "available": true
-                        },
-                        {
-                            "id": 89,
-                            "seat": 24,
-                            "available": true
-                        }
-                    ]
+                    {
+                        "id": 66,
+                        "seat": 1,
+                        "available": false
+                    },
+                    {
+                        "id": 67,
+                        "seat": 2,
+                        "available": true
+                    },
+                    {
+                        "id": 68,
+                        "seat": 3,
+                        "available": true
+                    },
+                    {
+                        "id": 69,
+                        "seat": 4,
+                        "available": true
+                    },
+                    {
+                        "id": 70,
+                        "seat": 5,
+                        "available": true
+                    },
+                    {
+                        "id": 71,
+                        "seat": 6,
+                        "available": true
+                    },
+                    {
+                        "id": 72,
+                        "seat": 7,
+                        "available": true
+                    },
+                    {
+                        "id": 73,
+                        "seat": 8,
+                        "available": true
+                    },
+                    {
+                        "id": 74,
+                        "seat": 9,
+                        "available": false
+                    },
+                    {
+                        "id": 75,
+                        "seat": 10,
+                        "available": false
+                    },
+                    {
+                        "id": 76,
+                        "seat": 11,
+                        "available": true
+                    },
+                    {
+                        "id": 77,
+                        "seat": 12,
+                        "available": true
+                    },
+                    {
+                        "id": 78,
+                        "seat": 13,
+                        "available": true
+                    },
+                    {
+                        "id": 79,
+                        "seat": 14,
+                        "available": true
+                    },
+                    {
+                        "id": 80,
+                        "seat": 15,
+                        "available": true
+                    },
+                    {
+                        "id": 81,
+                        "seat": 16,
+                        "available": true
+                    },
+                    {
+                        "id": 82,
+                        "seat": 17,
+                        "available": true
+                    },
+                    {
+                        "id": 83,
+                        "seat": 18,
+                        "available": true
+                    },
+                    {
+                        "id": 84,
+                        "seat": 19,
+                        "available": true
+                    },
+                    {
+                        "id": 85,
+                        "seat": 20,
+                        "available": true
+                    },
+                    {
+                        "id": 86,
+                        "seat": 21,
+                        "available": true
+                    },
+                    {
+                        "id": 87,
+                        "seat": 22,
+                        "available": true
+                    },
+                    {
+                        "id": 88,
+                        "seat": 23,
+                        "available": true
+                    },
+                    {
+                        "id": 89,
+                        "seat": 24,
+                        "available": true
+                    }
                 ]
             },
             {
