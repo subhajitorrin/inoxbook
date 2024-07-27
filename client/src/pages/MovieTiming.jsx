@@ -81,7 +81,7 @@ function MovieTiming() {
             </div>
           </div>
         </div>
-        <div className="mt-[2rem] flex flex-col gap-[20px]">
+        <div className="mt-[2rem] flex flex-col gap-[3rem]">
           <MovieTheaterCard/>
           <MovieTheaterCard/>
           <MovieTheaterCard/>
