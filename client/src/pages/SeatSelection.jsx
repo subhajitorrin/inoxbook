@@ -51,10 +51,33 @@ function SeatSelection() {
   useEffect(() => {
     setseat(seatmatrixarr[0]);
   }, [seatmatrixarr]);
+
+  function formatDate(dateStr) {
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const day = dateStr.slice(6, 8);
+    const month = monthNames[parseInt(dateStr.slice(4, 6), 10) - 1];
+    const year = dateStr.slice(0, 4);
+    return `${day} ${month} ${year}`;
+  }
+
   if (!seat) {
     return;
   }
   return (
+    params &&
     movieDetail &&
     theaterDetail && (
       <div className="w-full flex items-center flex-col gap-[3rem] select-none">
@@ -67,7 +90,8 @@ function SeatSelection() {
               {movieDetail.title}
             </p>
             <p className="text-center text-white text-[15px] ">
-              Today, 23 Jul, 10:10 AM at <span>{theaterDetail.name}</span>
+              <span>{formatDate(params[3])}</span>, 10:10 AM at{" "}
+              <span>{theaterDetail.name}</span>
             </p>
           </div>
         </div>

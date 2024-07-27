@@ -93,11 +93,13 @@ function MovieTiming() {
             {movieTimings.map((item, index) => {
               if (index !== selectedIndex) return null;
               return item.theaters.map((theater, i) => {
+                if (!movieTimings[selectedIndex] > 0) return;
                 return (
                   <MovieTheaterCard
                     key={`theater${i}`}
                     theater={theater}
                     movieId={movieDetail.id}
+                    datecode={movieTimings[selectedIndex].date}
                   />
                 );
               });
