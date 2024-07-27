@@ -4,13 +4,30 @@ import Seat from "../components/Seat";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SeatSelection() {
+  const [pricelist, setpricelist] = useState([330, 240, 180, 150]);
+  const [priceListIndex, setpriceListIndex] = useState(0);
+  const [price, setprice] = useState(0);
+  const [isSeatSelected, setIsSeatSelected] = useState({
+    counter: 0,
+    seatids: [],
+  });
+  useEffect(() => {
+    console.log(isSeatSelected);
+  }, [isSeatSelected]);
   const [seatmatrix, setseatmatrix] = useState([]);
   const [movieDetail, setmovieDetail] = useState(null);
   const [theaterDetail, settheaterDetail] = useState(null);
   const [params, setparams] = useState([]);
   const [seat, setseat] = useState(null);
+  const [timingobj, setTimingobj] = useState({
+    weekday: "",
+    month: "",
+    day: "",
+  });
+  const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
     setparams(id.split("-"));
@@ -24,7 +41,7 @@ function SeatSelection() {
             `http://localhost:5000/moviedetail/${params[0]}`
           );
           setmovieDetail(res.data.movie);
-          console.log(res.data.movie);
+          // console.log(res.data.movie);
         }
       } catch (error) {
         console.log("Error while fetching movie detail", error);
@@ -68,9 +85,6 @@ function SeatSelection() {
   useEffect(() => {
     setseat(seatmatrixarr[0]);
   }, [seatmatrixarr]);
-  useEffect(() => {
-    console.log(seatmatrix);
-  }, [seatmatrix]);
 
   function formatDate(dateStr) {
     const monthNames = [
@@ -93,25 +107,92 @@ function SeatSelection() {
     return `${day} ${month} ${year}`;
   }
 
+  function formatDateWord(dateInput) {
+    const date = new Date(dateInput);
+    const weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    const months = [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC",
+    ];
+
+    const weekday = weekdays[date.getUTCDay()];
+    const month = months[date.getUTCMonth()];
+    const day = date.getUTCDate();
+
+    setTimingobj({
+      weekday: weekday,
+      month: month,
+      day: day,
+    });
+  }
+
+  useEffect(() => {
+    if (params.length > 0) {
+      console.log(params[3]);
+      formatDateWord(formatDate(params[3]));
+    }
+  }, [params]);
+
+  function getPriceBySeatId(seatid) {
+    if (seatid >= 0 && seatid <= 17) {
+      setpriceListIndex(0);
+      return 330;
+    } else if (seatid >= 18 && seatid <= 89) {
+      setpriceListIndex(1);
+      return 240;
+    } else if (seatid >= 90 && seatid <= 301) {
+      setpriceListIndex(2);
+      return 180;
+    } else {
+      setpriceListIndex(3);
+      return 150;
+    }
+  }
+
+  useEffect(() => {
+    function handlePriceCalculation() {
+      let tempprice = 0;
+      isSeatSelected.seatids.map((item, index) => {
+        tempprice += getPriceBySeatId(item);
+        setprice(tempprice);
+      });
+    }
+    handlePriceCalculation();
+  }, [isSeatSelected]);
+
   if (!seat) {
     return;
   }
   return (
     seatmatrix.length > 0 &&
-    params &&
+    params.length > 0 &&
     movieDetail &&
     theaterDetail && (
       <div className="w-full flex items-center flex-col gap-[3rem] select-none">
         <div className=" bg-black w-full py-[1rem] relative">
-          <div className="text-white text-[40px] absolute  cursor-pointer left-[20%] top-[25%]">
-            <MdOutlineKeyboardArrowLeft />
+          <div className="text-white  text-[40px] absolute  cursor-pointer left-[20%] top-[25%]">
+            <MdOutlineKeyboardArrowLeft
+              onClick={() => {
+                navigate(-1);
+              }}
+            />
           </div>
           <div className="">
             <p className="font-bold text-[22px] text-white text-center">
               {movieDetail.title}
             </p>
             <p className="text-center text-white text-[15px] ">
-              <span>{formatDate(params[3])}</span>, 10:10 AM at{" "}
+              <span>{formatDate(params[3])}</span>, <span>{params[4]}</span> at{" "}
               <span>{theaterDetail.name}</span>
             </p>
           </div>
@@ -120,8 +201,12 @@ function SeatSelection() {
           <div className="flex gap-[2rem] items-center">
             <div className="font-bold">
               <div className="text-[20px]">
-                <p className="text-[#878787]">Tue</p>
-                <p>23 Jul</p>
+                <p className="text-[#878787] text-[15px]">
+                  {timingobj.weekday}
+                </p>
+                <p className="text-[18px] mt-[-5px]">
+                  {timingobj.day} {timingobj.month}
+                </p>
               </div>
             </div>
             <div className="border border-transparent w-[500px] h-[50px]">
@@ -146,7 +231,7 @@ function SeatSelection() {
         <div className="flex flex-col gap-[2rem]">
           <div>
             <p className="text-center mb-[15px] font-bold">
-              StarSuite &#x20B9;330
+              StarSuite &#x20B9;{pricelist[0]}
             </p>
             {seat.seatMatrix.map(
               (row, rowIndex) =>
@@ -166,6 +251,8 @@ function SeatSelection() {
                               key={seat.seat}
                               seatNumber={seat.seat}
                               available={seatmatrix[seat.id]}
+                              seatid={seat.id}
+                              setIsSeatSelected={setIsSeatSelected}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -174,6 +261,8 @@ function SeatSelection() {
                             key={seat.seat}
                             seatNumber={seat.seat}
                             available={seatmatrix[seat.id]}
+                            seatid={seat.id}
+                            setIsSeatSelected={setIsSeatSelected}
                           />
                         )
                       )}
@@ -184,7 +273,7 @@ function SeatSelection() {
           </div>
           <div>
             <p className="text-center mb-[15px] font-bold">
-              PlatinumView &#x20B9;240
+              PlatinumView &#x20B9;{pricelist[1]}
             </p>
             {seat.seatMatrix.map(
               (row, rowIndex) =>
@@ -198,7 +287,7 @@ function SeatSelection() {
                       {row.row}
                     </div>
                     <div className="flex">
-                      {row.seats.map((seat,index) =>
+                      {row.seats.map((seat, index) =>
                         seat.seat === 2 ||
                         seat.seat === 7 ||
                         seat.seat === 20 ? (
@@ -207,6 +296,8 @@ function SeatSelection() {
                               key={seat.seat}
                               seatNumber={seat.seat}
                               available={seatmatrix[seat.id]}
+                              seatid={seat.id}
+                              setIsSeatSelected={setIsSeatSelected}
                             />
                             <div className="w-[50px] "></div>
                           </>
@@ -215,6 +306,8 @@ function SeatSelection() {
                             key={seat.seat}
                             seatNumber={seat.seat}
                             available={seatmatrix[seat.id]}
+                            seatid={seat.id}
+                            setIsSeatSelected={setIsSeatSelected}
                           />
                         )
                       )}
@@ -225,7 +318,7 @@ function SeatSelection() {
           </div>
           <div>
             <p className="text-center mb-[15px] font-bold">
-              SilverScreen &#x20B9;180
+              SilverScreen &#x20B9;{pricelist[2]}
             </p>
             {seat.seatMatrix.map(
               (row, rowIndex) =>
@@ -248,6 +341,8 @@ function SeatSelection() {
                               key={seat.seat}
                               seatNumber={seat.seat}
                               available={seatmatrix[seat.id]}
+                              seatid={seat.id}
+                              setIsSeatSelected={setIsSeatSelected}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -256,6 +351,8 @@ function SeatSelection() {
                             key={seat.seat}
                             seatNumber={seat.seat}
                             available={seatmatrix[seat.id]}
+                            seatid={seat.id}
+                            setIsSeatSelected={setIsSeatSelected}
                           />
                         )
                       )}
@@ -266,7 +363,7 @@ function SeatSelection() {
           </div>
           <div>
             <p className="text-center mb-[15px] font-bold">
-              CineBasics &#x20B9;180
+              CineBasics &#x20B9;{pricelist[3]}
             </p>
             {seat.seatMatrix.map(
               (row, rowIndex) =>
@@ -286,6 +383,8 @@ function SeatSelection() {
                               key={seat.seat}
                               seatNumber={seat.seat}
                               available={seatmatrix[seat.id]}
+                              seatid={seat.id}
+                              setIsSeatSelected={setIsSeatSelected}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -294,6 +393,8 @@ function SeatSelection() {
                             key={seat.seat}
                             seatNumber={seat.seat}
                             available={seatmatrix[seat.id]}
+                            seatid={seat.id}
+                            setIsSeatSelected={setIsSeatSelected}
                           />
                         )
                       )}
@@ -303,9 +404,27 @@ function SeatSelection() {
             )}
           </div>
         </div>
-        <div className="mb-[20px]">
+        <div className="mb-[30px]">
           <img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" />
         </div>
+        {isSeatSelected.counter > 0 && (
+          <div className="h-[60px] bg-transparent w-full "></div>
+        )}
+        {isSeatSelected.counter > 0 && (
+          <div className="border-t border-[#00000026] items-center h-[110px] bg-white w-full fixed bottom-0 px-[25%] flex justify-between ">
+            <div className="">
+              <div className="font-bold text-[22px]">
+                &#8377;<span>{price}</span>
+              </div>
+              <div className="text-[#00000078]">
+                Ticket {isSeatSelected.counter} x {pricelist[priceListIndex]}
+              </div>
+            </div>
+            <button className="bg-black text-white font-bold px-[60px] h-[60px] rounded-[10px]">
+              Book Ticket
+            </button>
+          </div>
+        )}
       </div>
     )
   );

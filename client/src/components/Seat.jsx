@@ -1,12 +1,30 @@
 import React, { useState } from "react";
 
-function Seat({ seatNumber, available }) {
+function Seat({ seatNumber, available, seatid, setIsSeatSelected }) {
   const [onselect, setOnselect] = useState(false);
+  function handleOnclick() {
+    setOnselect((prev) => {
+      if (prev == false) {
+        setIsSeatSelected((prv) => {
+          return {
+            counter: prv.counter + 1,
+            seatids: [...prv.seatids, seatid],
+          };
+        });
+      } else {
+        setIsSeatSelected((prv) => {
+          return {
+            counter: prv.counter - 1,
+            seatids: prv.seatids.filter((id) => id !== seatid),
+          };
+        });
+      }
+      return !prev;
+    });
+  }
   return available ? (
     <div
-      onClick={() => {
-        setOnselect((prev) => !prev);
-      }}
+      onClick={handleOnclick}
       style={{
         backgroundColor: onselect ? "black" : "",
         color: onselect ? "white" : "",
