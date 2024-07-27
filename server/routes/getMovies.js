@@ -1,4 +1,5 @@
 import currentMovies from "../data/moviedata.json" assert { type: "json" };
+import theaterList from "../data/theaterdata.json" assert { type: "json" };
 import express from "express"
 
 const router = express.Router();
@@ -26,8 +27,28 @@ function getMovieDetailById(req, res) {
     }
 }
 
+function getTheaterById(req, res) {
+    const { id } = req.params;
+    if (!id) {
+        return res.status(400).json({ error: "Theater ID is required" });
+    }
+    try {
+        const theater = theaterList.find((item) => item.id == id);
+        console.log(theater);
+        if (theater) {
+            return res.status(200).json({ theater });
+        } else {
+            return res.status(404).json({ error: "Theater not found" });
+        }
+    } catch (error) {
+        console.error("Error fetching movie details:", error);
+        return res.status(500).json({ error: "An internal server error occurred" });
+    }
+}
+
 
 router.get("/getcurrentmovies", getCurrentMovies)
 router.get("/moviedetail/:id", getMovieDetailById)
+router.get("/gettheaterbyid/:id", getTheaterById)
 
 export default router

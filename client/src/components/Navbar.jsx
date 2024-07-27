@@ -3,11 +3,18 @@ import { IoIosSearch } from "react-icons/io";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { IoTicketOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
   return (
     <div className="select-none flex justify-between items-center text-[14px] font-[500] py-[1rem] px-[15%]">
-      <div className="flex items-center text-[20px]">
+      <div
+        className="flex items-center text-[20px] cursor-pointer"
+        onClick={() => {
+          navigate(`/`);
+        }}
+      >
         INOX{" "}
         <div className="text-[30px]">
           <IoTicketOutline />

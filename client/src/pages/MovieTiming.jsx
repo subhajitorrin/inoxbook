@@ -7,12 +7,14 @@ import MovieTheaterCard from "../components/MovieTheaterCard";
 function MovieTiming() {
   const { id } = useParams();
   const [movieDetail, setmovieDetail] = useState(null);
+  const [movieTimings, setmovieTimings] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   useEffect(() => {
     async function getMovieDetailById() {
       try {
         const res = await axios.get(`http://localhost:5000/moviedetail/${id}`);
         setmovieDetail(res.data.movie);
+        setmovieTimings(res.data.movie.timings);
       } catch (error) {
         console.log("Error while fetching movie detail", error);
       }
@@ -21,7 +23,7 @@ function MovieTiming() {
   }, [id]);
 
   useEffect(() => {
-    if (movieDetail) console.log(movieDetail.movie);
+    // if (movieDetail) console.log(movieDetail.movie);
   }, [movieDetail]);
 
   function formatMinutesToHours(minutes) {
@@ -48,7 +50,10 @@ function MovieTiming() {
             <div className="flex gap-[15px] text-[13px] mt-[5px]">
               {movieDetail.genre.map((item, index) => {
                 return (
-                  <div className="py-[5px] px-[10px] bg-[#d7d7d7df] rounded-[7px] cursor-pointer font-[500]">
+                  <div
+                    key={index}
+                    className="py-[5px] px-[10px] bg-[#d7d7d7df] rounded-[7px] cursor-pointer font-[500]"
+                  >
                     {item}
                   </div>
                 );
@@ -68,7 +73,7 @@ function MovieTiming() {
               show.
             </p>
             <div className="flex gap-[10px] justify-center items-center h-full">
-              {movieDetail.timings.map((item, index) => {
+              {movieTimings.map((item, index) => {
                 return (
                   <MovieDateCard
                     date={item.date}
@@ -82,10 +87,12 @@ function MovieTiming() {
           </div>
         </div>
         <div className="mt-[2rem] flex flex-col gap-[3rem]">
-          <MovieTheaterCard/>
-          <MovieTheaterCard/>
-          <MovieTheaterCard/>
-          <MovieTheaterCard/>
+          {movieTimings.map((item, index) => {
+            if (index !== selectedIndex) return null;
+            return item.theaters.map((theater, i) => {
+              return <MovieTheaterCard key={`theater${i}`} theater={theater} />;
+            });
+          })}
         </div>
       </div>
     )

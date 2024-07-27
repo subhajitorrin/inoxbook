@@ -15,18 +15,21 @@
         "cast": [
             {
                 "name": "Lakshwa Lalwani",
-                "imageUrl": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/lakshya-lalwani-2031994-1698760755.jpg"
+                "imageUrl": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/lakshya-lalwani-2031994-1698760755.jpg",
+                "type": "Actor"
             },
             {
                 "name": "Tanya Maniktala",
-                "imageUrl": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/tanya-maniktala-2031995-1698760923.jpg"
+                "imageUrl": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/tanya-maniktala-2031995-1698760923.jpg",
+                "type": "Actress"
             },
             {
                 "name": "Raghav Juyal",
-                "imageUrl": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/raghav-juyal-41342-1681893242.jpg"
+                "imageUrl": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/raghav-juyal-41342-1681893242.jpg",
+                "type": "Actor"
             }
         ],
-        "synopsis": "Army commando Amrit (Lakshya) finds out his true love Tulika (Tanya Maniktala) is en-route, he boards a New Delhi-bound train in a daring quest to derail the their eventual seperation. But when a gang of knife-wielding thieves led by the ruthless leader (Raghav Juyal) begin to terrorize innocent passengers on his train, Amrit takes them on himself in a death-defying kill-spree to save those around him - turning what should have been a typical commute into an adrenaline-fueled thrill ride.",
+        "synopsis": "Army commando Amrit (Lakshya) finds out his true love Tulika (Tanya Maniktala) is en-route, he boards a New Delhi-bound train in a daring quest to derail the their eventual separation. But when a gang of knife-wielding thieves led by the ruthless leader (Raghav Juyal) begin to terrorize innocent passengers on his train, Amrit takes them on himself in a death-defying kill-spree to save those around him - turning what should have been a typical commute into an adrenaline-fueled thrill ride.",
         "rating": "9.1",
         "posterUrl": "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/kill-et00374797-1718179453.jpg",
         "backPoster": "https://assets-in.bmscdn.com/discovery-catalog/events/et00374797-kvhcnbusgs-landscape.jpg",
@@ -35,84 +38,574 @@
             {
                 "reviewer": "John Doe",
                 "rating": 4.5,
-                "comment": "Amazing movie with a mind-bending plot!"
+                "comment": "Amazing movie with a mind-bending plot!",
+                "type": "Review"
             },
             {
                 "reviewer": "Jane Smith",
                 "rating": 4.0,
-                "comment": "Great visuals and storytelling."
+                "comment": "Great visuals and storytelling.",
+                "type": "Review"
             }
         ],
         "timings": [
             {
                 "date": "2024-07-23",
+                "type": "Show Timings",
                 "theaters": [
                     {
-                        "theaterId": "101",
+                        "theaterId": "1000",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "a1b2c3d4e5",
+                                "time": "10:15 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f6g7h8i9j0",
+                                "time": "1:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "k1l2m3n4o5",
+                                "time": "4:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k1l2m3n4o5x",
+                                "time": "8:00 PM",
+                                "type": "3D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
+                        "theaterId": "1001",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "r1s2t3u4v5",
+                                "time": "11:00 AM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "w6x7y8z9a0",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "b1c2d3e4f5",
+                                "time": "5:15 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "g6h7i8j9k0",
+                                "time": "8:30 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "103",
+                        "theaterId": "1002",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "l1m2n3o4p5",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "q6r7s8t9u0",
+                                "time": "3:30 PM",
+                                "type": "3D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "104",
+                        "theaterId": "1003",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "x1y2z3a4b5",
+                                "time": "10:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "c6d7e8f9g0",
+                                "time": "1:30 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "h1i2j3k4l5",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "m6n7o8p9q0",
+                                "time": "8:00 PM",
+                                "type": "3D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "105",
+                        "theaterId": "1004",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "r1s2t3u4v6",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "b1c2d3e4f6",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1005",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "l1m2n3o4p6",
+                                "time": "12:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "q6r7s8t9u1",
+                                "time": "4:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "v1w2x3y4z6",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a2b3c4d5e6",
+                                "time": "9:30 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1006",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "c1d2e3f4g5",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "h6i7j8k9l0",
+                                "time": "2:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "m1n2o3p4q5",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1007",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "w1x2y3z4a5",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "b6c7d8e9f0",
+                                "time": "3:30 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "g1h2i3j4k5",
+                                "time": "6:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "l6m7n8o9p0",
+                                "time": "9:00 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1008",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "q1r2s3t4u5",
+                                "time": "10:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a1b2c3d4e6",
+                                "time": "5:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f7g8h9i0j1",
+                                "time": "8:15 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1009",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "k1l2m3n4o6",
+                                "time": "11:15 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p6q7r8s9t0",
+                                "time": "2:30 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "u1v2w3x4y5",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "z6a7b8c9d0",
+                                "time": "8:45 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1010",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "e1f2g3h4i5",
+                                "time": "10:45 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "j6k7l8m9n0",
+                                "time": "1:15 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "o1p2q3r4s5",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "t6u7v8w9x0",
+                                "time": "7:15 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1011",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "y1z2a3b4c5",
+                                "time": "11:45 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "d6e7f8g9h0",
+                                "time": "3:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "i1j2k3l4m5",
+                                "time": "6:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "n6o7p8q9r0",
+                                "time": "9:00 PM",
+                                "type": "3D"
+                            }
                         ]
                     }
                 ]
             },
             {
                 "date": "2024-07-24",
+                "type": "Show Timings",
                 "theaters": [
                     {
-                        "theaterId": "101",
+                        "theaterId": "1000",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "a1b2c3d4e6",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f6g7h8i9j1",
+                                "time": "2:45 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "k1l2m3n4o6",
+                                "time": "5:30 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
+                        "theaterId": "1001",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "r1s2t3u4v6",
+                                "time": "12:15 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "w6x7y8z9a1",
+                                "time": "3:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "b1c2d3e4f6",
+                                "time": "6:15 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "g6h7i8j9k1",
+                                "time": "9:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1002",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "l1m2n3o4p6",
+                                "time": "1:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "q6r7s8t9u1",
+                                "time": "4:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "v1w2x3y4z6",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1003",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "x1y2z3a4b6",
+                                "time": "11:45 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "c6d7e8f9g1",
+                                "time": "3:15 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "h1i2j3k4l6",
+                                "time": "6:30 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1004",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "r1s2t3u4v7",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "w6x7y8z9b2",
+                                "time": "3:30 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "b1c2d3e4f7",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "g6h7i8j9k2",
+                                "time": "8:45 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1005",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "l1m2n3o4p7",
+                                "time": "12:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "q6r7s8t9u2",
+                                "time": "4:30 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "v1w2x3y4z7",
+                                "time": "7:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a2b3c4d5f7",
+                                "time": "9:15 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1006",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "c1d2e3f4g6",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "h6i7j8k9l1",
+                                "time": "2:45 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "m1n2o3p4q6",
+                                "time": "5:30 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1007",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "w1x2y3z4a6",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "b6c7d8e9f1",
+                                "time": "3:30 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "g1h2i3j4k6",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1008",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "q1r2s3t4u6",
+                                "time": "11:15 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v6w7x8y9a2",
+                                "time": "2:45 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "f7g8h9i0j2",
+                                "time": "8:00 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1009",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "k1l2m3n4o7",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p6q7r8s9u1",
+                                "time": "3:15 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "u1v2w3x4y7",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "z6a7b8c9d2",
+                                "time": "9:00 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1010",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "e1f2g3h4i6",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "j6k7l8m9n1",
+                                "time": "2:30 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1011",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "y1z2a3b4c6",
+                                "time": "12:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "d6e7f8g9h1",
+                                "time": "3:45 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "n6o7p8q9r1",
+                                "time": "9:15 PM",
+                                "type": "3D"
+                            }
                         ]
                     }
                 ]
@@ -139,18 +632,21 @@
         "cast": [
             {
                 "name": "Ryan Reynolds",
-                "imageUrl": "https://in.bmscdn.com/iedb/artist/images/website/poster/large/ryan-reynolds-1955-14-08-2020-02-54-15.jpg"
+                "imageUrl": "https://in.bmscdn.com/iedb/artist/images/website/poster/large/ryan-reynolds-1955-14-08-2020-02-54-15.jpg",
+                "type": "Actor"
             },
             {
                 "name": "Hugh Jackman",
-                "imageUrl": "https://assets-global.website-files.com/63bb7d51076d755de475e3a3/6623711d3ed5ef38c970d527_6501d788d12387e6ed67d154_8NwXVuLxsqDh17JxRy8_KyU_BYxAyCxJbUcq9vRDWxI.webp"
+                "imageUrl": "https://assets-global.website-files.com/63bb7d51076d755de475e3a3/6623711d3ed5ef38c970d527_6501d788d12387e6ed67d154_8NwXVuLxsqDh17JxRy8_KyU_BYxAyCxJbUcq9vRDWxI.webp",
+                "type": "Actor"
             },
             {
                 "name": "Morena Baccarin",
-                "imageUrl": "https://in.bmscdn.com/iedb/artist/images/website/poster/large/morena-baccarin-1052433-01-12-2020-01-25-06.jpg"
+                "imageUrl": "https://in.bmscdn.com/iedb/artist/images/website/poster/large/morena-baccarin-1052433-01-12-2020-01-25-06.jpg",
+                "type": "Actress"
             }
         ],
-        "synopsis": "Marvel Studios` `Deadpool & Wolverine` delivers the ultimate, iconic, cinematic team-up throwdown on July 26",
+        "synopsis": "Marvel Studios' 'Deadpool & Wolverine' delivers the ultimate, iconic, cinematic team-up throwdown on July 26.",
         "rating": "9.1",
         "posterUrl": "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/deadpool-and-wolverine-et00341295-1718018322.jpg",
         "backPoster": "https://assets-in.bmscdn.com/discovery-catalog/events/et00341295-lbybdzxlhd-landscape.jpg",
@@ -159,84 +655,270 @@
             {
                 "reviewer": "John Doe",
                 "rating": 4.5,
-                "comment": "Amazing movie with a mind-bending plot!"
+                "comment": "Amazing movie with a mind-bending plot!",
+                "type": "Review"
             },
             {
                 "reviewer": "Jane Smith",
                 "rating": 4.0,
-                "comment": "Great visuals and storytelling."
+                "comment": "Great visuals and storytelling.",
+                "type": "Review"
             }
         ],
         "timings": [
             {
                 "date": "2024-07-23",
+                "type": "Show Timings",
                 "theaters": [
                     {
-                        "theaterId": "101",
+                        "theaterId": "1000",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "x1y2z3a4b6",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "c6d7e8f9g1",
+                                "time": "2:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "h1i2j3k4l6",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "m6n7o8p9q1",
+                                "time": "8:00 PM",
+                                "type": "3D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
+                        "theaterId": "1001",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "p1q2r3s4t6",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v6w7x8y9a2",
+                                "time": "2:30 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "b1c2d3e4f7",
+                                "time": "5:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "g6h7i8j9k3",
+                                "time": "8:30 PM",
+                                "type": "3D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "103",
+                        "theaterId": "1002",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "l1m2n3o4p8",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "q6r7s8t9u3",
+                                "time": "3:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "v1w2x3y4z8",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "104",
+                        "theaterId": "1003",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "a1b2c3d4e8",
+                                "time": "10:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f6g7h8i9j4",
+                                "time": "1:30 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "k1l2m3n4o8",
+                                "time": "4:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "n6o7p8q9r4",
+                                "time": "7:30 PM",
+                                "type": "3D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "105",
+                        "theaterId": "1004",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "b1c2d3e4f8",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "g6h7i8j9k5",
+                                "time": "2:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "m1n2o3p4q7",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v6w7x8y9a3",
+                                "time": "8:00 PM",
+                                "type": "3D"
+                            }
                         ]
                     }
                 ]
             },
             {
                 "date": "2024-07-24",
+                "type": "Show Timings",
                 "theaters": [
                     {
-                        "theaterId": "101",
+                        "theaterId": "1000",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "p1q2r3s4t7",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v6w7x8y9b3",
+                                "time": "3:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "b1c2d3e4f9",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
+                        "theaterId": "1001",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "q6r7s8t9u4",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v1w2x3y4z9",
+                                "time": "2:30 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "b6c7d8e9f8",
+                                "time": "5:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "g1h2i3j4k6",
+                                "time": "8:30 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1002",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "l1m2n3o4p9",
+                                "time": "1:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "q6r7s8t9u5",
+                                "time": "4:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "v1w2x3y4z0",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1003",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "a1b2c3d4e9",
+                                "time": "10:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f6g7h8i9j5",
+                                "time": "1:00 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "k1l2m3n4o9",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "n6o7p8q9r5",
+                                "time": "7:00 PM",
+                                "type": "3D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1004",
+                        "type": "Theater",
+                        "timings": [
+                            {
+                                "showid": "b1c2d3e4f9",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "g6h7i8j9k6",
+                                "time": "2:30 PM",
+                                "type": "3D"
+                            },
+                            {
+                                "showid": "m1n2o3p4q8",
+                                "time": "5:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v6w7x8y9a4",
+                                "time": "8:30 PM",
+                                "type": "3D"
+                            }
                         ]
                     }
                 ]
@@ -259,18 +941,21 @@
         "cast": [
             {
                 "name": "Vicky Kaushal",
-                "imageUrl": "https://assets.telegraphindia.com/telegraph/2024/Jul/1720682532_vicky-kaushal.jpg"
+                "imageUrl": "https://assets.telegraphindia.com/telegraph/2024/Jul/1720682532_vicky-kaushal.jpg",
+                "type": "Actor"
             },
             {
                 "name": "Tripti Dimri",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Tripti_Dimri_at_the_red_carpet_of_%27Bollywood_Hungama_Style_Icons%27_Summit_and_Awards_2024_%28cropped%29.jpg"
+                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Tripti_Dimri_at_the_red_carpet_of_%27Bollywood_Hungama_Style_Icons%27_Summit_and_Awards_2024_%28cropped%29.jpg",
+                "type": "Actress"
             },
             {
                 "name": "Ammy Virk",
-                "imageUrl": "https://www.gethucinema.com/tmdb/8ZXB6vBqhV3aA0kf6OP4zrmeFsw.jpg"
+                "imageUrl": "https://www.gethucinema.com/tmdb/8ZXB6vBqhV3aA0kf6OP4zrmeFsw.jpg",
+                "type": "Actor"
             }
         ],
-        "synopsis": "Bad Newz is a bizarre, rare comedy about heteropaternal superfecundation! A twist of fate leads to Saloni Bagga`s twin pregnancy being fathered by both Akhil Chadha and Gurbir Pannu, setting off a chaotic rivalry for her love and their children. As Akhil and Gurbir vie for Saloni`s affections, chaos ensues.",
+        "synopsis": "Bad Newz is a bizarre, rare comedy about heteropaternal superfecundation! A twist of fate leads to Saloni Bagga's twin pregnancy being fathered by both Akhil Chadha and Gurbir Pannu, setting off a chaotic rivalry for her love and their children. As Akhil and Gurbir vie for Saloni's affections, chaos ensues.",
         "rating": "6.3",
         "posterUrl": "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/bad-newz-et00391805-1721214274.jpg",
         "backPoster": "https://images.filmibeat.com/img/popcorn/movie_posters/badnews-20240319143808-22729.jpg",
@@ -279,7 +964,7 @@
             {
                 "reviewer": "Suvam Das",
                 "rating": 7.5,
-                "comment": "I Saw it with my family and everyone loved it. Definitely a green signal from us"
+                "comment": "I saw it with my family and everyone loved it. Definitely a green signal from us."
             },
             {
                 "reviewer": "Jane Smith",
@@ -292,48 +977,133 @@
                 "date": "2024-07-23",
                 "theaters": [
                     {
-                        "theaterId": "101",
+                        "theaterId": "1001",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "a1b2c3d4e1",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f6g7h8i9j2",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k1l2m3n4o3",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p6q7r8s9t4",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
+                        "theaterId": "1002",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "v1w2x3y4z5",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a6b7c8d9e2",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f1g2h3i4j3",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o4",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "103",
+                        "theaterId": "1003",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "p1q2r3s4t5",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v6w7x8y9z2",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a1b2c3d4e6",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f6g7h8i9j3",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "104",
+                        "theaterId": "1004",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "k1l2m3n4o5",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p6q7r8s9t2",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v1w2x3y4z6",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a6b7c8d9e3",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "105",
+                        "theaterId": "1005",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "f1g2h3i4j5",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o2",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p1q2r3s4t6",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v6w7x8y9z3",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     }
                 ]
@@ -342,21 +1112,55 @@
                 "date": "2024-07-24",
                 "theaters": [
                     {
-                        "theaterId": "101",
+                        "theaterId": "1005",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "a1b2c3d4e2",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f6g7h8i9j3",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k1l2m3n4o4",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p6q7r8s9t5",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
+                        "theaterId": "1002",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "v1w2x3y4z3",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a6b7c8d9e4",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f1g2h3i4j5",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o6",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     }
                 ]
@@ -384,18 +1188,21 @@
         "cast": [
             {
                 "name": "Prabhas",
-                "imageUrl": "https://in.bmscdn.com/iedb/artist/images/website/poster/large/prabhas-1708-1686915417.jpg"
+                "imageUrl": "https://in.bmscdn.com/iedb/artist/images/website/poster/large/prabhas-1708-1686915417.jpg",
+                "type": "Actor"
             },
             {
                 "name": "Deepika Padukone",
-                "imageUrl": "https://in.bmscdn.com/iedb/artist/images/website/poster/large/deepika-padukone-2822-12-09-2017-06-31-43.jpg"
+                "imageUrl": "https://in.bmscdn.com/iedb/artist/images/website/poster/large/deepika-padukone-2822-12-09-2017-06-31-43.jpg",
+                "type": "Actress"
             },
             {
                 "name": "Amitabh Bachchan",
-                "imageUrl": "https://in.bmscdn.com/iedb/artist/images/website/poster/large/amitabh-bachchan-138-12-09-2017-02-34-37.jpg"
+                "imageUrl": "https://in.bmscdn.com/iedb/artist/images/website/poster/large/amitabh-bachchan-138-12-09-2017-02-34-37.jpg",
+                "type": "Actor"
             }
         ],
-        "synopsis": "When the world is taken over by darkness. A force will rise",
+        "synopsis": "When the world is taken over by darkness, a force will rise.",
         "rating": "8.6",
         "posterUrl": "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/kalki-2898-ad-et00352941-1718275859.jpg",
         "backPoster": "https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/medium/kalki-2898-ad-et00352941-1718275859.jpg",
@@ -404,12 +1211,12 @@
             {
                 "reviewer": "Joy Mahato",
                 "rating": 8.5,
-                "comment": "In Whole movie Amitabh Bachchan is star in front of all viewers but real star is Nag Ashwin and team. This movie is care of address for upcoming sci fi movies in tollywood and even all world now talk about this movie visuals."
+                "comment": "In the whole movie, Amitabh Bachchan is the star in front of all viewers, but the real star is Nag Ashwin and his team. This movie sets a benchmark for upcoming sci-fi movies in Tollywood and worldwide with its impressive visuals."
             },
             {
                 "reviewer": "Carry Smith",
                 "rating": 7.0,
-                "comment": "First half kuncham slow start but second half archkamm - Visual Treat and Wonders: Suspense Characters and Nag Ashwin Cinema will reach more heights"
+                "comment": "The first half is a bit slow, but the second half is a visual treat. The suspense, characters, and Nag Ashwin's direction make it a notable film."
             }
         ],
         "timings": [
@@ -417,48 +1224,113 @@
                 "date": "2024-07-23",
                 "theaters": [
                     {
-                        "theaterId": "101",
+                        "theaterId": "1001",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "a1b2c3d4e1",
+                                "time": "10:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f6g7h8i9j1",
+                                "time": "1:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k1l2m3n4o1",
+                                "time": "4:45 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
+                        "theaterId": "1002",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "v1w2x3y4z1",
+                                "time": "11:15 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a6b7c8d9e2",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f1g2h3i4j2",
+                                "time": "5:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o2",
+                                "time": "7:45 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "103",
+                        "theaterId": "1003",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "p1q2r3s4t2",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v6w7x8y9z2",
+                                "time": "3:15 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "104",
+                        "theaterId": "1004",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "k1l2m3n4o3",
+                                "time": "11:45 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p6q7r8s9t3",
+                                "time": "2:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "v1w2x3y4z3",
+                                "time": "5:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a6b7c8d9e3",
+                                "time": "8:30 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "105",
+                        "theaterId": "1005",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "f1g2h3i4j4",
+                                "time": "9:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o4",
+                                "time": "1:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p1q2r3s4t4",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     }
                 ]
@@ -467,21 +1339,55 @@
                 "date": "2024-07-24",
                 "theaters": [
                     {
-                        "theaterId": "101",
+                        "theaterId": "1001",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "a1b2c3d4e4",
+                                "time": "10:15 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f6g7h8i9j4",
+                                "time": "1:45 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k1l2m3n4o4",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p6q7r8s9t4",
+                                "time": "8:15 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
+                        "theaterId": "1002",
+                        "type": "Theater",
                         "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                            {
+                                "showid": "v1w2x3y4z4",
+                                "time": "12:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a6b7c8d9e4",
+                                "time": "3:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f1g2h3i4j5",
+                                "time": "6:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o5",
+                                "time": "9:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     }
                 ]
@@ -502,7 +1408,7 @@
             "Hindi"
         ],
         "releaseDate": "2024-07-18",
-        "director": "Lee Lsaac Chung",
+        "director": "Lee Isaac Chung",
         "cast": [
             {
                 "name": "Daisy Edgar-Jones",
@@ -517,7 +1423,7 @@
                 "imageUrl": "https://image.tmdb.org/t/p/w500/seFm2fKh6reyZaaCg7DmRpodLCw.jpg"
             }
         ],
-        "synopsis": "Kate Cooper, haunted by a devastating encounter with a tornado during her college years, studies storm patterns on screens safely in New York City.She is lured back to the open plains by her friend, Javi to test a groundbreaking new tracking system.There, she crosses paths with Tyler Owens, the charming and reckless social-media superstar who thrives on posting his storm-chasing adventures with his raucous crew, the more dangerous the better.",
+        "synopsis": "Kate Cooper, haunted by a devastating encounter with a tornado during her college years, studies storm patterns on screens safely in New York City. She is lured back to the open plains by her friend, Javi, to test a groundbreaking new tracking system. There, she crosses paths with Tyler Owens, the charming and reckless social-media superstar who thrives on posting his storm-chasing adventures with his raucous crew, the more dangerous the better.",
         "rating": "8.4",
         "posterUrl": "https://m.media-amazon.com/images/M/MV5BZTc3YmEwYTgtM2E1YS00NGQ1LTg1NzYtNTMxMzA5ODFhZThhXkEyXkFqcGdeQXVyNzAwMjU2MTY@.V1.jpg",
         "backPoster": "https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/medium/twisters-et00387070-1720594533.jpg",
@@ -539,48 +1445,273 @@
                 "date": "2024-07-23",
                 "theaters": [
                     {
-                        "theaterId": "101",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1001",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o1",
+                                "time": "10:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o2",
+                                "time": "1:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o3",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o4",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1002",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o5",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o6",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o7",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o8",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "103",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1003",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o9",
+                                "time": "11:15 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o10",
+                                "time": "2:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o11",
+                                "time": "5:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o12",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "104",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1004",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o13",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o14",
+                                "time": "3:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o15",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "105",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1005",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o16",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o17",
+                                "time": "2:45 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o18",
+                                "time": "5:45 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o19",
+                                "time": "8:30 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1006",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o20",
+                                "time": "10:45 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o21",
+                                "time": "1:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o22",
+                                "time": "4:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o23",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1007",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o24",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o25",
+                                "time": "3:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o26",
+                                "time": "6:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o27",
+                                "time": "9:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1008",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o28",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o29",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o30",
+                                "time": "4:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o31",
+                                "time": "7:30 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1009",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o32",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o33",
+                                "time": "2:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o34",
+                                "time": "5:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o35",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1010",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o36",
+                                "time": "10:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o37",
+                                "time": "1:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o38",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o39",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1011",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o40",
+                                "time": "12:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o41",
+                                "time": "3:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o42",
+                                "time": "6:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o43",
+                                "time": "9:30 PM",
+                                "type": "2D"
+                            }
                         ]
                     }
                 ]
@@ -589,21 +1720,268 @@
                 "date": "2024-07-24",
                 "theaters": [
                     {
-                        "theaterId": "101",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1001",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o44",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o45",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o46",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o47",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1002",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o48",
+                                "time": "10:45 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o49",
+                                "time": "1:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o50",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o51",
+                                "time": "7:15 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1003",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o52",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o53",
+                                "time": "2:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o54",
+                                "time": "5:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o55",
+                                "time": "8:30 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1004",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o56",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o57",
+                                "time": "3:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o58",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1005",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o59",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o60",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o61",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o62",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1006",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o63",
+                                "time": "10:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o64",
+                                "time": "1:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o65",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o66",
+                                "time": "7:30 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1007",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o67",
+                                "time": "12:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o68",
+                                "time": "3:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o69",
+                                "time": "6:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o70",
+                                "time": "9:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1008",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o71",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o72",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o73",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o74",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1009",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o75",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o76",
+                                "time": "3:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o77",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1010",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o78",
+                                "time": "10:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o79",
+                                "time": "1:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o80",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o81",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1011",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o82",
+                                "time": "12:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o83",
+                                "time": "3:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o84",
+                                "time": "6:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o85",
+                                "time": "9:30 PM",
+                                "type": "2D"
+                            }
                         ]
                     }
                 ]
@@ -651,7 +2029,7 @@
             {
                 "reviewer": "Sopan",
                 "rating": 1,
-                "comment": "Average Movie one time can watch,I think it's remark from tamil Surya Movie."
+                "comment": "Average Movie one time can watch, I think it's remark from Tamil Surya Movie."
             }
         ],
         "timings": [
@@ -659,71 +2037,273 @@
                 "date": "2024-07-23",
                 "theaters": [
                     {
-                        "theaterId": "101",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1001",
+                        "showings": [
+                            {
+                                "showid": "a2b3c4d5e6",
+                                "time": "10:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a2b3c4d5e7",
+                                "time": "1:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a2b3c4d5e8",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "a2b3c4d5e9",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1002",
+                        "showings": [
+                            {
+                                "showid": "f7g8h9i0j1",
+                                "time": "11:15 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f7g8h9i0j2",
+                                "time": "2:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f7g8h9i0j3",
+                                "time": "5:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "f7g8h9i0j4",
+                                "time": "8:15 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "103",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1003",
+                        "showings": [
+                            {
+                                "showid": "k2l3m4n5o6",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k2l3m4n5o7",
+                                "time": "2:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k2l3m4n5o8",
+                                "time": "5:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k2l3m4n5o9",
+                                "time": "8:30 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "104",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1004",
+                        "showings": [
+                            {
+                                "showid": "p8q9r0s1t2",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p8q9r0s1t3",
+                                "time": "3:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "p8q9r0s1t4",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "105",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
-                        ]
-                    }
-                ]
-            },
-            {
-                "date": "2024-07-24",
-                "theaters": [
-                    {
-                        "theaterId": "101",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1005",
+                        "showings": [
+                            {
+                                "showid": "u7v8w9x0y1",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "u7v8w9x0y2",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "u7v8w9x0y3",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "u7v8w9x0y4",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1006",
+                        "showings": [
+                            {
+                                "showid": "z3a4b5c6d7",
+                                "time": "10:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "z3a4b5c6d8",
+                                "time": "1:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "z3a4b5c6d9",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "z3a4b5c6d10",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1007",
+                        "showings": [
+                            {
+                                "showid": "e0f1g2h3i4",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "e0f1g2h3i5",
+                                "time": "3:15 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "e0f1g2h3i6",
+                                "time": "6:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "e0f1g2h3i7",
+                                "time": "9:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1008",
+                        "showings": [
+                            {
+                                "showid": "j3k4l5m6n7",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "j3k4l5m6n8",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "j3k4l5m6n9",
+                                "time": "5:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "j3k4l5m6n10",
+                                "time": "8:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1009",
+                        "showings": [
+                            {
+                                "showid": "o4p5q6r7s8",
+                                "time": "11:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "o4p5q6r7s9",
+                                "time": "2:45 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "o4p5q6r7s10",
+                                "time": "5:45 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "o4p5q6r7s11",
+                                "time": "8:45 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1010",
+                        "showings": [
+                            {
+                                "showid": "t2u3v4w5x6",
+                                "time": "10:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "t2u3v4w5x7",
+                                "time": "1:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "t2u3v4w5x8",
+                                "time": "4:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "t2u3v4w5x9",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1011",
+                        "showings": [
+                            {
+                                "showid": "y2z3a4b5c6",
+                                "time": "12:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "y2z3a4b5c7",
+                                "time": "3:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "y2z3a4b5c8",
+                                "time": "6:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "y2z3a4b5c9",
+                                "time": "9:30 PM",
+                                "type": "2D"
+                            }
                         ]
                     }
                 ]
@@ -757,7 +2337,7 @@
                 "imageUrl": "https://m.media-amazon.com/images/M/MV5BNjdlYjllOGMtYzU1OC00ODZjLWEzOGEtMGViOTYyYjU3YmJiXkEyXkFqcGdeQXVyMTExNDQ2MTI@.V1.jpg"
             }
         ],
-        "synopsis": "After the events of Stree, the town of Chanderi is being haunted again. This time, women are mysteriously abducted by a terrifying headless entity. Once again, it`s up to Bicky and his friends to save their town and loved ones.",
+        "synopsis": "After the events of Stree, the town of Chanderi is being haunted again. This time, women are mysteriously abducted by a terrifying headless entity. Once again, it’s up to Bicky and his friends to save their town and loved ones.",
         "rating": "8.7",
         "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqb3nofQ2TEMjxo8Mdn-38SDkxD7jLVX2azQ&s",
         "backPoster": "https://images.ottplay.com/images/big/stree-2-new-poster-1721216275.jpeg",
@@ -771,7 +2351,7 @@
             {
                 "reviewer": "Sopan",
                 "rating": 1,
-                "comment": "Average Movie one time can watch,I think it's remark from tamil Surya Movie."
+                "comment": "Average Movie one time can watch, I think it's remark from Tamil Surya Movie."
             }
         ],
         "timings": [
@@ -779,71 +2359,353 @@
                 "date": "2024-07-23",
                 "theaters": [
                     {
-                        "theaterId": "101",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
-                        ]
-                    },
-                    {
-                        "theaterId": "102",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
-                        ]
-                    },
-                    {
-                        "theaterId": "103",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
-                        ]
-                    },
-                    {
-                        "theaterId": "104",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
-                        ]
-                    },
-                    {
-                        "theaterId": "105",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "date": "2024-07-23",
+                        "theaters": [
+                            {
+                                "theaterId": "1001",
+                                "showings": [
+                                    {
+                                        "showid": "a1b2c3d4e5",
+                                        "time": "10:00 AM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "a1b2c3d4e6",
+                                        "time": "1:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "a1b2c3d4e7",
+                                        "time": "4:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "a1b2c3d4e8",
+                                        "time": "7:00 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            },
+                            {
+                                "theaterId": "1002",
+                                "showings": [
+                                    {
+                                        "showid": "f6g7h8i9j1",
+                                        "time": "11:15 AM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "f6g7h8i9j2",
+                                        "time": "2:15 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "f6g7h8i9j3",
+                                        "time": "5:15 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "f6g7h8i9j4",
+                                        "time": "8:15 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            },
+                            {
+                                "theaterId": "1003",
+                                "showings": [
+                                    {
+                                        "showid": "k1l2m3n4o5",
+                                        "time": "11:30 AM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "k1l2m3n4o6",
+                                        "time": "2:30 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "k1l2m3n4o7",
+                                        "time": "5:30 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "k1l2m3n4o8",
+                                        "time": "8:30 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            },
+                            {
+                                "theaterId": "1004",
+                                "showings": [
+                                    {
+                                        "showid": "p9q0r1s2t3",
+                                        "time": "12:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "p9q0r1s2t4",
+                                        "time": "3:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "p9q0r1s2t5",
+                                        "time": "6:00 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            },
+                            {
+                                "theaterId": "1005",
+                                "showings": [
+                                    {
+                                        "showid": "u6v7w8x9y1",
+                                        "time": "11:00 AM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "u6v7w8x9y2",
+                                        "time": "2:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "u6v7w8x9y3",
+                                        "time": "5:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "u6v7w8x9y4",
+                                        "time": "8:00 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            },
+                            {
+                                "theaterId": "1006",
+                                "showings": [
+                                    {
+                                        "showid": "z1a2b3c4d5",
+                                        "time": "10:30 AM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "z1a2b3c4d6",
+                                        "time": "1:15 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "z1a2b3c4d7",
+                                        "time": "4:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "z1a2b3c4d8",
+                                        "time": "7:00 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            },
+                            {
+                                "theaterId": "1007",
+                                "showings": [
+                                    {
+                                        "showid": "e9f0g1h2i3",
+                                        "time": "12:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "e9f0g1h2i4",
+                                        "time": "3:15 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "e9f0g1h2i5",
+                                        "time": "6:30 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "e9f0g1h2i6",
+                                        "time": "9:00 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            },
+                            {
+                                "theaterId": "1008",
+                                "showings": [
+                                    {
+                                        "showid": "j1k2l3m4n5",
+                                        "time": "11:00 AM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "j1k2l3m4n6",
+                                        "time": "2:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "j1k2l3m4n7",
+                                        "time": "5:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "j1k2l3m4n8",
+                                        "time": "8:00 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            },
+                            {
+                                "theaterId": "1009",
+                                "showings": [
+                                    {
+                                        "showid": "o1p2q3r4s5",
+                                        "time": "11:30 AM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "o1p2q3r4s6",
+                                        "time": "2:45 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "o1p2q3r4s7",
+                                        "time": "5:45 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "o1p2q3r4s8",
+                                        "time": "8:45 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            },
+                            {
+                                "theaterId": "1010",
+                                "showings": [
+                                    {
+                                        "showid": "t1u2v3w4x5",
+                                        "time": "10:00 AM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "t1u2v3w4x6",
+                                        "time": "1:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "t1u2v3w4x7",
+                                        "time": "4:00 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "t1u2v3w4x8",
+                                        "time": "7:00 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            },
+                            {
+                                "theaterId": "1011",
+                                "showings": [
+                                    {
+                                        "showid": "y1z2a3b4c5",
+                                        "time": "12:30 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "y1z2a3b4c6",
+                                        "time": "3:30 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "y1z2a3b4c7",
+                                        "time": "6:30 PM",
+                                        "type": "2D"
+                                    },
+                                    {
+                                        "showid": "y1z2a3b4c8",
+                                        "time": "9:30 PM",
+                                        "type": "2D"
+                                    }
+                                ]
+                            }
                         ]
                     }
                 ]
             },
             {
-                "date": "2024-07-24",
+                "date": "2024-08-24",
                 "theaters": [
                     {
-                        "theaterId": "101",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1003",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o11",
+                                "time": "11:00 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o12",
+                                "time": "2:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o13",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o14",
+                                "time": "9:00 PM",
+                                "type": "2D"
+                            }
                         ]
                     },
                     {
-                        "theaterId": "102",
-                        "timings": [
-                            "11:00 AM",
-                            "2:00 PM",
-                            "5:00 PM",
-                            "8:00 PM"
+                        "theaterId": "1007",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o15",
+                                "time": "12:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o16",
+                                "time": "3:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o17",
+                                "time": "7:00 PM",
+                                "type": "2D"
+                            }
+                        ]
+                    },
+                    {
+                        "theaterId": "1008",
+                        "showtimes": [
+                            {
+                                "showid": "k6l7m8n9o18",
+                                "time": "10:30 AM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o19",
+                                "time": "2:30 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o20",
+                                "time": "6:00 PM",
+                                "type": "2D"
+                            },
+                            {
+                                "showid": "k6l7m8n9o21",
+                                "time": "9:30 PM",
+                                "type": "2D"
+                            }
                         ]
                     }
                 ]
