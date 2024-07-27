@@ -9,12 +9,11 @@ import Navbar from "./components/Navbar";
 function App() {
   return (
     <div className="">
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/moviedetail/:id" element={<MovieDetail />} />
         <Route path="/timings/:id" element={<MovieTiming />} />
-        <Route path="/seatmatrix" element={<SeatSelection />} />
+        <Route path="/seatmatrix/:id" element={<SeatSelection />} />
       </Routes>
     </div>
   );

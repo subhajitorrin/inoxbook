@@ -7,7 +7,7 @@ import MovieTimingCard from "./MovieTimingCard";
 import { GoDotFill } from "react-icons/go";
 import axios from "axios";
 
-function MovieTheaterCard({ theater }) {
+function MovieTheaterCard({ theater,movieId }) {
   const [theaterDetail, settheaterDetail] = useState(null);
   const [showTimes, setshowTimes] = useState([]);
   useEffect(() => {
@@ -73,6 +73,8 @@ function MovieTheaterCard({ theater }) {
                   type={item.type}
                   showtime={item.time}
                   showid={item.showid}
+                  theaterId={theaterDetail.id}
+                  movieId={movieId}
                 />
               );
             })}
