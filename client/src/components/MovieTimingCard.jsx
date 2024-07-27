@@ -26,7 +26,7 @@ function MovieTimingCard({
         navigate(
           `/seatmatrix/${movieId}-${showid}-${theaterId}-${removeDashes(
             datecode
-          )}`
+          )}-${showtime}`
         );
       }}
     >
