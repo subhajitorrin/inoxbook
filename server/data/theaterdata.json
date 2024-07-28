@@ -2,61 +2,73 @@
     {
         "id": 1000,
         "name": "INOX: South City, Kolkata",
-        "address": "375, South City Mall, Prince Anwar Shah Road, Opposite Central Bank of India, Kolkata, West Bengal 700032, India"
+        "address": "375, South City Mall, Prince Anwar Shah Road, Opposite Central Bank of India, Kolkata, West Bengal 700032, India",
+        "location": "kolkata"
     },
     {
         "id": 1001,
         "name": "INOX: Quest Mall",
-        "address": "4th Floor, Quest Mall, Syed Amir Ali Avenue, Opposite Our Lady Queen Of The Missions School, Kolkata, West Bengal 700017, India"
+        "address": "4th Floor, Quest Mall, Syed Amir Ali Avenue, Opposite Our Lady Queen Of The Missions School, Kolkata, West Bengal 700017, India",
+        "location": "kolkata"
     },
     {
         "id": 1002,
         "name": "INOX: City Center, Salt Lake",
-        "address": "City Centre, DC Block I, Sector-1, City Center Mall, Kolkata, West Bengal 700020, India"
+        "address": "City Centre, DC Block I, Sector-1, City Center Mall, Kolkata, West Bengal 700020, India",
+        "location": "kolkata"
     },
     {
         "id": 1003,
         "name": "INOX: City Centre II, Rajarhat",
-        "address": "3rd Floor, City Center 2 Mall, New Town, Rajarhat, Hatiara, Near Chinar Park, Kolkata, West Bengal 700157, India"
+        "address": "3rd Floor, City Center 2 Mall, New Town, Rajarhat, Hatiara, Near Chinar Park, Kolkata, West Bengal 700157, India",
+        "location": "kolkata"
     },
     {
         "id": 1004,
         "name": "INOX: Forum Mall, Elgin Road",
-        "address": "Lala Lajpat, Rai Sarani, Bhawanipur, Kolkata, West Bengal 700020, India"
+        "address": "Lala Lajpat, Rai Sarani, Bhawanipur, Kolkata, West Bengal 700020, India",
+        "location": "kolkata"
     },
     {
         "id": 1005,
         "name": "INOX: Hiland Park",
-        "address": "Metropolis Mall Hiland Park, Eastern Metropolitan Bypass Chakgaria, Opp Peerless Hospital, Kolkata, West Bengal 700094, India"
+        "address": "Metropolis Mall Hiland Park, Eastern Metropolitan Bypass Chakgaria, Opp Peerless Hospital, Kolkata, West Bengal 700094, India",
+        "location": "kolkata"
     },
     {
         "id": 1006,
         "name": "INOX: Star Mall, Madhyamgram",
-        "address": "3rd Floor, Star Mall, 74/Mall/1 Jessore Road (North), Sisir Kunja, Madhyamgram, Kolkata, West Bengal 700129, India"
+        "address": "3rd Floor, Star Mall, 74/Mall/1 Jessore Road (North), Sisir Kunja, Madhyamgram, Kolkata, West Bengal 700129, India",
+        "location": "kolkata"
     },
     {
         "id": 1007,
         "name": "INOX: Forum Rangoli Mall, Belur",
-        "address": "212, Girish Ghosh Road, Belur, Howrah, Kolkata, West Bengal 711202, India"
+        "address": "212, Girish Ghosh Road, Belur, Howrah, Kolkata, West Bengal 711202, India",
+        "location": "kolkata"
     },
     {
         "id": 1008,
         "name": "INOX: Swabhumi, Maulana Azad Sarani",
-        "address": "INOX Leisure Ltd, 89C, Moulana Abul Kalam Azad Sarani, Kolkata, West Bengal 700054, India"
+        "address": "INOX Leisure Ltd, 89C, Moulana Abul Kalam Azad Sarani, Kolkata, West Bengal 700054, India",
+        "location": "kolkata"
     },
     {
         "id": 1009,
         "name": "INOX: Metro, Jawaharlal Nehru Road",
-        "address": "INOX Leisure Ltd., 5, Jawaharlal Nehru Road, 4th Floor, Kolkata, West Bengal 700013, India"
+        "address": "INOX Leisure Ltd., 5, Jawaharlal Nehru Road, 4th Floor, Kolkata, West Bengal 700013, India",
+        "location": "kolkata"
     },
     {
         "id": 1010,
         "name": "INOX: Liluah, Howrah",
-        "address": "R.D.Mall, 269 G.T.Road, Liluah, Kolkata, West Bengal 711204, India"
+        "address": "R.D.Mall, 269 G.T.Road, Liluah, Kolkata, West Bengal 711204, India",
+        "location": "kolkata"
     },
     {
         "id": 1011,
         "name": "Hind INOX: Kolkata",
-        "address": "76, Ganesh Chandra Avenue, Bow Bazaar, Dharmatala, Near Chandni Chowk Metro Station, Kolkata, West Bengal 700013, India"
+        "address": "76, Ganesh Chandra Avenue, Bow Bazaar, Dharmatala, Near Chandni Chowk Metro Station, Kolkata, West Bengal 700013, India",
+        "location": "kolkata"
     }
 ]

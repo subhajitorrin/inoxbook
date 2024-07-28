@@ -98,7 +98,7 @@ function MovieTiming() {
                   <MovieTheaterCard
                     key={`theater${i}`}
                     theater={theater}
-                    movieId={movieDetail.id}
+                    movieId={movieDetail._id}
                     datecode={movieTimings[selectedIndex].date}
                   />
                 );

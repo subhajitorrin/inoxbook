@@ -9,15 +9,13 @@ import { useNavigate } from "react-router-dom";
 function SeatSelection() {
   const [pricelist, setpricelist] = useState([330, 240, 180, 150]);
   const [displaySeatWarning, setdisplaySeatWarning] = useState(false);
+  const [toggleUpdateSeatMatrix, settoggleUpdateSeatMatrix] = useState(false);
   const [priceListIndex, setpriceListIndex] = useState(0);
   const [price, setprice] = useState(0);
   const [isSeatSelected, setIsSeatSelected] = useState({
     counter: 0,
     seatids: [],
   });
-  useEffect(() => {
-    console.log(isSeatSelected);
-  }, [isSeatSelected]);
   const [seatmatrix, setseatmatrix] = useState([]);
   const [movieDetail, setmovieDetail] = useState(null);
   const [theaterDetail, settheaterDetail] = useState(null);
@@ -81,7 +79,7 @@ function SeatSelection() {
       }
     }
     getSeatmatrixById();
-  }, [params]);
+  }, [params, toggleUpdateSeatMatrix]);
 
   useEffect(() => {
     setseat(seatmatrixarr[0]);
@@ -139,7 +137,7 @@ function SeatSelection() {
 
   useEffect(() => {
     if (params.length > 0) {
-      console.log(params[3]);
+      // console.log(params[3]);
       formatDateWord(formatDate(params[3]));
     }
   }, [params]);
@@ -170,6 +168,31 @@ function SeatSelection() {
     }
     handlePriceCalculation();
   }, [isSeatSelected]);
+
+  async function handleBookTicket() {
+    try {
+      if (isSeatSelected.seatids.length > 0 && params) {
+        const response = await axios.post(
+          "http://localhost:5000/bookticket",
+          { showid: params[1], seats: isSeatSelected.seatids },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        settoggleUpdateSeatMatrix((prev) => !prev);
+        setIsSeatSelected({
+          counter: 0,
+          seatids: [],
+        });
+        setprice(0);
+        console.log("Response:", response.data.msg);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
 
   if (!seat) {
     return;
@@ -247,7 +270,7 @@ function SeatSelection() {
                     <div className="flex">
                       {row.seats.map((seat, index) =>
                         seat.seat === 2 ? (
-                          <>
+                          <span key={index * 2}>
                             <Seat
                               key={seat.seat}
                               seatNumber={seat.seat}
@@ -257,8 +280,8 @@ function SeatSelection() {
                               alreadySelected={isSeatSelected.counter}
                               setdisplaySeatWarning={setdisplaySeatWarning}
                             />
-                            <div className="w-[50px]"></div>
-                          </>
+                            <div className="w-[70px]"></div>
+                          </span>
                         ) : (
                           <Seat
                             key={seat.seat}
@@ -296,7 +319,7 @@ function SeatSelection() {
                         seat.seat === 2 ||
                         seat.seat === 7 ||
                         seat.seat === 20 ? (
-                          <>
+                          <span key={`orrin-${index}`}>
                             <Seat
                               key={seat.seat}
                               seatNumber={seat.seat}
@@ -306,8 +329,8 @@ function SeatSelection() {
                               alreadySelected={isSeatSelected.counter}
                               setdisplaySeatWarning={setdisplaySeatWarning}
                             />
-                            <div className="w-[50px] "></div>
-                          </>
+                            <div className="w-[70px] "></div>
+                          </span>
                         ) : (
                           <Seat
                             key={seat.seat}
@@ -341,11 +364,11 @@ function SeatSelection() {
                       {row.row}
                     </div>
                     <div className="flex">
-                      {row.seats.map((seat) =>
+                      {row.seats.map((seat, index) =>
                         seat.seat === 2 ||
                         seat.seat === 7 ||
                         seat.seat === 20 ? (
-                          <>
+                          <span key={`orrin1-${index}`}>
                             <Seat
                               key={seat.seat}
                               seatNumber={seat.seat}
@@ -355,8 +378,8 @@ function SeatSelection() {
                               alreadySelected={isSeatSelected.counter}
                               setdisplaySeatWarning={setdisplaySeatWarning}
                             />
-                            <div className="w-[50px]"></div>
-                          </>
+                            <div className="w-[70px]"></div>
+                          </span>
                         ) : (
                           <Seat
                             key={seat.seat}
@@ -389,9 +412,9 @@ function SeatSelection() {
                       {row.row}
                     </div>
                     <div className="flex">
-                      {row.seats.map((seat) =>
+                      {row.seats.map((seat, index) =>
                         seat.seat === 2 || seat.seat === 7 ? (
-                          <>
+                          <div key={`orrin2-${index}`}>
                             <Seat
                               key={seat.seat}
                               seatNumber={seat.seat}
@@ -401,8 +424,8 @@ function SeatSelection() {
                               alreadySelected={isSeatSelected.counter}
                               setdisplaySeatWarning={setdisplaySeatWarning}
                             />
-                            <div className="w-[50px]"></div>
-                          </>
+                            <div className="w-[70px]"></div>
+                          </div>
                         ) : (
                           <Seat
                             key={seat.seat}
@@ -443,7 +466,10 @@ function SeatSelection() {
             >
               *A maximum of 10 seats can be selected
             </p>
-            <button className="bg-black text-white font-bold px-[60px] h-[60px] rounded-[10px]">
+            <button
+              className="bg-black text-white font-bold px-[60px] h-[60px] rounded-[10px]"
+              onClick={handleBookTicket}
+            >
               Book Ticket
             </button>
           </div>

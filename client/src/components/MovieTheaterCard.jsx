@@ -67,6 +67,7 @@ function MovieTheaterCard({ theater, movieId, datecode }) {
         <div className="w-[70%]  flex flex-col gap-[1rem] justify-center">
           <div className="w-full flex gap-[2rem] flex-wrap">
             {showTimes.map((item, index) => {
+              console.log(item);
               return (
                 <MovieTimingCard
                   key={index}

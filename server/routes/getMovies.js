@@ -1,8 +1,8 @@
-import currentMovies from "../data/moviedata.json" assert { type: "json" };
 import theaterList from "../data/theaterdata.json" assert { type: "json" };
 import seatmatrices from "../data/seatmatrix.json" assert { type: "json" };
 import express from "express"
 import movieModel from "../models/movieModels.js";
+import seatMatrixModel from "../models/seatMatrixModel.js";
 
 const router = express.Router();
 
@@ -50,10 +50,10 @@ function getTheaterById(req, res) {
         return res.status(500).json({ error: "An internal server error occurred" });
     }
 }
-function getSeatmatrixById(req, res) {
+async function getSeatmatrixByShowId(req, res) {
     try {
         const { showid } = req.params;
-        const resultedseatmatrix = seatmatrices.find((item) => item.showid === showid);
+        const resultedseatmatrix = await seatMatrixModel.findOne({ showid });
         if (resultedseatmatrix) {
             return res.status(200).json({ seatmatrix: resultedseatmatrix.seats })
         } else {
@@ -66,11 +66,32 @@ function getSeatmatrixById(req, res) {
     }
 }
 
+async function bookticket(req, res) {
+    const { showid, seats } = req.body;
+    try {
+        const seatMatrix = await seatMatrixModel.findOne({ showid });
+        if (!seatMatrix) {
+            return res.status(404).json({ error: "Seat matrix not found" });
+        }
+        for (let seatIndex of seats) {
+            if (seatMatrix.seats[seatIndex] === false) {
+                return res.status(400).json({ error: `Seat ${seatIndex} is already booked` });
+            }
+            seatMatrix.seats[seatIndex] = false;
+        }
+        await seatMatrix.save();
+        res.status(200).json({ msg: "Booking successful", seats: seatMatrix.seats });
+    } catch (error) {
+        console.error("Error booking tickets:", error);
+        res.status(500).json({ error: "An internal server error occurred" });
+    }
+}
+
 
 router.get("/getallmovies", getCurrentMovies)
 router.get("/moviedetail/:id", getMovieDetailById)
 router.get("/gettheaterbyid/:id", getTheaterById)
-router.get("/gettheaterbyid/:id", getTheaterById)
-router.get("/getseatmatrixbyid/:showid", getSeatmatrixById)
+router.get("/getseatmatrixbyid/:showid", getSeatmatrixByShowId)
+router.post("/bookticket", bookticket)
 
 export default router
