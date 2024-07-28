@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import currentMoviesData from "../data/moviedata.json";
 import MovieCardsRow from "../components/MovieCardsRow";
 import axios from "axios";
 
@@ -9,8 +8,8 @@ function Home() {
   useEffect(() => {
     async function fetchCurrentMovies() {
       try {
-        const res = await axios.get("http://localhost:5000/getcurrentmovies");
-        setcurrentMovies(res.data);
+        const res = await axios.get("http://localhost:5000/getallmovies");
+        setcurrentMovies(res.data.allMovies);
       } catch (error) {
         console.log("Error while fetching currentmoves", error);
       }

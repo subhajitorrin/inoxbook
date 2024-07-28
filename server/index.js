@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors"
 import router from "./routes/getMovies.js";
+import mongoose from "mongoose";
+
+const mongoURL = "mongodb+srv://orrin2op:9800@inoxbook.2thzfjd.mongodb.net/inoxbook?retryWrites=true&w=majority&appName=inoxbook"
 
 const app = express();
 
@@ -16,6 +19,11 @@ app.get("/", (req, res) => {
     res.send("Hello, World!");
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+mongoose.connect(mongoURL).then(() => {
+    app.listen(PORT, () => {
+        console.log("Connected to mongoDB");
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
+}).catch((err) => {
+    console.log(err);
+})

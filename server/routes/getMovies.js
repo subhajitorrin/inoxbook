@@ -2,11 +2,18 @@ import currentMovies from "../data/moviedata.json" assert { type: "json" };
 import theaterList from "../data/theaterdata.json" assert { type: "json" };
 import seatmatrices from "../data/seatmatrix.json" assert { type: "json" };
 import express from "express"
+import movieModel from "../models/movieModels.js";
 
 const router = express.Router();
 
-function getCurrentMovies(req, res) {
-    res.json(currentMovies)
+async function getCurrentMovies(req, res) {
+    try {
+        const allMovies = await movieModel.find().exec();
+        res.status(200).json({ allMovies });
+    } catch (err) {
+        console.error('Error fetching movie data:', err.message);
+        res.status(500).json({ err });
+    }
 }
 
 function getMovieDetailById(req, res) {
@@ -62,7 +69,7 @@ function getSeatmatrixById(req, res) {
 }
 
 
-router.get("/getcurrentmovies", getCurrentMovies)
+router.get("/getallmovies", getCurrentMovies)
 router.get("/moviedetail/:id", getMovieDetailById)
 router.get("/gettheaterbyid/:id", getTheaterById)
 router.get("/gettheaterbyid/:id", getTheaterById)
