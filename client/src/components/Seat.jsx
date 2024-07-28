@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 function Seat({
   seatNumber,
@@ -6,8 +6,10 @@ function Seat({
   seatid,
   setIsSeatSelected,
   alreadySelected,
+  setdisplaySeatWarning,
 }) {
   const [onselect, setOnselect] = useState(false);
+  const timeoutRef = useRef(null);
   function handleOnclick() {
     if (onselect) {
       setOnselect(false);
@@ -22,6 +24,15 @@ function Seat({
           counter: prev.counter + 1,
           seatids: [...prev.seatids, seatid],
         }));
+      } else {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+        setdisplaySeatWarning(true);
+        timeoutRef.current = setTimeout(() => {
+          setdisplaySeatWarning(false);
+          timeoutRef.current = null;
+        }, 3000);
       }
     }
   }

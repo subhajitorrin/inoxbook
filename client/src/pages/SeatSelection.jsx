@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function SeatSelection() {
   const [pricelist, setpricelist] = useState([330, 240, 180, 150]);
+  const [displaySeatWarning, setdisplaySeatWarning] = useState(false);
   const [priceListIndex, setpriceListIndex] = useState(0);
   const [price, setprice] = useState(0);
   const [isSeatSelected, setIsSeatSelected] = useState({
@@ -253,7 +254,8 @@ function SeatSelection() {
                               available={seatmatrix[seat.id]}
                               seatid={seat.id}
                               setIsSeatSelected={setIsSeatSelected}
-                              alreadySelected = {isSeatSelected.counter}
+                              alreadySelected={isSeatSelected.counter}
+                              setdisplaySeatWarning={setdisplaySeatWarning}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -264,7 +266,8 @@ function SeatSelection() {
                             available={seatmatrix[seat.id]}
                             seatid={seat.id}
                             setIsSeatSelected={setIsSeatSelected}
-                            alreadySelected = {isSeatSelected.counter}
+                            alreadySelected={isSeatSelected.counter}
+                            setdisplaySeatWarning={setdisplaySeatWarning}
                           />
                         )
                       )}
@@ -300,7 +303,8 @@ function SeatSelection() {
                               available={seatmatrix[seat.id]}
                               seatid={seat.id}
                               setIsSeatSelected={setIsSeatSelected}
-                              alreadySelected = {isSeatSelected.counter}
+                              alreadySelected={isSeatSelected.counter}
+                              setdisplaySeatWarning={setdisplaySeatWarning}
                             />
                             <div className="w-[50px] "></div>
                           </>
@@ -311,7 +315,8 @@ function SeatSelection() {
                             available={seatmatrix[seat.id]}
                             seatid={seat.id}
                             setIsSeatSelected={setIsSeatSelected}
-                            alreadySelected = {isSeatSelected.counter}
+                            alreadySelected={isSeatSelected.counter}
+                            setdisplaySeatWarning={setdisplaySeatWarning}
                           />
                         )
                       )}
@@ -347,7 +352,8 @@ function SeatSelection() {
                               available={seatmatrix[seat.id]}
                               seatid={seat.id}
                               setIsSeatSelected={setIsSeatSelected}
-                              alreadySelected = {isSeatSelected.counter}
+                              alreadySelected={isSeatSelected.counter}
+                              setdisplaySeatWarning={setdisplaySeatWarning}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -358,7 +364,8 @@ function SeatSelection() {
                             available={seatmatrix[seat.id]}
                             seatid={seat.id}
                             setIsSeatSelected={setIsSeatSelected}
-                            alreadySelected = {isSeatSelected.counter}
+                            alreadySelected={isSeatSelected.counter}
+                            setdisplaySeatWarning={setdisplaySeatWarning}
                           />
                         )
                       )}
@@ -391,7 +398,8 @@ function SeatSelection() {
                               available={seatmatrix[seat.id]}
                               seatid={seat.id}
                               setIsSeatSelected={setIsSeatSelected}
-                              alreadySelected = {isSeatSelected.counter}
+                              alreadySelected={isSeatSelected.counter}
+                              setdisplaySeatWarning={setdisplaySeatWarning}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -402,7 +410,8 @@ function SeatSelection() {
                             available={seatmatrix[seat.id]}
                             seatid={seat.id}
                             setIsSeatSelected={setIsSeatSelected}
-                            alreadySelected = {isSeatSelected.counter}
+                            alreadySelected={isSeatSelected.counter}
+                            setdisplaySeatWarning={setdisplaySeatWarning}
                           />
                         )
                       )}
@@ -428,6 +437,12 @@ function SeatSelection() {
                 <p>Total Tickets {isSeatSelected.counter}</p>
               </div>
             </div>
+            <p
+              style={{ opacity: displaySeatWarning ? "1" : "0" }}
+              className="text-[#00000078] transition-opacity duration-200 ease-linear"
+            >
+              *A maximum of 10 seats can be selected
+            </p>
             <button className="bg-black text-white font-bold px-[60px] h-[60px] rounded-[10px]">
               Book Ticket
             </button>
