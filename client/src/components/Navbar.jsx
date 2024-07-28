@@ -5,7 +5,7 @@ import { CgMenuRightAlt } from "react-icons/cg";
 import { IoTicketOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ settoggleLogin }) {
   const navigate = useNavigate();
   return (
     <div className="select-none flex justify-between items-center text-[14px] font-[500] py-[1rem] px-[15%]">
@@ -40,7 +40,12 @@ function Navbar() {
             <RiArrowDropDownFill />
           </div>
         </button>
-        <button className="bg-[#da4b63] rounded-[5px] px-[10px] py-[2px] text-white">
+        <button
+          className="bg-[#da4b63] rounded-[5px] px-[10px] py-[2px] text-white"
+          onClick={() => {
+            settoggleLogin(true);
+          }}
+        >
           Sign in
         </button>
         <div className="text-[20px] cursor-pointer">

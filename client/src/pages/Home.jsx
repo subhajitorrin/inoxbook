@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import MovieCardsRow from "../components/MovieCardsRow";
 import axios from "axios";
 
-function Home() {
+function Home({settoggleLogin}) {
   const [currentMovies, setcurrentMovies] = useState([]);
   useEffect(() => {
     async function fetchCurrentMovies() {
@@ -18,8 +18,8 @@ function Home() {
   }, []);
   return (
     <>
-      <Navbar />
-      <div className=" min-h-screen  w-full overflow-y-hidden px-[15%]">
+      <Navbar settoggleLogin={settoggleLogin}/>
+      <div className=" min-h-screen  w-full overflow-y-hidden px-[15%] ">
         <div className="h-[250px] w-full border border-black my-[1rem]"></div>
         <MovieCardsRow movierow={currentMovies} rowtitle="Recommended Movies" />
         <MovieCardsRow movierow={currentMovies} rowtitle="Recommended Movies" />

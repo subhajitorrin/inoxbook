@@ -25,17 +25,17 @@ function MovieDetail() {
     getMovieDetailById();
   }, [id]);
 
-  // useEffect(() => {
-  //   async function fetchCurrentMovies() {
-  //     try {
-  //       const res = await axios.get("http://localhost:5000/getcurrentmovies");
-  //       setcurrentMovies(shuffleArray(res.data));
-  //     } catch (error) {
-  //       console.log("Error while fetching currentmoves", error);
-  //     }
-  //   }
-  //   fetchCurrentMovies();
-  // }, []);
+  useEffect(() => {
+    async function fetchCurrentMovies() {
+      try {
+        const res = await axios.get("http://localhost:5000/getallmovies");
+        setcurrentMovies(shuffleArray(res.data.allMovies));
+      } catch (error) {
+        console.log("Error while fetching currentmoves", error);
+      }
+    }
+    fetchCurrentMovies();
+  }, []);
 
   const opts = {
     height: "450",
