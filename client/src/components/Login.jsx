@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TfiEmail } from "react-icons/tfi";
 import { RxCross2 } from "react-icons/rx";
-import { FaAngleLeft } from "react-icons/fa6";
+import { FaAngleLeft, FaTrophy } from "react-icons/fa6";
 import gsap from "gsap";
 import OtpBox from "./OtpBox";
 import axios from "axios";
@@ -11,6 +11,7 @@ function Login({ settoggleLogin }) {
   const [otpArray, setOtpArray] = useState(["", "", "", "", ""]);
   const [email, setemail] = useState("");
   const [isOtpScreen, setisOtpScreen] = useState(false);
+  const [optid, setoptid] = useState(null);
 
   function revealNext() {
     wrapperRef.current.forEach((item) => {
@@ -30,7 +31,7 @@ function Login({ settoggleLogin }) {
           },
         }
       );
-      console.log(response.data);
+      setoptid(response.data.otpid);
     } catch (err) {
       console.log(err);
       return;
@@ -71,9 +72,26 @@ function Login({ settoggleLogin }) {
     }
   };
 
-  useEffect(() => {
-    console.log(otpArray);
-  }, [otpArray]);
+  async function handleVerifyOtp() {
+    
+    otpArray.forEach((item) => {
+      if (item == "") return;
+    });
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/verifyotp",
+        { email, optid, otp: otpArray.join("") },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div
@@ -165,7 +183,10 @@ function Login({ settoggleLogin }) {
               Don't received OTP ?{" "}
               <span className="text-[#b63f53] cursor-pointer">Resend OTP</span>
             </p>
-            <div className="hover:bg-[#b63f53] bg-[#da4b63] text-[white] w-full hover:border-transparent transition-all ease-linear duration-100 cursor-pointer flex items-center justify-center  rounded-[5px] text-center py-[10px] font-[500]">
+            <div
+              onClick={handleVerifyOtp}
+              className="hover:bg-[#b63f53] bg-[#da4b63] text-[white] w-full hover:border-transparent transition-all ease-linear duration-100 cursor-pointer flex items-center justify-center  rounded-[5px] text-center py-[10px] font-[500]"
+            >
               <p>Continue</p>
             </div>
           </div>

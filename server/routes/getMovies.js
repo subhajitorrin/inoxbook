@@ -4,6 +4,7 @@ import express from "express"
 import movieModel from "../models/movieModels.js";
 import seatMatrixModel from "../models/seatMatrixModel.js";
 import mailSender from "../utility/sendMail.js";
+import otpModel from "../models/otpModel.js";
 
 const router = express.Router();
 
@@ -92,8 +93,13 @@ async function sendotp(req, res) {
     try {
         const { email } = req.body
         const otp = generate5DigitOTP()
-        const emailResponse = await mailSender(email, "Your OTP for INOXBOOK", `Your OTP is: ${otp}`);
-        res.json({ msg: "OTP sent successfully", email, otp });
+        await mailSender(email, "Your OTP for INOXBOOK", `Your OTP is: ${otp}`);
+        const otpRecord = new otpModel({
+            email,
+            otp
+        });
+        const otpresponse = await otpRecord.save();
+        res.json({ msg: "OTP sent successfully", email, otpid: otpresponse._id });
     } catch (error) {
         res.json({ error })
     }
@@ -106,11 +112,34 @@ function generate5DigitOTP() {
 }
 
 
+async function verifyotp(req, res) {
+    try {
+        const { email, optid, otp } = req.body;
+
+        const otpresponse = await otpModel.findById(optid);
+
+        if (!otpresponse) {
+            return res.json({ msg: "OTP record not found" });
+        }
+
+        if (otpresponse.otp === otp) {
+            res.json({ msg: "Login success" });
+        } else {
+            res.json({ msg: "Wrong OTP" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Server error" });
+    }
+}
+
+
 router.get("/getallmovies", getCurrentMovies)
 router.get("/moviedetail/:id", getMovieDetailById)
 router.get("/gettheaterbyid/:id", getTheaterById)
 router.get("/getseatmatrixbyid/:showid", getSeatmatrixByShowId)
 router.post("/bookticket", bookticket)
 router.post("/sendotp", sendotp)
+router.post("/verifyotp", verifyotp)
 
 export default router
