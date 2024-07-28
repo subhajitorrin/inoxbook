@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-function OtpBox() {
+function OtpBox({ index, onFocusNext, onFocusPrev }) {
+  const inputRef = useRef(null);
   const handleInputChange = (e) => {
     const value = e.target.value;
+    if (!(value >= 0 && value <= 9)) {
+        e.target.value = value.slice(0, 0);
+        return
+    };
     if (value.length > 1) {
       e.target.value = value.slice(0, 1);
+    }
+    if (value.length === 1 && onFocusNext) {
+      onFocusNext(index);
+    }
+    if (value.length === 0 && onFocusPrev) {
+      onFocusPrev(index);
     }
   };
 
   return (
-    <div className="h-[60px] w-[60px] border border-black">
+    <div className="h-[60px] w-[60px] border border-black rounded-[5px] overflow-hidden">
       <input
+        ref={inputRef}
         type="text"
         maxLength="1"
         onChange={handleInputChange}
-        className="h-full w-full outline-none text-center text-[20px] font-bold"
+        className="otpInputFields h-full w-full outline-none text-center text-[20px] font-bold"
       />
     </div>
   );

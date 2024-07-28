@@ -6,9 +6,8 @@ import gsap from "gsap";
 import OtpBox from "./OtpBox";
 
 function Login({ settoggleLogin }) {
-  const [isContinueButtonClicked, setIsContinueButtonClicked] = useState(false);
-  const [isSendOtpClicked, setIsSendOtpClicked] = useState(false);
   const wrapperRef = useRef([]);
+  const [otpArray, setOtpArray] = useState(["", "", "", "", ""]);
 
   function revealNext() {
     wrapperRef.current.forEach((item) => {
@@ -38,6 +37,19 @@ function Login({ settoggleLogin }) {
       });
     });
   }
+
+  const handleFocusNext = (index) => {
+    const nextIndex = index + 1;
+    if (nextIndex < otpArray.length) {
+      document.querySelectorAll(".otpInputFields")[nextIndex].focus();
+    }
+  };
+  const handleFocusPrev = (index) => {
+    const prevIndex = index - 1;
+    if (prevIndex >= 0) {
+      document.querySelectorAll(".otpInputFields")[prevIndex].focus();
+    }
+  };
 
   return (
     <div
@@ -107,15 +119,20 @@ function Login({ settoggleLogin }) {
           <div className="">
             <p className="font-[500] mb-[10px]">Enter OTP</p>
             <div className="flex justify-between">
-              <OtpBox />
-              <OtpBox />
-              <OtpBox />
-              <OtpBox />
-              <OtpBox />
+              {otpArray.map((item, index) => {
+                return (
+                  <OtpBox
+                    key={index}
+                    index={index}
+                    onFocusNext={handleFocusNext}
+                    onFocusPrev={handleFocusPrev}
+                  />
+                );
+              })}
             </div>
           </div>
           <div className="">
-            <p className=" mb-[10px]">
+            <p className=" mb-[15px] text-[14px]">
               Don't received OTP ?{" "}
               <span className="text-[#b63f53] cursor-pointer">Resend OTP</span>
             </p>
