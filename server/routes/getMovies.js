@@ -16,13 +16,11 @@ async function getCurrentMovies(req, res) {
     }
 }
 
-function getMovieDetailById(req, res) {
+async function getMovieDetailById(req, res) {
     const { id } = req.params;
-    if (!id) {
-        return res.status(400).json({ error: "Movie ID is required" });
-    }
     try {
-        const movie = currentMovies.find((item) => item.id === id);
+        const movie = await movieModel.findById(id)
+        console.log(movie);
 
         if (movie) {
             return res.status(200).json({ movie });

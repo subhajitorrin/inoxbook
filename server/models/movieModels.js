@@ -1,5 +1,36 @@
 import mongoose from "mongoose";
 
+const castSchema = new mongoose.Schema({
+    name: String,
+    imageUrl: String,
+    type: String
+}, { _id: false });
+
+const reviewSchema = new mongoose.Schema({
+    reviewer: String,
+    rating: Number,
+    comment: String,
+    type: String
+}, { _id: false })
+
+const showTimeSchema = new mongoose.Schema({
+    showid: String,
+    time: String,
+    type: String
+}, { _id: false })
+
+const theaterSchema = new mongoose.Schema({
+    theaterId: String,
+    type: String,
+    timings: [showTimeSchema]
+}, { _id: false })
+
+const timingsSchema = new mongoose.Schema({
+    date: String,
+    type: String,
+    theaters: [theaterSchema]
+}, { _id: false })
+
 const movieSchema = new mongoose.Schema({
     id: String,
     title: String,
@@ -7,37 +38,16 @@ const movieSchema = new mongoose.Schema({
     duration: Number,
     language: [String],
     CBFCratnig: String,
-    releaseDate: Date,
+    releaseDate: String,
     director: String,
-    cast: [{
-        name: String,
-        imageUrl: String,
-        type: String
-    }],
+    cast: [castSchema],
     synopsis: String,
     rating: String,
     posterUrl: String,
     backPoster: String,
     trailerUrl: String,
-    reviews: [{
-        reviewer: String,
-        rating: Number,
-        comment: String,
-        type: String
-    }],
-    timings: [{
-        date: Date,
-        type: String,
-        theaters: [{
-            theaterId: String,
-            type: String,
-            timings: [{
-                showid: String,
-                time: String,
-                type: String
-            }]
-        }]
-    }]
+    reviews: [reviewSchema],
+    timings: [timingsSchema]
 });
 
 const movieModel = mongoose.model('currentmovies', movieSchema);

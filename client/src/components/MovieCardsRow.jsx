@@ -11,8 +11,8 @@ function MovieCardsRow({ movierow, rowtitle }) {
         {movierow.map((item, index) => {
           return (
             <MovieCard
-            key={index}
-              id={item.id}
+              key={index}
+              id={item._id}
               title={item.title}
               languages={item.language}
               rating={item.rating}

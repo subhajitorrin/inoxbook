@@ -25,17 +25,17 @@ function MovieDetail() {
     getMovieDetailById();
   }, [id]);
 
-  useEffect(() => {
-    async function fetchCurrentMovies() {
-      try {
-        const res = await axios.get("http://localhost:5000/getcurrentmovies");
-        setcurrentMovies(shuffleArray(res.data));
-      } catch (error) {
-        console.log("Error while fetching currentmoves", error);
-      }
-    }
-    fetchCurrentMovies();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchCurrentMovies() {
+  //     try {
+  //       const res = await axios.get("http://localhost:5000/getcurrentmovies");
+  //       setcurrentMovies(shuffleArray(res.data));
+  //     } catch (error) {
+  //       console.log("Error while fetching currentmoves", error);
+  //     }
+  //   }
+  //   fetchCurrentMovies();
+  // }, []);
 
   const opts = {
     height: "450",
@@ -95,7 +95,7 @@ function MovieDetail() {
                 <p>•</p>
                 <div className=" flex gap-[10px]">
                   {movieDetail.language.map((item, index) => {
-                    return index < 3 && <p>{item}</p>;
+                    return index < 3 && <p key={index}>{item}</p>;
                   })}
                 </div>
                 <p>•</p>
@@ -104,7 +104,10 @@ function MovieDetail() {
               <div className="flex gap-[15px] text-[13px]">
                 {movieDetail.genre.map((item, index) => {
                   return (
-                    <div className="py-[5px] px-[10px] bg-[#d7d7d7df] rounded-[7px] cursor-pointer font-[500]">
+                    <div
+                      key={index}
+                      className="py-[5px] px-[10px] bg-[#d7d7d7df] rounded-[7px] cursor-pointer font-[500]"
+                    >
                       {item}
                     </div>
                   );
@@ -141,7 +144,7 @@ function MovieDetail() {
                 <div className="flex gap-[2rem]">
                   {movieDetail.cast.map((item, index) => {
                     return (
-                      <div className="flex flex-col gap-[5px]">
+                      <div className="flex flex-col gap-[5px]" key={index}>
                         <div className="h-[100px] w-[100px] rounded-[50%] overflow-hidden">
                           <img
                             src={item.imageUrl}
