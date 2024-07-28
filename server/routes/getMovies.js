@@ -3,6 +3,7 @@ import seatmatrices from "../data/seatmatrix.json" assert { type: "json" };
 import express from "express"
 import movieModel from "../models/movieModels.js";
 import seatMatrixModel from "../models/seatMatrixModel.js";
+import mailSender from "../utility/sendMail.js";
 
 const router = express.Router();
 
@@ -87,11 +88,29 @@ async function bookticket(req, res) {
     }
 }
 
+async function sendotp(req, res) {
+    try {
+        const { email } = req.body
+        const otp = generate5DigitOTP()
+        const emailResponse = await mailSender(email, "Your OTP for INOXBOOK", `Your OTP is: ${otp}`);
+        res.json({ msg: "OTP sent successfully", email, otp });
+    } catch (error) {
+        res.json({ error })
+    }
+}
+
+function generate5DigitOTP() {
+    const firstDigit = Math.floor(Math.random() * 9) + 1;
+    const restDigits = Math.floor(1000 + Math.random() * 9000);
+    return `${firstDigit}${restDigits}`
+}
+
 
 router.get("/getallmovies", getCurrentMovies)
 router.get("/moviedetail/:id", getMovieDetailById)
 router.get("/gettheaterbyid/:id", getTheaterById)
 router.get("/getseatmatrixbyid/:showid", getSeatmatrixByShowId)
 router.post("/bookticket", bookticket)
+router.post("/sendotp", sendotp)
 
 export default router

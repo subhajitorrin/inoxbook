@@ -4,10 +4,12 @@ import { RxCross2 } from "react-icons/rx";
 import { FaAngleLeft } from "react-icons/fa6";
 import gsap from "gsap";
 import OtpBox from "./OtpBox";
+import axios from "axios";
 
 function Login({ settoggleLogin }) {
   const wrapperRef = useRef([]);
   const [otpArray, setOtpArray] = useState(["", "", "", "", ""]);
+  const [email, setemail] = useState("");
   const [isOtpScreen, setisOtpScreen] = useState(false);
 
   function revealNext() {
@@ -17,7 +19,22 @@ function Login({ settoggleLogin }) {
       });
     });
   }
-  function revealNext1() {
+  async function revealNext1() {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/sendotp",
+        { email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+      return;
+    }
     wrapperRef.current.forEach((item) => {
       gsap.to(item, {
         left: "-724px",
@@ -54,9 +71,9 @@ function Login({ settoggleLogin }) {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(otpArray);
-  },[otpArray])
+  }, [otpArray]);
 
   return (
     <div
@@ -99,6 +116,9 @@ function Login({ settoggleLogin }) {
             <div className="">
               <p className="font-[500] mb-[10px]">Email</p>
               <input
+                onChange={(e) => {
+                  setemail(e.target.value);
+                }}
                 type="email"
                 name=""
                 id=""
