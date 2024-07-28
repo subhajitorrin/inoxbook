@@ -417,7 +417,7 @@ function SeatSelection() {
                 &#8377;<span>{price}</span>
               </div>
               <div className="text-[#00000078]">
-                Ticket {isSeatSelected.counter} x {pricelist[priceListIndex]}
+                <p>Total Tickets {isSeatSelected.counter}</p>
               </div>
             </div>
             <button className="bg-black text-white font-bold px-[60px] h-[60px] rounded-[10px]">
