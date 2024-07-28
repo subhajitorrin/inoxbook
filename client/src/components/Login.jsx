@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TfiEmail } from "react-icons/tfi";
 import { RxCross2 } from "react-icons/rx";
 import { FaAngleLeft } from "react-icons/fa6";
@@ -8,6 +8,7 @@ import OtpBox from "./OtpBox";
 function Login({ settoggleLogin }) {
   const wrapperRef = useRef([]);
   const [otpArray, setOtpArray] = useState(["", "", "", "", ""]);
+  const [isOtpScreen, setisOtpScreen] = useState(false);
 
   function revealNext() {
     wrapperRef.current.forEach((item) => {
@@ -22,6 +23,7 @@ function Login({ settoggleLogin }) {
         left: "-724px",
       });
     });
+    setisOtpScreen(true);
   }
   function revertBack() {
     wrapperRef.current.forEach((item) => {
@@ -36,6 +38,7 @@ function Login({ settoggleLogin }) {
         left: "-364px",
       });
     });
+    setisOtpScreen(false);
   }
 
   const handleFocusNext = (index) => {
@@ -50,6 +53,10 @@ function Login({ settoggleLogin }) {
       document.querySelectorAll(".otpInputFields")[prevIndex].focus();
     }
   };
+
+  useEffect(()=>{
+    console.log(otpArray);
+  },[otpArray])
 
   return (
     <div
@@ -126,6 +133,8 @@ function Login({ settoggleLogin }) {
                     index={index}
                     onFocusNext={handleFocusNext}
                     onFocusPrev={handleFocusPrev}
+                    isOtpScreen={isOtpScreen}
+                    setOtpArray={setOtpArray}
                   />
                 );
               })}
