@@ -253,6 +253,7 @@ function SeatSelection() {
                               available={seatmatrix[seat.id]}
                               seatid={seat.id}
                               setIsSeatSelected={setIsSeatSelected}
+                              alreadySelected = {isSeatSelected.counter}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -263,6 +264,7 @@ function SeatSelection() {
                             available={seatmatrix[seat.id]}
                             seatid={seat.id}
                             setIsSeatSelected={setIsSeatSelected}
+                            alreadySelected = {isSeatSelected.counter}
                           />
                         )
                       )}
@@ -298,6 +300,7 @@ function SeatSelection() {
                               available={seatmatrix[seat.id]}
                               seatid={seat.id}
                               setIsSeatSelected={setIsSeatSelected}
+                              alreadySelected = {isSeatSelected.counter}
                             />
                             <div className="w-[50px] "></div>
                           </>
@@ -308,6 +311,7 @@ function SeatSelection() {
                             available={seatmatrix[seat.id]}
                             seatid={seat.id}
                             setIsSeatSelected={setIsSeatSelected}
+                            alreadySelected = {isSeatSelected.counter}
                           />
                         )
                       )}
@@ -343,6 +347,7 @@ function SeatSelection() {
                               available={seatmatrix[seat.id]}
                               seatid={seat.id}
                               setIsSeatSelected={setIsSeatSelected}
+                              alreadySelected = {isSeatSelected.counter}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -353,6 +358,7 @@ function SeatSelection() {
                             available={seatmatrix[seat.id]}
                             seatid={seat.id}
                             setIsSeatSelected={setIsSeatSelected}
+                            alreadySelected = {isSeatSelected.counter}
                           />
                         )
                       )}
@@ -385,6 +391,7 @@ function SeatSelection() {
                               available={seatmatrix[seat.id]}
                               seatid={seat.id}
                               setIsSeatSelected={setIsSeatSelected}
+                              alreadySelected = {isSeatSelected.counter}
                             />
                             <div className="w-[50px]"></div>
                           </>
@@ -395,6 +402,7 @@ function SeatSelection() {
                             available={seatmatrix[seat.id]}
                             seatid={seat.id}
                             setIsSeatSelected={setIsSeatSelected}
+                            alreadySelected = {isSeatSelected.counter}
                           />
                         )
                       )}
