@@ -120,21 +120,35 @@ async function verifyotp(req, res) {
         const otpresponse = await otpModel.findById(optid);
 
         if (!otpresponse) {
-            return res.json({ msg: "OTP record not found" });
+            return res.status(300).json({ msg: "OTP expired, send again" });
         }
 
         if (otpresponse.otp === otp) {
-            // const existingUser  = await userModel.findOne({ email })
-            // if(!existingUser ){
-
-            // }
-            // console.log(existingUser);
-            return res.status(200).json({ msg: "Login success" });
+            const existingUser = await userModel.findOne({ email })
+            if (existingUser) {
+                return res.status(200).json({ email: existingUser.email, name: existingUser.name, tickets: existingUser.ticket });
+            } else {
+                return res.status(201).json({});
+            }
         } else {
-            return res.status(201).json({ msg: "Wrong OTP" });
+            return res.status(301).json({ msg: "Wrong OTP" });
         }
     } catch (error) {
         console.error(error);
+        res.status(500).json({ msg: "Server error" });
+    }
+}
+
+async function createuser(req, res) {
+    const { email, name } = req.body;
+    try {
+        const newUser = new userModel({
+            email, name
+        })
+        const dbres = await newUser.save()
+        res.status(200).json({ email: dbres.email, name: dbres.name, tickets: dbres.ticket })
+    } catch (err) {
+        console.error(err);
         res.status(500).json({ msg: "Server error" });
     }
 }
@@ -147,5 +161,6 @@ router.get("/getseatmatrixbyid/:showid", getSeatmatrixByShowId)
 router.post("/bookticket", bookticket)
 router.post("/sendotp", sendotp)
 router.post("/verifyotp", verifyotp)
+router.post("/createuser", createuser)
 
 export default router

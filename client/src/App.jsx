@@ -14,6 +14,7 @@ import ToastifyContainer from "./components/ToastifyContainer";
 
 function App() {
   const [toggleLogin, settoggleLogin] = useState(false);
+  const [user, setuser] = useState(null)
   useEffect(() => {
     if (toggleLogin) {
       gsap.to("#loginContainer", {
@@ -39,7 +40,7 @@ function App() {
   }, [toggleLogin]);
   return (
     <div className="">
-      <Login settoggleLogin={settoggleLogin} />
+      <Login settoggleLogin={settoggleLogin} setuser={setuser}/>
       <Routes>
         <Route path="/" element={<Home settoggleLogin={settoggleLogin} />} />
         <Route path="/moviedetail/:id" element={<MovieDetail />} />

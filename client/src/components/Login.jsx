@@ -7,10 +7,11 @@ import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
-function Login({ settoggleLogin }) {
-  const [wrappersArr, setWrappersArr] = useState([true, false, false]);
+function Login({ settoggleLogin, setuser }) {
+  const [wrappersArr, setWrappersArr] = useState([true, false, false, false]);
   const [otpArray, setOtpArray] = useState(["", "", "", "", ""]);
   const [email, setemail] = useState("");
+  const [name, setname] = useState("");
   const [isOtpScreen, setisOtpScreen] = useState(false);
   const [optid, setoptid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +46,7 @@ function Login({ settoggleLogin }) {
         }
       );
       setoptid(response.data.otpid);
-      setWrappersArr([false, false, true]);
+      setWrappersArr([false, false, true, false]);
       setisOtpScreen(true);
       setresendTimer(30);
       toast.success("OTP sent successfully");
@@ -82,11 +83,15 @@ function Login({ settoggleLogin }) {
           },
         }
       );
-      if (serverres.status === 200) {
-        toast.success("Login Successfull");
-        console.log(serverres.data);
+      if (serverres.status == 200) {
+        setuser(serverres.data);
+        settoggleLogin(false);
       }
-      if (serverres.status === 201) {
+      if (serverres.status == 201) {
+        toast.success("OTP verified");
+        setWrappersArr([false, false, false, true]);
+      }
+      if (serverres.status == 301) {
         toast.warning("Wrong OTP");
       }
     } catch (err) {
@@ -98,7 +103,35 @@ function Login({ settoggleLogin }) {
 
   function revertBackOtpScreen() {
     setisOtpScreen(false);
-    setWrappersArr([false, true, false]);
+    setWrappersArr([false, true, false, false]);
+  }
+
+  async function handleCreateUser() {
+    try {
+      setIsLoading(true);
+      if (email != "" && name != "") {
+        const serverRes = await axios.post(
+          "http://localhost:5000/createuser",
+          {
+            email,
+            name,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (serverRes.status == 200) {
+          toast.success("Login Successfull");
+          settoggleLogin(false);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -121,7 +154,7 @@ function Login({ settoggleLogin }) {
             />
             <div
               onClick={() => {
-                setWrappersArr([false, true, false]);
+                setWrappersArr([false, true, false, false]);
               }}
               className="hover:bg-[#da4b63] hover:text-[white] w-full hover:border-transparent transition-all ease-linear duration-100 cursor-pointer flex items-center justify-center border border-[#00000054] rounded-[5px] text-center py-[10px] font-[500]"
             >
@@ -134,7 +167,7 @@ function Login({ settoggleLogin }) {
           <div className="min-w-[100%] bg-transparent h-full flex flex-col justify-between py-[15%] relative right-0 left-0">
             <FaAngleLeft
               onClick={() => {
-                setWrappersArr([true, false, false]);
+                setWrappersArr([true, false, false, false]);
               }}
               className="absolute text-[500] top-0 left-0 text-[20px] cursor-pointer"
             />
@@ -236,6 +269,36 @@ function Login({ settoggleLogin }) {
                   <p>Continue</p>
                 )}
               </div>
+            </div>
+          </div>
+        )}
+        {wrappersArr[3] && (
+          <div className="min-w-[100%] bg-transparent h-full flex flex-col justify-between py-[15%] relative right-0 left-0">
+            <div className="flex flex-col gap-[2rem]">
+              <p className="font-bold text-[22px]">Enter your name</p>
+              <div className="">
+                <p className="font-[500] mb-[10px]">Name</p>
+                <input
+                  onChange={(e) => {
+                    setname(e.target.value);
+                  }}
+                  value={name}
+                  type="text"
+                  placeholder="Enter your name"
+                  className="outline-none py-[10px] w-full px-[20px] rounded-[5px] border border-[#00000055]"
+                />
+              </div>
+            </div>
+            <div
+              onClick={handleCreateUser}
+              style={{ pointerEvents: isLoading ? "none" : "auto" }}
+              className="hover:bg-[#b63f53] bg-[#da4b63] text-[white] w-full hover:border-transparent transition-all ease-linear duration-100 cursor-pointer flex items-center justify-center rounded-[5px] text-center h-[40px] font-[500]"
+            >
+              {isLoading ? (
+                <BeatLoader color="white" margin={2} size={7} />
+              ) : (
+                <p>Book Show</p>
+              )}
             </div>
           </div>
         )}

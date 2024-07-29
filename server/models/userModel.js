@@ -22,9 +22,12 @@ const userSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true
+        default:"Guest"
     },
-    ticket: [ticketSchema]
+    ticket: {
+        type: [ticketSchema],
+        default: []
+    }
 });
 
 const userModel = mongoose.model('users', userSchema);
