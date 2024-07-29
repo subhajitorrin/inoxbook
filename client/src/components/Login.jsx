@@ -14,7 +14,7 @@ function Login({ settoggleLogin }) {
   const [isOtpScreen, setisOtpScreen] = useState(false);
   const [optid, setoptid] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [verifyLoading, setverifyLoading] = useState(false)
+  const [verifyLoading, setverifyLoading] = useState(false);
   const [resendTimer, setresendTimer] = useState(null);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ function Login({ settoggleLogin }) {
   async function handleVerifyOtp() {
     try {
       setverifyLoading(true);
-      const response = await axios.post(
+      const serverres = await axios.post(
         "http://localhost:5000/verifyotp",
         { email, optid, otp: otpArray.join("") },
         {
@@ -82,9 +82,15 @@ function Login({ settoggleLogin }) {
           },
         }
       );
-      console.log(response.data);
+      if (serverres.status === 200) {
+        toast.success("Login Successfull");
+        console.log(serverres.data);
+      }
+      if (serverres.status === 201) {
+        toast.warning("Wrong OTP");
+      }
     } catch (err) {
-      console.log(err);
+      console.log(err.status);
     } finally {
       setverifyLoading(false);
     }
@@ -140,6 +146,7 @@ function Login({ settoggleLogin }) {
                   onChange={(e) => {
                     setemail(e.target.value);
                   }}
+                  value={email}
                   type="email"
                   placeholder="Enter your email"
                   className="outline-none py-[10px] w-full px-[20px] rounded-[5px] border border-[#00000055]"

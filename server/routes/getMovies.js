@@ -123,9 +123,9 @@ async function verifyotp(req, res) {
         }
 
         if (otpresponse.otp === otp) {
-            res.json({ msg: "Login success" });
+            return res.status(200).json({ msg: "Login success" });
         } else {
-            res.json({ msg: "Wrong OTP" });
+            return res.status(201).json({ msg: "Wrong OTP" });
         }
     } catch (error) {
         console.error(error);
