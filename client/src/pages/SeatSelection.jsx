@@ -170,6 +170,7 @@ function SeatSelection() {
   }, [isSeatSelected]);
 
   async function handleBookTicket() {
+    
     try {
       if (isSeatSelected.seatids.length > 0 && params) {
         const response = await axios.post(

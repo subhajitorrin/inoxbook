@@ -8,6 +8,9 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import "./App.css";
 import gsap from "gsap";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ToastifyContainer from "./components/ToastifyContainer";
 
 function App() {
   const [toggleLogin, settoggleLogin] = useState(false);
@@ -43,6 +46,7 @@ function App() {
         <Route path="/timings/:id" element={<MovieTiming />} />
         <Route path="/seatmatrix/:id" element={<SeatSelection />} />
       </Routes>
+      <ToastifyContainer />
     </div>
   );
 }
