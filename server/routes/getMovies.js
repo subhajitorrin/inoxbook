@@ -5,6 +5,7 @@ import movieModel from "../models/movieModels.js";
 import seatMatrixModel from "../models/seatMatrixModel.js";
 import mailSender from "../utility/sendMail.js";
 import otpModel from "../models/otpModel.js";
+import userModel from "../models/userModel.js";
 
 const router = express.Router();
 
@@ -123,6 +124,11 @@ async function verifyotp(req, res) {
         }
 
         if (otpresponse.otp === otp) {
+            // const existingUser  = await userModel.findOne({ email })
+            // if(!existingUser ){
+
+            // }
+            // console.log(existingUser);
             return res.status(200).json({ msg: "Login success" });
         } else {
             return res.status(201).json({ msg: "Wrong OTP" });
