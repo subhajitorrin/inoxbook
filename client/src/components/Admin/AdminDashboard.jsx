@@ -71,7 +71,7 @@ function AdminDashboard({ setisLoggedInAdmin }) {
         </div>
         <div className="mainContent">
           <div className="header">
-            <p className="headerText">Admin Dashboard</p>
+            <p className="headerText">ADMIN PANEL</p>
           </div>
           <div className="adminRightBody text-white">{renderContent()}</div>
         </div>
