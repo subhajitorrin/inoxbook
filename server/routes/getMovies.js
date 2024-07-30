@@ -6,6 +6,7 @@ import seatMatrixModel from "../models/seatMatrixModel.js";
 import mailSender from "../utility/sendMail.js";
 import otpModel from "../models/otpModel.js";
 import userModel from "../models/userModel.js";
+import ticketModel from "../models/ticketModel.js";
 
 const router = express.Router();
 
@@ -23,7 +24,6 @@ async function getMovieDetailById(req, res) {
     const { id } = req.params;
     try {
         const movie = await movieModel.findById(id)
-        console.log(movie);
 
         if (movie) {
             return res.status(200).json({ movie });
@@ -70,7 +70,7 @@ async function getSeatmatrixByShowId(req, res) {
 }
 
 async function bookticket(req, res) {
-    const { showid, seats } = req.body;
+    const { showid, seats, userId, ticketDetail } = req.body;
     try {
         const seatMatrix = await seatMatrixModel.findOne({ showid });
         if (!seatMatrix) {
@@ -82,8 +82,16 @@ async function bookticket(req, res) {
             }
             seatMatrix.seats[seatIndex] = false;
         }
-        await seatMatrix.save();
-        res.status(200).json({ msg: "Booking successful", seats: seatMatrix.seats });
+        const ticket = new ticketModel({
+            ...ticketDetail,
+            seats,
+            bookingId: generateRandomString()
+        })
+
+        const seatMatrixres = await seatMatrix.save();
+        const ticketRes = await ticket.save();
+
+        res.status(200).json({ msg: "Booking successful", ticket: ticketRes });
     } catch (error) {
         console.error("Error booking tickets:", error);
         res.status(500).json({ error: "An internal server error occurred" });
@@ -112,6 +120,17 @@ function generate5DigitOTP() {
     return `${firstDigit}${restDigits}`
 }
 
+function generateRandomString(length = 5) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charactersLength);
+        result += characters[randomIndex];
+    }
+    return result;
+}
+
 
 async function verifyotp(req, res) {
     try {
@@ -126,7 +145,7 @@ async function verifyotp(req, res) {
         if (otpresponse.otp === otp) {
             const existingUser = await userModel.findOne({ email })
             if (existingUser) {
-                return res.status(200).json({ email: existingUser.email, name: existingUser.name, tickets: existingUser.ticket });
+                return res.status(200).json({ email: existingUser.email, name: existingUser.name, tickets: existingUser.ticket, userId: existingUser._id });
             } else {
                 return res.status(201).json({});
             }
@@ -146,13 +165,30 @@ async function createuser(req, res) {
             email, name
         })
         const dbres = await newUser.save()
-        res.status(200).json({ email: dbres.email, name: dbres.name, tickets: dbres.ticket })
+        res.status(200).json({ email: dbres.email, name: dbres.name, tickets: dbres.ticket, userId: dbres._id })
     } catch (err) {
         console.error(err);
         res.status(500).json({ msg: "Server error" });
     }
 }
 
+async function getUser(req, res) {
+    const { userid } = req.body;
+    try {
+        if (!userid) {
+            return res.status(400).json({ msg: "User ID is required" });
+        }
+        const dbres = await userModel.findById(userid);
+        if (dbres) {
+            res.status(200).json({ email: dbres.email, name: dbres.name, tickets: dbres.ticket, userId: dbres._id });
+        } else {
+            res.status(404).json({ msg: "User not found" });
+        }
+    } catch (err) {
+        console.error("Error fetching user:", err);
+        res.status(500).json({ msg: "Server error" });
+    }
+}
 
 router.get("/getallmovies", getCurrentMovies)
 router.get("/moviedetail/:id", getMovieDetailById)
@@ -162,5 +198,6 @@ router.post("/bookticket", bookticket)
 router.post("/sendotp", sendotp)
 router.post("/verifyotp", verifyotp)
 router.post("/createuser", createuser)
+router.post("/getuser", getUser)
 
 export default router

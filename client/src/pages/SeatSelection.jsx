@@ -5,8 +5,9 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-function SeatSelection() {
+function SeatSelection({ user, settoggleLogin }) {
   const [pricelist, setpricelist] = useState([330, 240, 180, 150]);
   const [displaySeatWarning, setdisplaySeatWarning] = useState(false);
   const [toggleUpdateSeatMatrix, settoggleUpdateSeatMatrix] = useState(false);
@@ -40,7 +41,6 @@ function SeatSelection() {
             `http://localhost:5000/moviedetail/${params[0]}`
           );
           setmovieDetail(res.data.movie);
-          // console.log(res.data.movie);
         }
       } catch (error) {
         console.log("Error while fetching movie detail", error);
@@ -170,12 +170,31 @@ function SeatSelection() {
   }, [isSeatSelected]);
 
   async function handleBookTicket() {
-    
+    if (!user) {
+      settoggleLogin(true);
+      return;
+    }
     try {
       if (isSeatSelected.seatids.length > 0 && params) {
+        const ticketDetail = {
+          moviename: movieDetail.title,
+          language: "Hindi",
+          date: formatDate(params[3]),
+          time: params[4],
+          theater: theaterDetail.name,
+          seatCount: isSeatSelected.counter,
+          seatCategory: "SilverScreen",
+          price: price,
+          screen: "Screen 1",
+        };
         const response = await axios.post(
           "http://localhost:5000/bookticket",
-          { showid: params[1], seats: isSeatSelected.seatids },
+          {
+            showid: params[1],
+            seats: isSeatSelected.seatids,
+            userId: user.userId,
+            ticketDetail,
+          },
           {
             headers: {
               "Content-Type": "application/json",
@@ -188,7 +207,9 @@ function SeatSelection() {
           seatids: [],
         });
         setprice(0);
-        console.log("Response:", response.data.msg);
+        if (response.status === 200) {
+          toast.success("Booking Successfull");
+        }
       }
     } catch (error) {
       console.error("Error:", error);

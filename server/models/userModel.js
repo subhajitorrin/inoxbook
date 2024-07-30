@@ -1,19 +1,5 @@
 import mongoose from "mongoose";
 
-const ticketSchema = new mongoose.Schema({
-    moviename: String,
-    language: String,
-    date: String,
-    time: String,
-    theater: String,
-    seatCount: Number,
-    seatCategory: String,
-    seats: [String],
-    bookingId: String,
-    price: Number,
-    screen: String
-});
-
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -22,10 +8,10 @@ const userSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        default:"Guest"
+        default: "Guest"
     },
     ticket: {
-        type: [ticketSchema],
+        type: [String],
         default: []
     }
 });

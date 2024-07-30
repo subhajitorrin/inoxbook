@@ -5,8 +5,12 @@ import { CgMenuRightAlt } from "react-icons/cg";
 import { IoTicketOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-function Navbar({ settoggleLogin }) {
+function Navbar({ settoggleLogin, user, setuser }) {
   const navigate = useNavigate();
+  function handleLogout() {
+    localStorage.removeItem("userId");
+    setuser(null);
+  }
   return (
     <div className="select-none flex justify-between items-center text-[14px] font-[500] py-[1rem] px-[15%]">
       <div
@@ -40,14 +44,27 @@ function Navbar({ settoggleLogin }) {
             <RiArrowDropDownFill />
           </div>
         </button>
-        <button
-          className="bg-[#da4b63] rounded-[5px] px-[10px] py-[2px] text-white"
-          onClick={() => {
-            settoggleLogin(true);
-          }}
-        >
-          Sign in
-        </button>
+        {user ? (
+          <p className="flex gap-[20px] items-center">
+            {user.name}
+            <button
+              className="bg-[#da4b63] rounded-[5px] px-[10px] py-[2px] text-white"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          </p>
+        ) : (
+          <button
+            className="bg-[#da4b63] rounded-[5px] px-[10px] py-[2px] text-white"
+            onClick={() => {
+              settoggleLogin(true);
+            }}
+          >
+            Sign in
+          </button>
+        )}
+
         <div className="text-[20px] cursor-pointer">
           <CgMenuRightAlt />
         </div>

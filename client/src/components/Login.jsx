@@ -86,6 +86,7 @@ function Login({ settoggleLogin, setuser }) {
       if (serverres.status == 200) {
         setuser(serverres.data);
         settoggleLogin(false);
+        localStorage.setItem("userId", serverres.data.userId);
       }
       if (serverres.status == 201) {
         toast.success("OTP verified");
@@ -125,6 +126,7 @@ function Login({ settoggleLogin, setuser }) {
         if (serverRes.status == 200) {
           toast.success("Login Successfull");
           settoggleLogin(false);
+          localStorage.setItem("userid", serverRes.data.userId);
         }
       }
     } catch (err) {

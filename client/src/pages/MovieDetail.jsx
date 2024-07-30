@@ -69,7 +69,7 @@ function MovieDetail() {
   return (
     movieDetail && (
       <>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="min-h-screen px-[15%] my-[1rem]">
           <div className="flex justify-between w-full ">
             <div className="w-[30%] flex flex-col gap-[10px]">

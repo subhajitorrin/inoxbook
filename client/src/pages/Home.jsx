@@ -18,7 +18,7 @@ function Home({settoggleLogin}) {
   }, []);
   return (
     <>
-      <Navbar settoggleLogin={settoggleLogin}/>
+      
       <div className=" min-h-screen  w-full overflow-y-hidden px-[15%] ">
         <div className="h-[250px] w-full border border-black my-[1rem]"></div>
         <MovieCardsRow movierow={currentMovies} rowtitle="Recommended Movies" />
