@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 function AdminDashboard({ setisLoggedInAdmin }) {
   const navList = ["Dashboard", "Edit Movies", "", "Schedule", "Admin Details"];
   const editMoviesList = ["Add Movies", "Update Movies", "Delete Movies"];
+  const [toggleComponents, settoggleComponents] = useState([
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
   return (
     <div className="h-screen w-full flex select-none">
       <div className="h-full w-[20%] border-r border-black flex flex-col justify-between p-[2rem] ">
@@ -51,7 +61,7 @@ function AdminDashboard({ setisLoggedInAdmin }) {
         <div className="h-[10%] w-full border-b border-black flex items-center justify-center">
           <p className="text-[20px] font-bold uppercase">Admin Dashboard</p>
         </div>
-        <div className=""></div>
+        <div className="">{toggleComponents[0] && <Dashboard />}</div>
       </div>
     </div>
   );
