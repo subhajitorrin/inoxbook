@@ -90,6 +90,10 @@ async function bookticket(req, res) {
 
         const seatMatrixres = await seatMatrix.save();
         const ticketRes = await ticket.save();
+        await userModel.findByIdAndUpdate(userId, {
+            $push: { ticket: ticketRes._id }
+        });
+
 
         res.status(200).json({ msg: "Booking successful", ticket: ticketRes });
     } catch (error) {
@@ -160,6 +164,7 @@ async function verifyotp(req, res) {
 
 async function createuser(req, res) {
     const { email, name } = req.body;
+    console.log(email,name);
     try {
         const newUser = new userModel({
             email, name

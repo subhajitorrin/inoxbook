@@ -209,6 +209,7 @@ function SeatSelection({ user, settoggleLogin }) {
         setprice(0);
         if (response.status === 200) {
           toast.success("Booking Successfull");
+          console.log(response.data);
         }
       }
     } catch (error) {
