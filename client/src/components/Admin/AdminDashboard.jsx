@@ -1,5 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AdminDashboard.css";
+import Dashboard from "./AdminRoutes/Dashboard";
+import AddMovies from "./AdminRoutes/AddMovies";
+import UpdateMovies from "./AdminRoutes/UpdateMovies";
+import DeleteMovies from "./AdminRoutes/DeleteMovies";
+import Schedule from "./AdminRoutes/Schedule";
+import AdminDetails from "./AdminRoutes/AdminDetails";
 
 function AdminDashboard({ setisLoggedInAdmin }) {
   const navList = [
@@ -10,7 +16,25 @@ function AdminDashboard({ setisLoggedInAdmin }) {
     "Schedule",
     "Admin Details",
   ];
+
   const [activeIndex, setActiveIndex] = useState(0);
+
+  function renderContent() {
+    switch (activeIndex) {
+      case 0:
+        return <Dashboard />;
+      case 1:
+        return <AddMovies />;
+      case 2:
+        return <UpdateMovies />;
+      case 3:
+        return <DeleteMovies />;
+      case 4:
+        return <Schedule />;
+      case 5:
+        return <AdminDetails />;
+    }
+  }
 
   return (
     <div className="adminDashboardContainer">
@@ -31,8 +55,9 @@ function AdminDashboard({ setisLoggedInAdmin }) {
                   onClick={() => {
                     setActiveIndex(index);
                   }}
+                  key={index}
                 >
-                  <p key={index}>{item}</p>
+                  <p>{item}</p>
                 </div>
               );
             })}
@@ -48,6 +73,7 @@ function AdminDashboard({ setisLoggedInAdmin }) {
           <div className="header">
             <p className="headerText">Admin Dashboard</p>
           </div>
+          <div className="adminRightBody text-white">{renderContent()}</div>
         </div>
       </div>
     </div>
