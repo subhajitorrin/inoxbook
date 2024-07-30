@@ -5,11 +5,12 @@ import { CgMenuRightAlt } from "react-icons/cg";
 import { IoTicketOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-function Navbar({ settoggleLogin, user, setuser }) {
+function Navbar({ settoggleLogin, user, setuser, setWrappersArr }) {
   const navigate = useNavigate();
   function handleLogout() {
-    localStorage.removeItem("userId");
+    localStorage.removeItem("userid");
     setuser(null);
+    setWrappersArr([true, false, false, false]);
   }
   return (
     <div className="select-none flex justify-between items-center text-[14px] font-[500] py-[1rem] px-[15%]">

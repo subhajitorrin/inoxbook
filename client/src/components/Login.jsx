@@ -7,8 +7,8 @@ import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
-function Login({ settoggleLogin, setuser }) {
-  const [wrappersArr, setWrappersArr] = useState([true, false, false, false]);
+function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
+  // const [wrappersArr, setWrappersArr] = useState([true, false, false, false]);
   const [otpArray, setOtpArray] = useState(["", "", "", "", ""]);
   const [email, setemail] = useState("");
   const [name, setname] = useState("");
@@ -86,7 +86,7 @@ function Login({ settoggleLogin, setuser }) {
       if (serverres.status == 200) {
         setuser(serverres.data);
         settoggleLogin(false);
-        localStorage.setItem("userId", serverres.data.userId);
+        localStorage.setItem("userid", serverres.data.userId);
       }
       if (serverres.status == 201) {
         toast.success("OTP verified");

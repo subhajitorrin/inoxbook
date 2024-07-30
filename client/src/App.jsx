@@ -15,6 +15,7 @@ import axios from "axios";
 
 function App() {
   const [toggleLogin, settoggleLogin] = useState(false);
+  const [wrappersArr, setWrappersArr] = useState([true, false, false, false]);
   const [user, setuser] = useState(null);
   const location = useLocation();
   useEffect(() => {
@@ -42,7 +43,7 @@ function App() {
   }, [toggleLogin]);
   useEffect(() => {
     async function getUserAtRender() {
-      const userid = localStorage.getItem("userId");
+      const userid = localStorage.getItem("userid");
       if (!userid) return;
       try {
         const serverRes = await axios.post(
@@ -64,13 +65,13 @@ function App() {
       }
     }
     getUserAtRender();
-  }, []);
+  }, [toggleLogin]);
   const shouldHideNavbar = location.pathname.startsWith("/seatmatrix");
   return (
     <div className="">
-      <Login settoggleLogin={settoggleLogin} setuser={setuser} />
+      <Login settoggleLogin={settoggleLogin} setuser={setuser} wrappersArr={wrappersArr} setWrappersArr={setWrappersArr}/>
       {!shouldHideNavbar && (
-        <Navbar settoggleLogin={settoggleLogin} user={user} setuser={setuser} />
+        <Navbar settoggleLogin={settoggleLogin} user={user} setuser={setuser} setWrappersArr={setWrappersArr}/>
       )}
       <Routes>
         <Route path="/" element={<Home settoggleLogin={settoggleLogin} />} />
