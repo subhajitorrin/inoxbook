@@ -138,7 +138,7 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
 
   return (
     <div
-      className="select-none opacity-0 pointer-events-none h-screen fixed flex items-center justify-center w-full backdrop-filter backdrop-blur-[3px]"
+      className="z-[100] select-none opacity-0 pointer-events-none h-screen fixed flex items-center justify-center w-full backdrop-filter backdrop-blur-[3px]"
       id="loginContainer"
     >
       <div className="h-full w-full opacity-[.6] bg-[#000000]"></div>
