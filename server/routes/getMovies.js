@@ -70,7 +70,7 @@ async function getSeatmatrixByShowId(req, res) {
 }
 
 async function bookticket(req, res) {
-    const { showid, seats, userId, ticketDetail } = req.body;
+    const { showid, seats, userId, ticketDetail, email, name } = req.body;
     try {
         const seatMatrix = await seatMatrixModel.findOne({ showid });
         if (!seatMatrix) {
@@ -94,6 +94,34 @@ async function bookticket(req, res) {
             $push: { ticket: ticketRes._id }
         });
 
+        let seatsStr = ""
+        seats.forEach((item) => {
+            seatsStr += item + " "
+        })
+
+        const title = "Ticket Booking Successfull"
+        const body = `
+    <h1>Booking Confirmation</h1>
+    <p>Dear Customer,</p>
+    <p>Thank you ${name} for booking with us! Your ticket has been successfully booked. Below are the details of your booking:</p>
+    <h2>Booking Details</h2>
+    <ul>
+        <li><strong>Movie Name:</strong> ${ticketDetail.moviename}</li>
+        <li><strong>Language:</strong> ${ticketDetail.language}</li>
+        <li><strong>Date:</strong> ${ticketDetail.date}</li>
+        <li><strong>Time:</strong> ${ticketDetail.time}</li>
+        <li><strong>Theater:</strong> ${ticketDetail.theater}</li>
+        <li><strong>Seat Count:</strong> ${ticketDetail.seatCount}</li>
+        <li><strong>Booked Seats:</strong> ${seatsStr}</li>
+        <li><strong>Seat Category:</strong> ${ticketDetail.seatCategory}</li>
+        <li><strong>Price:</strong> ₹${ticketDetail.price}</li>
+        <li><strong>Screen:</strong> ${ticketDetail.screen}</li>
+    </ul>
+    <p>We hope you have a great time at the movie!</p>
+    <p>If you have any questions or need further assistance, feel free to contact us.</p>
+    <p>Best regards,<br>INOXBOOK Team</p>
+`;
+        await mailSender(email, title, body)
 
         res.status(200).json({ msg: "Booking successful", ticket: ticketRes });
     } catch (error) {
@@ -164,7 +192,7 @@ async function verifyotp(req, res) {
 
 async function createuser(req, res) {
     const { email, name } = req.body;
-    console.log(email,name);
+    console.log(email, name);
     try {
         const newUser = new userModel({
             email, name

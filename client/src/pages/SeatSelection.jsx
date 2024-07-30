@@ -193,6 +193,8 @@ function SeatSelection({ user, settoggleLogin }) {
             showid: params[1],
             seats: isSeatSelected.seatids,
             userId: user.userId,
+            email: user.email,
+            name: user.name,
             ticketDetail,
           },
           {
@@ -213,7 +215,7 @@ function SeatSelection({ user, settoggleLogin }) {
         }
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error form seatbooking:", error);
     }
   }
 
