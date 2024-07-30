@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ToastifyContainer from "./components/ToastifyContainer";
 import axios from "axios";
+import Admin from "./pages/Admin";
 
 function App() {
   const [toggleLogin, settoggleLogin] = useState(false);
@@ -66,7 +67,7 @@ function App() {
     }
     getUserAtRender();
   }, [toggleLogin]);
-  const shouldHideNavbar = location.pathname.startsWith("/seatmatrix");
+  const shouldHideNavbar = location.pathname.startsWith("/seatmatrix") || location.pathname.startsWith("/admin");
   return (
     <div className="">
       <Login settoggleLogin={settoggleLogin} setuser={setuser} wrappersArr={wrappersArr} setWrappersArr={setWrappersArr}/>
@@ -77,6 +78,7 @@ function App() {
         <Route path="/" element={<Home settoggleLogin={settoggleLogin} />} />
         <Route path="/moviedetail/:id" element={<MovieDetail />} />
         <Route path="/timings/:id" element={<MovieTiming />} />
+        <Route path="/admin" element={<Admin />} />
         <Route
           path="/seatmatrix/:id"
           element={
