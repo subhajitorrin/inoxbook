@@ -7,6 +7,7 @@ import mailSender from "../utility/sendMail.js";
 import otpModel from "../models/otpModel.js";
 import userModel from "../models/userModel.js";
 import ticketModel from "../models/ticketModel.js";
+import getSeatByIndex from "../utility/getSeatnmaByIndex.js";
 
 const router = express.Router();
 
@@ -96,7 +97,7 @@ async function bookticket(req, res) {
 
         let seatsStr = ""
         seats.forEach((item) => {
-            seatsStr += item + " "
+            seatsStr += getSeatByIndex(item) + ", "
         })
 
         const title = "Ticket Booking Successfull"
