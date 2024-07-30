@@ -1,67 +1,54 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import "./AdminDashboard.css";
 
 function AdminDashboard({ setisLoggedInAdmin }) {
-  const navList = ["Dashboard", "Edit Movies", "", "Schedule", "Admin Details"];
-  const editMoviesList = ["Add Movies", "Update Movies", "Delete Movies"];
-  const [toggleComponents, settoggleComponents] = useState([
-    true,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const navList = [
+    "Dashboard",
+    "Add Movies",
+    "Update Movies",
+    "Delete Movies",
+    "Schedule",
+    "Admin Details",
+  ];
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
-    <div className="h-screen w-full flex select-none">
-      <div className="h-full w-[20%] border-r border-black flex flex-col justify-between p-[2rem] ">
-        <div className="flex flex-col gap-[20px] font-bold text-[18px] uppercase ">
-          <p className="text-center text-[30px] mb-[30px] uppercase">
-            Welcome ADMIN
-          </p>
-          {navList.map((item, index) => {
-            if (index === 2) {
+    <div className="adminDashboardContainer">
+      <div className="adminWrapper">
+        <div className="sidebar">
+          <div className="navList">
+            <p className="welcomeText">Welcome ADMIN</p>
+            {navList.map((item, index) => {
               return (
-                <div className="text-[15px] ml-[20px] mt-[-15px]">
-                  {editMoviesList.map((item, index) => {
-                    return (
-                      <>
-                        <p
-                          key={index}
-                          className="cursor-pointer hover:opacity-[.7]"
-                        >
-                          - {item}
-                        </p>
-                      </>
-                    );
-                  })}
+                <div
+                  className={`navItem`}
+                  style={{
+                    border:
+                      activeIndex === index
+                        ? "1px solid rgba(255, 255, 255, 0.7)"
+                        : "1px solid transparent",
+                  }}
+                  onClick={() => {
+                    setActiveIndex(index);
+                  }}
+                >
+                  <p key={index}>{item}</p>
                 </div>
               );
-            }
-            return (
-              <p key={index} className="cursor-pointer hover:opacity-[.7]">
-                {item}
-              </p>
-            );
-          })}
-        </div>
-        <div className="">
+            })}
+          </div>
           <div
-            onClick={() => {
-              setisLoggedInAdmin(false);
-            }}
-            className="hover:bg-[#b63f53] bg-[#da4b63] text-[white] w-full hover:border-transparent transition-all ease-linear duration-100 cursor-pointer flex items-center justify-center rounded-[5px] text-center h-[40px] font-[500]"
+            className="logoutButton"
+            onClick={() => setisLoggedInAdmin(false)}
           >
             Logout
           </div>
         </div>
-      </div>
-      <div className="h-full w-[80%] ">
-        <div className="h-[10%] w-full border-b border-black flex items-center justify-center">
-          <p className="text-[20px] font-bold uppercase">Admin Dashboard</p>
+        <div className="mainContent">
+          <div className="header">
+            <p className="headerText">Admin Dashboard</p>
+          </div>
         </div>
-        <div className="">{toggleComponents[0] && <Dashboard />}</div>
       </div>
     </div>
   );

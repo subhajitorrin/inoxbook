@@ -22,7 +22,7 @@ app.use("/", TheaterRoutes);
 app.use("/", SeatMatrixRoutes);
 app.use("/", BookingRoutes);
 app.use("/", VerifyRoutes);
-app.use("/", UserRoutes)
+app.use("/", UserRoutes);
 
 mongoose.connect(mongoURL).then(() => {
     app.listen(PORT, () => {

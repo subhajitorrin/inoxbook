@@ -77,7 +77,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home settoggleLogin={settoggleLogin} />} />
         <Route path="/moviedetail/:id" element={<MovieDetail />} />
-        <Route path="/timings/:id" element={<MovieTiming />} />
+        {/* <Route path="/timings/:id" element={<MovieTiming />} /> */}
         <Route path="/admin" element={<Admin />} />
         <Route
           path="/seatmatrix/:id"

@@ -1,10 +1,11 @@
 import express from "express"
-import { getAllMovies, getMovieDetailById } from "../controllers/Movies.js"
+import { getAllMovies, getMovieDetailById, addNewMovie,updateMovieById,deleteMovieById } from "../controllers/Movies.js"
 
 const MovieRoutes = express.Router();
 
 MovieRoutes.get("/getallmovies", getAllMovies)
 MovieRoutes.get("/moviedetail/:id", getMovieDetailById)
-
-
+MovieRoutes.post("/addnewmovie", addNewMovie)
+MovieRoutes.put("/updatemovie/:id", updateMovieById);
+MovieRoutes.delete("/deletemovie/:id", deleteMovieById);
 export default MovieRoutes

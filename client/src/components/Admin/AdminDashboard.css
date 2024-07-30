@@ -1,0 +1,99 @@
+.adminDashboardContainer {
+  background: url("https://res.cloudinary.com/difxhccup/image/upload/v1722364281/loki-season-1-tv-series-2021-tom-hiddleston-marvel-comics-3840x2160-6177_zca3py.jpg");
+  /* background: url("https://4kwallpapers.com/images/walls/thumbs_3t/12411.jpeg"); */
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  color: white;
+}
+
+.adminWrapper {
+  height: 90%;
+  width: 90%;
+  display: flex;
+  background-color: rgba(0.7, 0.7, 0.7, 0.7);
+  border-radius: 15px;
+  border: 2px solid white;
+}
+
+.sidebar {
+  height: 100%;
+  width: 20%;
+  border-right: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-weight: bold;
+  /* text-transform: uppercase; */
+}
+
+.welcomeText {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.navItem {
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 7px;
+  font-size: 15px;
+  padding: 10px;
+  padding-left: 20px;
+  transition: all linear 0.2s;
+}
+
+.editMoviesList {
+  margin-left: 20px;
+  margin-top: -15px;
+}
+
+.logoutButton {
+  background-color: #3c752c;
+  color: white;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.logoutButton:hover {
+  background-color: #346028;
+}
+
+.mainContent {
+  height: 100%;
+  width: 80%;
+}
+
+.header {
+  height: 10%;
+  width: 100%;
+  border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerText {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
