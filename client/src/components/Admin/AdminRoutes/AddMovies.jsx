@@ -8,6 +8,9 @@ import makeAnimated from "react-select/animated";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AddCast from "./adminComponents/AddCast";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { BeatLoader } from "react-spinners";
 
 function AddMovies() {
   const [title, settitle] = useState("");
@@ -22,6 +25,7 @@ function AddMovies() {
   const [trailer, settrailer] = useState("");
   const [displayCategory, setdisplayCategory] = useState(null);
   const [castList, setcastList] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
 
   function isFloat(n) {
     let parsedValue = parseFloat(n);
@@ -38,7 +42,7 @@ function AddMovies() {
     return `${year}-${month}-${day}`;
   }
 
-  function handleAddMovieToDatabase() {
+  async function handleAddMovieToDatabase() {
     if (
       title != "" &&
       genereList.length > 0 &&
@@ -52,21 +56,40 @@ function AddMovies() {
       trailer != "" &&
       displayCategory
     ) {
-      const obj = {
-        title,
-        genre: genereList.map((item) => item.label),
-        duration: parseInt(duration),
-        language: languageList.map((item) => item.label),
-        CBFCratnig: cbfcRating.label,
-        releaseDate: formatDateToDDMMYYYY(date),
-        cast: castList,
-        synopsis,
-        rating,
-        posterUrl: poster,
-        trailerUrl: trailer,
-        categories: displayCategory.label,
-      };
-      console.log(obj);
+      setisLoading(true);
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/addnewmovie",
+          {
+            title,
+            genre: genereList.map((item) => item.label),
+            duration: parseInt(duration),
+            language: languageList.map((item) => item.label),
+            CBFCratnig: cbfcRating.label,
+            releaseDate: formatDateToDDMMYYYY(date),
+            cast: castList,
+            synopsis,
+            rating,
+            posterUrl: poster,
+            trailerUrl: trailer,
+            categories: displayCategory.label,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (response.status === 201) {
+          toast.success("Movie added successfully");
+          console.log(response.data);
+        }
+      } catch (error) {
+        toast.warning("Something went wrong!!!");
+        console.log(error.message);
+      } finally {
+        setisLoading(false);
+      }
     }
   }
 
@@ -202,10 +225,15 @@ function AddMovies() {
           />
         </div>
         <button
+          style={{ pointerEvents: isLoading ? "none" : "auto" }}
           className=" py-[7px] font-[500] rounded-[7px] border border-white hover:bg-white hover:text-black"
           onClick={handleAddMovieToDatabase}
         >
-          Add Movie to Database
+          {isLoading ? (
+            <BeatLoader color="white" margin={2} size={7} />
+          ) : (
+            <span>Add Movie to Database</span>
+          )}
         </button>
       </div>
       <div className="flex flex-col gap-[2rem]">
