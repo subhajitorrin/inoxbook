@@ -90,6 +90,8 @@ function AddMovies() {
       } finally {
         setisLoading(false);
       }
+    } else {
+      toast.warn("Fill all the fields!!!");
     }
   }
 
