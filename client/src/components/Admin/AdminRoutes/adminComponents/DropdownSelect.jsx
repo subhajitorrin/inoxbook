@@ -1,6 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const DropdownSelect = ({ options, selectedOption, onSelect, label, placeholder, onAdd }) => {
+const DropdownSelect = ({
+  options,
+  selectedOption,
+  onSelect,
+  label,
+  placeholder,
+  onAdd,
+}) => {
   return (
     <div className="flex gap-[20px] items-center">
       <p className="text-[18px] font-[500] w-[200px]">{label}</p>
