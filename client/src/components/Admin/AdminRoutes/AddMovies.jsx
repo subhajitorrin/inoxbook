@@ -7,6 +7,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import AddCast from "./adminComponents/AddCast";
 
 function AddMovies() {
   const [title, settitle] = useState("");
@@ -20,6 +21,7 @@ function AddMovies() {
   const [poster, setposter] = useState("");
   const [trailer, settrailer] = useState("");
   const [displayCategory, setdisplayCategory] = useState(null);
+  const [castList, setcastList] = useState([]);
 
   const movieGenres = [
     { value: "action", label: "Action" },
@@ -66,7 +68,7 @@ function AddMovies() {
   ];
 
   return (
-    <div className="h-full w-full flex justify-between p-[3%] px-[5%]">
+    <div className="h-full w-full flex justify-between p-[3%] px-[6%]">
       <div className="flex flex-col gap-[2rem]">
         {/* movie title */}
         <TitleAndInput
@@ -176,6 +178,45 @@ function AddMovies() {
               setdisplayCategory(item);
             }}
           />
+        </div>
+        {/* select cast */}
+        <div className="border-t border-white pt-[1rem]">
+          <p className="text-[18px] font-[500] text-center w-full mb-[1rem]">
+            Casting
+          </p>
+          {castList.map((item, index) => {
+            function removeCast() {
+              setcastList(castList.filter((item, i) => i !== index));
+            }
+            function updateCast(updatedCast) {
+              const newCastList = [...castList];
+              newCastList[index] = updatedCast;
+              setcastList(newCastList);
+            }
+            return (
+              <AddCast
+                key={index}
+                index={index}
+                cast={item}
+                updateCast={updateCast}
+                removeCast={removeCast}
+              />
+            );
+          })}
+          <div className="flex justify-center mt-[10px]">
+            <button
+              className="border border-white px-[1rem] py-[5px] rounded-[5px]"
+              onClick={() => {
+                if (castList.length < 2) {
+                  setcastList([...castList, { name: "", url: "" }]);
+                } else {
+                  setcastList((prev) => prev.slice(0, 2));
+                }
+              }}
+            >
+              Add Cast
+            </button>
+          </div>
         </div>
       </div>
     </div>
