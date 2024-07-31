@@ -1,30 +1,38 @@
 import React, { useState } from "react";
-import "./AdminLogin.css"
+import "./AdminLogin.css";
+import { toast } from "react-toastify";
 
 function AdminLogin({ setisLoggedInAdmin }) {
   const [email, setemail] = useState(null);
   const [password, setpassword] = useState(null);
   function handleAdminLogin() {
-    if (true) {
+    if (!email || !password) {
+      toast.warn("Enter credentials!!!");
+      return;
+    }
+    if (email == "111" && password == "111") {
       setisLoggedInAdmin(true);
+      toast.success("Admin login successfull");
+    } else {
+      toast.warn("Wrong admin credentials!!!");
     }
   }
   return (
-    <div className="select-none h-screen w-full flex items-center justify-center adminLoginContainer" >
+    <div className="select-none h-screen w-full flex items-center justify-center adminLoginContainer">
       <div className="adminWrapper flex flex-col justify-between p-[40px] w-[500px] h-[550px] rounded-[10px] py-[55px]">
         <p className="text-center font-bold text-[30px] uppercase ">
           Admin Panel
         </p>
         <div className="flex flex-col gap-[30px]">
           <div className="">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="text">Username</label>
             <input
               onChange={(e) => {
                 setemail(e.target.value);
               }}
-              type="email"
-              name="email"
-              placeholder="Enter admin email"
+              type="text"
+              name="text"
+              placeholder="Enter admin username"
               className="mt-[7px] border border-[#00000044]  w-full px-[20px] text-[15px] py-[10px] rounded-[10px]"
             />
           </div>
@@ -37,7 +45,7 @@ function AdminLogin({ setisLoggedInAdmin }) {
               }}
               type="email"
               name="email"
-              placeholder="Password"
+              placeholder="Enter admin password"
               className="mt-[7px] border border-[#00000044]  w-full px-[20px] text-[15px] py-[10px] rounded-[10px]"
             />
           </div>

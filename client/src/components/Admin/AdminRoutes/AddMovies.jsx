@@ -110,6 +110,7 @@ function AddMovies() {
 
   const movieLanguages = [
     { value: "hindi", label: "Hindi" },
+    { value: "english", label: "English" },
     { value: "telugu", label: "Telugu" },
     { value: "tamil", label: "Tamil" },
     { value: "kannada", label: "Kannada" },
@@ -290,6 +291,7 @@ function AddMovies() {
           })}
           <div className="flex justify-center mt-[10px]">
             <button
+              style={{ display: castList.length == 2 ? "none" : "" }}
               className="border border-white px-[1rem] py-[5px] rounded-[5px]"
               onClick={() => {
                 if (castList.length < 2) {
