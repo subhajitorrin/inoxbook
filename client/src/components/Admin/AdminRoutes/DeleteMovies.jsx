@@ -4,6 +4,7 @@ import DeleteSectionMovieCards from "./adminComponents/DeleteSectionMovieCards";
 
 function DeleteMovies() {
   const [allMovies, setallMovies] = useState([]);
+  const [toggle, settoggle] = useState(false)
   useEffect(() => {
     async function fetchAllMovies() {
       try {
@@ -15,11 +16,11 @@ function DeleteMovies() {
       }
     }
     fetchAllMovies();
-  }, []);
+  }, [toggle]);
   return (
     <div className="h-full w-full flex flex-wrap overflow-auto justify-center py-[3%] gap-[2rem]">
       {allMovies.map((item, index) => {
-        return <DeleteSectionMovieCards item={item} />;
+        return <DeleteSectionMovieCards item={item} settoggle={settoggle}/>;
       })}
     </div>
   );
