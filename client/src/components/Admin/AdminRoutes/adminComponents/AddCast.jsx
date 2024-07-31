@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function AddCast({ index, cast, updateCast, removeCast }) {
+function AddCast({ index, cast, updateCast, removeCast, prename, preurl }) {
   const [name, setname] = useState(null);
   const [profileUrl, setprofileUrl] = useState(null);
   return (
@@ -14,6 +14,7 @@ function AddCast({ index, cast, updateCast, removeCast }) {
           className="w-[300px] py-[10px] px-[20px] rounded-[5px] outline-none"
           type="text"
           placeholder="Enter caster name"
+          value={prename}
         />
       </div>
       <div className="flex gap-[20px] items-center">
@@ -25,6 +26,7 @@ function AddCast({ index, cast, updateCast, removeCast }) {
           className="w-[300px] py-[10px] px-[20px] rounded-[5px] outline-none"
           type="text"
           placeholder="Enter caster image url"
+          value={preurl}
         />
       </div>
       <button

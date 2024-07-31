@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import "./AdminRoutes.css";
@@ -12,12 +12,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { BeatLoader } from "react-spinners";
 
-function AddMovies() {
+function AddMovies({ isUpdate, movieData }) {
   const [title, settitle] = useState("");
   const [genereList, setGenereList] = useState([]);
   const [duration, setduration] = useState("");
   const [languageList, setlanguageList] = useState([]);
-  const [cbfcRating, setcbfcRating] = useState(null);
+  const [cbfcRating, setcbfcRating] = useState("");
   const [date, setdate] = useState(null);
   const [synopsis, setSynopsis] = useState("");
   const [rating, setrating] = useState(null);
@@ -26,6 +26,8 @@ function AddMovies() {
   const [displayCategory, setdisplayCategory] = useState(null);
   const [castList, setcastList] = useState([]);
   const [isLoading, setisLoading] = useState(false);
+
+  const cbfcRatnigRef = useRef(null);
 
   function isFloat(n) {
     let parsedValue = parseFloat(n);
@@ -95,6 +97,61 @@ function AddMovies() {
     }
   }
 
+  async function handleUpdateMovie() {
+    if (
+      title != "" &&
+      genereList.length > 0 &&
+      typeof parseInt(duration) === "number" &&
+      languageList.length > 0 &&
+      cbfcRating &&
+      date &&
+      synopsis != "" &&
+      isFloat(rating) &&
+      poster != "" &&
+      trailer != "" &&
+      displayCategory
+    ) {
+      setisLoading(true);
+      try {
+        const response = await axios.put(
+          `http://localhost:5000/updatemovie/${movieData._id}`,
+          {
+            title,
+            genre: genereList.map((item) => item.label),
+            duration: parseInt(duration),
+            language: languageList.map((item) => item.label),
+            CBFCratnig: cbfcRating.label,
+            releaseDate: formatDateToDDMMYYYY(date),
+            cast: castList,
+            synopsis,
+            rating,
+            posterUrl: poster,
+            trailerUrl: trailer,
+            categories: displayCategory.label,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (response.status === 200) {
+          toast.success("Movie updated");
+        }
+        if (response.status === 400) {
+          toast.warn("Movie not found");
+        }
+      } catch (error) {
+        toast.warning("Something went wrong!!!");
+        console.log(error.message);
+      } finally {
+        setisLoading(false);
+      }
+    } else {
+      toast.warn("Fill all the fields!!!");
+    }
+  }
+
   const movieGenres = [
     { value: "action", label: "Action" },
     { value: "comedy", label: "Comedy" },
@@ -140,6 +197,31 @@ function AddMovies() {
     { value: "upcoming", label: "Upcoming" },
   ];
 
+  useEffect(() => {
+    if (isUpdate && movieData) {
+      settitle(movieData.title);
+      setGenereList(movieData.genre.map((g) => ({ label: g, value: g })));
+      setduration(movieData.duration || "");
+      setlanguageList(movieData.language.map((l) => ({ label: l, value: l })));
+      setcbfcRating(movieData.CBFCratnig);
+      setdate(new Date(movieData.releaseDate) || null);
+      setSynopsis(movieData.synopsis || "");
+      setrating(movieData.rating || null);
+      setposter(movieData.posterUrl || "");
+      settrailer(movieData.trailerUrl || "");
+      setdisplayCategory(movieData.categories || null);
+      setcastList(movieData.cast || []);
+      document
+        .querySelector("#cbfcRating")
+        .querySelector(".css-1jqq78o-placeholder").innerHTML =
+        movieData.CBFCratnig;
+      document
+        .querySelector("#displayCategory")
+        .querySelector(".css-1jqq78o-placeholder").innerHTML =
+        movieData.categories;
+    }
+  }, [isUpdate, movieData]);
+
   return (
     <div className="h-full w-full flex justify-between p-[2.4%] px-[6%]">
       <div className="flex flex-col justify-between">
@@ -149,6 +231,7 @@ function AddMovies() {
             name={"Movie Title"}
             changeName={settitle}
             place={"Enter movie title"}
+            val={title}
           />
           {/* genres */}
           <div className="flex gap-[20px] items-center">
@@ -172,6 +255,7 @@ function AddMovies() {
             name={"Duration"}
             changeName={setduration}
             place={"Enter movie duration"}
+            val={duration}
           />
           {/* languages */}
           <div className="flex gap-[20px] items-center">
@@ -194,12 +278,14 @@ function AddMovies() {
           <div className="flex gap-[20px] items-center">
             <p className="text-[18px] font-[500] w-[200px]">CBFC Rating</p>
             <Select
+              id="cbfcRating"
               className="text-black w-[150px]"
               options={cbfcRatings}
               value={cbfcRating}
               onChange={(item) => {
                 setcbfcRating(item);
               }}
+              ref={cbfcRatnigRef}
             />
           </div>
           {/* release date */}
@@ -219,21 +305,25 @@ function AddMovies() {
             name={"Snyopsis"}
             changeName={setSynopsis}
             place={"Enter movie snyopsis"}
+            val={synopsis}
           />
           {/* rating */}
           <TitleAndInput
-            name={"Rating 0/10"}
+            name={"IMDB Rating"}
             changeName={setrating}
             place={"Enter movie rating"}
+            val={rating}
           />
         </div>
         <button
           style={{ pointerEvents: isLoading ? "none" : "auto" }}
           className=" py-[7px] font-[500] rounded-[7px] border border-white hover:bg-white hover:text-black"
-          onClick={handleAddMovieToDatabase}
+          onClick={isUpdate ? handleUpdateMovie : handleAddMovieToDatabase}
         >
           {isLoading ? (
             <BeatLoader color="white" margin={2} size={7} />
+          ) : isUpdate ? (
+            <span>Update Movie</span>
           ) : (
             <span>Add Movie to Database</span>
           )}
@@ -245,12 +335,14 @@ function AddMovies() {
           name={"Poster link"}
           changeName={setposter}
           place={"drop poster link"}
+          val={poster}
         />
         {/* trailer */}
         <TitleAndInput
           name={"Trailer link"}
           changeName={settrailer}
           place={"Enter trailer link"}
+          val={trailer}
         />
 
         {/* display category */}
@@ -258,6 +350,7 @@ function AddMovies() {
           <p className="text-[18px] font-[500] w-[200px]">Display Category</p>
           <Select
             className="text-black min-w-[150px]"
+            id="displayCategory"
             options={movieTags}
             value={displayCategory}
             onChange={(item) => {
@@ -286,6 +379,8 @@ function AddMovies() {
                 cast={item}
                 updateCast={updateCast}
                 removeCast={removeCast}
+                prename={item.name}
+                preurl={item.imageUrl}
               />
             );
           })}

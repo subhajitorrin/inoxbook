@@ -67,7 +67,7 @@ async function addNewMovie(req, res) {
         console.error('Error adding movie:', err);
         res.status(500).json({
             message: 'Failed to add movie',
-            error: error.message
+            error: err.message
         });
     }
 }

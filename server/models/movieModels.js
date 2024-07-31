@@ -42,7 +42,7 @@ const movieSchema = new mongoose.Schema({
     rating: String,
     posterUrl: String,
     trailerUrl: String,
-    categories: [String]
+    categories: String
 });
 
 const movieModel = mongoose.model('currentmovies', movieSchema);
