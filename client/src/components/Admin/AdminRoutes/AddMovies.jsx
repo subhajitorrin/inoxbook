@@ -12,7 +12,7 @@ import AddCast from "./adminComponents/AddCast";
 function AddMovies() {
   const [title, settitle] = useState("");
   const [genereList, setGenereList] = useState([]);
-  const [duration, setduration] = useState(null);
+  const [duration, setduration] = useState("");
   const [languageList, setlanguageList] = useState([]);
   const [cbfcRating, setcbfcRating] = useState(null);
   const [date, setdate] = useState(null);
@@ -22,6 +22,38 @@ function AddMovies() {
   const [trailer, settrailer] = useState("");
   const [displayCategory, setdisplayCategory] = useState(null);
   const [castList, setcastList] = useState([]);
+
+  function isFloat(n) {
+    let parsedValue = parseFloat(n);
+    return !isNaN(parsedValue) && parsedValue >= 1 && parsedValue <= 10;
+  }
+
+  function handleAddMovieToDatabase() {
+    if (
+      title != "" &&
+      genereList.length > 0 &&
+      typeof parseInt(duration) === "number" &&
+      languageList.length > 0 &&
+      cbfcRating &&
+      date &&
+      synopsis != "" &&
+      isFloat(rating) &&
+      poster != "" &&
+      trailer != ""
+    ) {
+      console.log(title);
+      console.log(genereList);
+      console.log(duration);
+      console.log(languageList);
+      console.log(cbfcRating);
+      console.log(date);
+      console.log(synopsis);
+      console.log(rating);
+      console.log(poster);
+      console.log(trailer);
+      console.log(displayCategory);
+    }
+  }
 
   const movieGenres = [
     { value: "action", label: "Action" },
@@ -68,90 +100,98 @@ function AddMovies() {
   ];
 
   return (
-    <div className="h-full w-full flex justify-between p-[3%] px-[6%]">
-      <div className="flex flex-col gap-[2rem]">
-        {/* movie title */}
-        <TitleAndInput
-          name={"Movie Title"}
-          changeName={settitle}
-          place={"Enter movie title"}
-        />
-        {/* genres */}
-        <div className="flex gap-[20px] items-center">
-          <p className="text-[18px] font-[500] w-[200px]">Genre</p>
-          <Select
-            className="text-black min-w-[150px]"
-            options={movieGenres}
-            value={genereList}
-            onChange={(selectedOptions) => {
-              if (selectedOptions.length > 3) {
-                setGenereList(selectedOptions.slice(0, 3));
-              } else {
-                setGenereList(selectedOptions);
-              }
-            }}
-            isMulti={true}
+    <div className="h-full w-full flex justify-between p-[2.4%] px-[6%]">
+      <div className="flex flex-col justify-between">
+        <div className="flex flex-col gap-[2rem]">
+          {/* movie title */}
+          <TitleAndInput
+            name={"Movie Title"}
+            changeName={settitle}
+            place={"Enter movie title"}
           />
-        </div>
-        {/* duration */}
-        <TitleAndInput
-          name={"Duration"}
-          changeName={setduration}
-          place={"Enter movie duration"}
-        />
-        {/* languages */}
-        <div className="flex gap-[20px] items-center">
-          <p className="text-[18px] font-[500] w-[200px]">Language</p>
-          <Select
-            className="text-black min-w-[150px]"
-            options={movieLanguages}
-            value={languageList}
-            onChange={(item) => {
-              if (item.length > 3) {
-                setlanguageList(item.slice(0, 3));
-              } else {
-                setlanguageList(item);
-              }
-            }}
-            isMulti={true}
+          {/* genres */}
+          <div className="flex gap-[20px] items-center">
+            <p className="text-[18px] font-[500] w-[200px]">Genre</p>
+            <Select
+              className="text-black min-w-[150px]"
+              options={movieGenres}
+              value={genereList}
+              onChange={(selectedOptions) => {
+                if (selectedOptions.length > 3) {
+                  setGenereList(selectedOptions.slice(0, 3));
+                } else {
+                  setGenereList(selectedOptions);
+                }
+              }}
+              isMulti={true}
+            />
+          </div>
+          {/* duration */}
+          <TitleAndInput
+            name={"Duration"}
+            changeName={setduration}
+            place={"Enter movie duration"}
           />
-        </div>
-        {/* CBFC rating */}
-        <div className="flex gap-[20px] items-center">
-          <p className="text-[18px] font-[500] w-[200px]">CBFC Rating</p>
-          <Select
-            className="text-black w-[150px]"
-            options={cbfcRatings}
-            value={cbfcRating}
-            onChange={(item) => {
-              setcbfcRating(item);
-            }}
-          />
-        </div>
-        {/* release date */}
-        <div className="flex gap-[20px] items-center">
-          <p className="text-[18px] font-[500] w-[200px]">Release Date</p>
-          <DatePicker
-            className="w-[150px] text-center py-[5px] rounded-[5px]"
-            selected={date}
-            onChange={(date) => {
-              setdate(date);
-            }}
-          />
-        </div>
+          {/* languages */}
+          <div className="flex gap-[20px] items-center">
+            <p className="text-[18px] font-[500] w-[200px]">Language</p>
+            <Select
+              className="text-black min-w-[150px]"
+              options={movieLanguages}
+              value={languageList}
+              onChange={(item) => {
+                if (item.length > 3) {
+                  setlanguageList(item.slice(0, 3));
+                } else {
+                  setlanguageList(item);
+                }
+              }}
+              isMulti={true}
+            />
+          </div>
+          {/* CBFC rating */}
+          <div className="flex gap-[20px] items-center">
+            <p className="text-[18px] font-[500] w-[200px]">CBFC Rating</p>
+            <Select
+              className="text-black w-[150px]"
+              options={cbfcRatings}
+              value={cbfcRating}
+              onChange={(item) => {
+                setcbfcRating(item);
+              }}
+            />
+          </div>
+          {/* release date */}
+          <div className="flex gap-[20px] items-center">
+            <p className="text-[18px] font-[500] w-[200px]">Release Date</p>
+            <DatePicker
+              className="w-[150px] text-center py-[5px] rounded-[5px]"
+              selected={date}
+              onChange={(date) => {
+                setdate(date);
+              }}
+            />
+          </div>
 
-        {/* synopsis */}
-        <TitleAndInput
-          name={"Snyopsis"}
-          changeName={setSynopsis}
-          place={"Enter movie snyopsis"}
-        />
-        {/* rating */}
-        <TitleAndInput
-          name={"Rating 0/10"}
-          changeName={setrating}
-          place={"Enter movie rating"}
-        />
+          {/* synopsis */}
+          <TitleAndInput
+            name={"Snyopsis"}
+            changeName={setSynopsis}
+            place={"Enter movie snyopsis"}
+          />
+          {/* rating */}
+          <TitleAndInput
+            name={"Rating 0/10"}
+            changeName={setrating}
+            place={"Enter movie rating"}
+          />
+        </div>
+        <button
+          className=" py-[7px] font-[500] rounded-[7px] border border-white hover:bg-white hover:text-black"
+          onClick={handleAddMovieToDatabase}
+        >
+          Add Movie to Database
+        </button>
       </div>
       <div className="flex flex-col gap-[2rem]">
         {/* posterurl */}
