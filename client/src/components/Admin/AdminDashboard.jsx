@@ -17,7 +17,7 @@ function AdminDashboard({ setisLoggedInAdmin }) {
     "Admin Details",
   ];
 
-  const [activeIndex, setActiveIndex] = useState(2);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   function renderContent() {
     switch (activeIndex) {

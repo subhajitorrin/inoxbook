@@ -81,13 +81,22 @@ function MovieDetail() {
                 />
               </div>
               <div className="flex gap-[10px]  items-center ">
-                <p className="text-[25px] font-bold">{movieDetail.title}</p>
+                <p className="text-[25px] font-bold">
+                  <span>
+                    {movieDetail.title.slice(0, 14)}
+                    {movieDetail.title.length > 14 && "..."}
+                  </span>
+                </p>
                 <p className="">•</p>
                 <p className="text-[15px] font-bold">
                   <span className="bg-[yellow] mr-[5px] p-[5px] rounded-[7px]">
                     {movieDetail.rating}
                   </span>
                   IMDB
+                </p>
+                <p className="">•</p>
+                <p className="text-[17px] font-[500]">
+                  {movieDetail.CBFCratnig}
                 </p>
               </div>
               <div className="flex gap-[10px] font-[600]">
