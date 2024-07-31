@@ -20,7 +20,7 @@ function AddCast({ index, cast, updateCast, removeCast }) {
         <p className="text-[18px] font-[500] w-[200px] ">Cast Profile Image</p>
         <input
           onChange={(e) => {
-            updateCast({ ...cast, url: e.target.value });
+            updateCast({ ...cast, imageUrl: e.target.value });
           }}
           className="w-[300px] py-[10px] px-[20px] rounded-[5px] outline-none"
           type="text"

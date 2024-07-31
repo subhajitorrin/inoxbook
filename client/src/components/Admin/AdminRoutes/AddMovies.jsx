@@ -28,6 +28,16 @@ function AddMovies() {
     return !isNaN(parsedValue) && parsedValue >= 1 && parsedValue <= 10;
   }
 
+  function formatDateToDDMMYYYY(dateString) {
+    const date = new Date(dateString);
+
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
+
   function handleAddMovieToDatabase() {
     if (
       title != "" &&
@@ -39,19 +49,24 @@ function AddMovies() {
       synopsis != "" &&
       isFloat(rating) &&
       poster != "" &&
-      trailer != ""
+      trailer != "" &&
+      displayCategory
     ) {
-      console.log(title);
-      console.log(genereList);
-      console.log(duration);
-      console.log(languageList);
-      console.log(cbfcRating);
-      console.log(date);
-      console.log(synopsis);
-      console.log(rating);
-      console.log(poster);
-      console.log(trailer);
-      console.log(displayCategory);
+      const obj = {
+        title,
+        genre: genereList.map((item) => item.label),
+        duration: parseInt(duration),
+        language: languageList.map((item) => item.label),
+        CBFCratnig: cbfcRating.label,
+        releaseDate: formatDateToDDMMYYYY(date),
+        cast: castList,
+        synopsis,
+        rating,
+        posterUrl: poster,
+        trailerUrl: trailer,
+        categories: displayCategory.label,
+      };
+      console.log(obj);
     }
   }
 
@@ -248,7 +263,7 @@ function AddMovies() {
               className="border border-white px-[1rem] py-[5px] rounded-[5px]"
               onClick={() => {
                 if (castList.length < 2) {
-                  setcastList([...castList, { name: "", url: "" }]);
+                  setcastList([...castList, { name: "", imageUrl: "" }]);
                 } else {
                   setcastList((prev) => prev.slice(0, 2));
                 }
