@@ -4,13 +4,12 @@ import DeleteSectionMovieCards from "./adminComponents/DeleteSectionMovieCards";
 
 function DeleteMovies() {
   const [allMovies, setallMovies] = useState([]);
-  const [toggle, settoggle] = useState(false)
+  const [toggle, settoggle] = useState(false);
   useEffect(() => {
     async function fetchAllMovies() {
       try {
         const res = await axios.get("http://localhost:5000/getallmovies");
         setallMovies(res.data.allMovies);
-        console.log(res.data.allMovies);
       } catch (error) {
         console.log("Error while fetching currentmoves", error);
       }
@@ -20,7 +19,7 @@ function DeleteMovies() {
   return (
     <div className="h-full w-full flex flex-wrap overflow-auto justify-center py-[3%] gap-[2rem]">
       {allMovies.map((item, index) => {
-        return <DeleteSectionMovieCards item={item} settoggle={settoggle}/>;
+        return <DeleteSectionMovieCards item={item} settoggle={settoggle} />;
       })}
     </div>
   );
