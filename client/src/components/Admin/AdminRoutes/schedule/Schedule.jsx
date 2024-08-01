@@ -4,6 +4,7 @@ import ScheduleCard from "./ScheduleCard";
 
 function Schedule() {
   const [allSchedules, setallSchedules] = useState([]);
+  const [allMovies, setallMovies] = useState([]);
   useEffect(() => {
     async function getAllSchedules() {
       try {
@@ -20,6 +21,19 @@ function Schedule() {
     }
     getAllSchedules();
   }, []);
+
+  useEffect(() => {
+    async function fetchCurrentMovies() {
+      try {
+        const res = await axios.get("http://localhost:5000/getallmovies");
+        setallMovies(res.data.allMovies);
+      } catch (error) {
+        console.log("Error while fetching currentmoves", error);
+      }
+    }
+    fetchCurrentMovies();
+  }, []);
+
   return (
     <div className="h-full w-full p-[2.5%] flex flex-col gap-[1rem]">
       <div className="w-full flex text-[17px] font-[500] border-b border-white pb-[1rem]">
@@ -31,12 +45,10 @@ function Schedule() {
         <div className="w-[16.6666666667%]  text-center">Next Show Time</div>
       </div>
       <div className="">
-        <ScheduleCard />
+        <ScheduleCard allMovies={allMovies}/>
       </div>
       <div className="w-full flex justify-center">
-        <button className="px-[1rem] py-[10px] bg-[green] rounded-[7px]">
-          Add Schedule
-        </button>
+        
       </div>
     </div>
   );
