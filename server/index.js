@@ -7,6 +7,7 @@ import SeatMatrixRoutes from "./routes/SeatMatrixRoutes.js";
 import BookingRoutes from "./routes/BookingRoutes.js";
 import VerifyRoutes from "./routes/VerifyRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
+import ScheduleRoutes from "./routes/ScheduleRoutes.js";
 
 const mongoURL = "mongodb+srv://orrin2op:9800@inoxbook.2thzfjd.mongodb.net/inoxbook?retryWrites=true&w=majority&appName=inoxbook"
 const PORT = 5000;
@@ -23,6 +24,7 @@ app.use("/", SeatMatrixRoutes);
 app.use("/", BookingRoutes);
 app.use("/", VerifyRoutes);
 app.use("/", UserRoutes);
+app.use("/admin", ScheduleRoutes);
 
 mongoose.connect(mongoURL).then(() => {
     app.listen(PORT, () => {
