@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import UpdateCards from "./adminComponents/UpdateCards";
 import axios from "axios";
 import UpdateWrapper from "./adminComponents/UpdateWrapper";
-import {  FadeLoader } from "react-spinners";
+import { FadeLoader } from "react-spinners";
 
 function UpdateMovies({ setisBackActive, toggle, settoggle }) {
   const [allMovies, setallMovies] = useState([]);

@@ -11,6 +11,7 @@ function AdminLogin({ setisLoggedInAdmin }) {
       return;
     }
     if (email == "111" && password == "111") {
+      localStorage.setItem("isAdminLoggedIn", true);
       setisLoggedInAdmin(true);
       toast.success("Admin login successfull");
     } else {

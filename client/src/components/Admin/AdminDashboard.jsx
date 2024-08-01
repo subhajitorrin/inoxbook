@@ -20,6 +20,17 @@ function AdminDashboard({ setisLoggedInAdmin }) {
   const [isBackActive, setisBackActive] = useState(false);
   const [toggle, settoggle] = useState(false);
 
+  useEffect(() => {
+    const savedIndex = localStorage.getItem("activeIndex");
+    if (savedIndex) {
+      setActiveIndex(Number(savedIndex));
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem("activeIndex", activeIndex);
+  // }, [activeIndex]);
+
   function renderContent() {
     switch (activeIndex) {
       case 0:
@@ -69,7 +80,12 @@ function AdminDashboard({ setisLoggedInAdmin }) {
           </div>
           <div
             className="logoutButton"
-            onClick={() => setisLoggedInAdmin(false)}
+            onClick={() => {
+              setisLoggedInAdmin(false);
+              localStorage.removeItem("updateMovieId");
+              localStorage.removeItem("isAdminLoggedIn");
+              localStorage.removeItem("activeIndex");
+            }}
           >
             Logout
           </div>

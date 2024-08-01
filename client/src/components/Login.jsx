@@ -6,6 +6,7 @@ import OtpBox from "./OtpBox";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import { toast } from "react-toastify";
+import { RiAdminLine } from "react-icons/ri";
 
 function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
   // const [wrappersArr, setWrappersArr] = useState([true, false, false, false]);
@@ -147,7 +148,7 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
         className="gap-[2.5rem] flex items-center h-[500px] w-[400px] bg-white rounded-[10px] absolute p-[2.5rem]"
       >
         {wrappersArr[0] && (
-          <div className="flex items-center justify-center relative min-w-[100%] bg-transparent h-full">
+          <div className="flex flex-col gap-[2rem] items-center justify-center relative min-w-[100%] bg-transparent h-full">
             <RxCross2
               onClick={() => {
                 settoggleLogin(false);
@@ -162,6 +163,15 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
             >
               <TfiEmail className="absolute left-[20px]" />
               <p>Continue with Email</p>
+            </div>
+            <div
+              onClick={() => {
+                window.open("/admin", "_blank");
+              }}
+              className="hover:bg-[#da4b63] hover:text-[white] w-full hover:border-transparent transition-all ease-linear duration-100 cursor-pointer flex items-center justify-center border border-[#00000054] rounded-[5px] text-center py-[10px] font-[500]"
+            >
+              <RiAdminLine className="absolute left-[20px]" />
+              <p>Admin Login</p>
             </div>
           </div>
         )}
