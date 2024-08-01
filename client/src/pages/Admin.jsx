@@ -4,7 +4,7 @@ import AdminDashboard from "../components/Admin/AdminDashboard";
 import { Routes, Route } from "react-router-dom";
 
 function Admin() {
-  const [isLoggedInAdmin, setisLoggedInAdmin] = useState(false);
+  const [isLoggedInAdmin, setisLoggedInAdmin] = useState(true);
   return (
     <div className="">
       {isLoggedInAdmin ? (

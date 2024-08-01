@@ -3,11 +3,10 @@ import UpdateCards from "./adminComponents/UpdateCards";
 import axios from "axios";
 import UpdateWrapper from "./adminComponents/UpdateWrapper";
 
-function UpdateMovies() {
+function UpdateMovies({ setisBackActive, toggle, settoggle }) {
   const [allMovies, setallMovies] = useState([]);
-  const [toggle, settoggle] = useState(false);
-  const [clickedId, setClickedId] = useState(null);
-  const [movieDetail, setmovieDetail] = useState(null);
+  const [toggleDelete, settoggleDelete] = useState(false);
+
   useEffect(() => {
     async function fetchAllMovies() {
       try {
@@ -18,41 +17,25 @@ function UpdateMovies() {
       }
     }
     fetchAllMovies();
-  }, [toggle]);
-
-  useEffect(() => {
-    async function fetchMovieDetail() {
-      if (clickedId) {
-        try {
-          const res = await axios.get(
-            `http://localhost:5000/moviedetail/${clickedId}`
-          );
-          setmovieDetail(res.data.movie);
-        } catch (error) {
-          console.log("Error while fetching movie details", error);
-        }
-      }
-    }
-    if (clickedId) fetchMovieDetail();
-  }, [clickedId]);
+  }, [toggle, toggleDelete]);
 
   return (
-    <div className="h-full w-full flex flex-wrap overflow-auto justify-center p-[3%] gap-[2rem]">
+    <div className="h-full w-full flex flex-wrap overflow-auto justify-center gap-[2rem]">
       {toggle ? (
-        movieDetail && <UpdateWrapper movieData={movieDetail} />
+        <UpdateWrapper setisBackActive={setisBackActive} />
       ) : (
-        <>
+        <div className="flex flex-wrap gap-[2rem] w-full justify-center py-[3%]">
           {allMovies.map((item, index) => {
             return (
               <UpdateCards
                 key={index}
                 item={item}
                 settoggle={settoggle}
-                setClickedId={setClickedId}
+                settoggleDelete={settoggleDelete}
               />
             );
           })}
-        </>
+        </div>
       )}
     </div>
   );

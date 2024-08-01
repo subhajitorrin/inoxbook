@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./AdminDashboard.css";
 import Dashboard from "./AdminRoutes/Dashboard";
 import AddMovies from "./AdminRoutes/AddMovies";
 import UpdateMovies from "./AdminRoutes/UpdateMovies";
-import DeleteMovies from "./AdminRoutes/DeleteMovies";
 import Schedule from "./AdminRoutes/Schedule";
 import AdminDetails from "./AdminRoutes/AdminDetails";
+import { IoIosArrowBack } from "react-icons/io";
 
 function AdminDashboard({ setisLoggedInAdmin }) {
   const navList = [
     "Dashboard",
     "Add Movies",
-    "Update Movies",
-    "Delete Movies",
+    "Edit Movies",
     "Schedule",
     "Admin Details",
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isBackActive, setisBackActive] = useState(false);
+  const [toggle, settoggle] = useState(false);
 
   function renderContent() {
     switch (activeIndex) {
@@ -26,12 +27,16 @@ function AdminDashboard({ setisLoggedInAdmin }) {
       case 1:
         return <AddMovies />;
       case 2:
-        return <UpdateMovies />;
+        return (
+          <UpdateMovies
+            setisBackActive={setisBackActive}
+            toggle={toggle}
+            settoggle={settoggle}
+          />
+        );
       case 3:
-        return <DeleteMovies />;
-      case 4:
         return <Schedule />;
-      case 5:
+      case 4:
         return <AdminDetails />;
     }
   }
@@ -70,7 +75,16 @@ function AdminDashboard({ setisLoggedInAdmin }) {
           </div>
         </div>
         <div className="mainContent">
-          <div className="header">
+          <div className="header relative">
+            {isBackActive && activeIndex === 2 && (
+              <IoIosArrowBack
+                className="text-[30px] cursor-pointer absolute left-[2.5%]"
+                onClick={() => {
+                  settoggle(false);
+                  setisBackActive(false);
+                }}
+              />
+            )}
             <p className="headerText">ADMIN PANEL</p>
           </div>
           <div className="adminRightBody text-white">{renderContent()}</div>
