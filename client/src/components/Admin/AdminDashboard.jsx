@@ -3,7 +3,7 @@ import "./AdminDashboard.css";
 import Dashboard from "./AdminRoutes/Dashboard";
 import AddMovies from "./AdminRoutes/AddMovies";
 import UpdateMovies from "./AdminRoutes/UpdateMovies";
-import Schedule from "./AdminRoutes/Schedule";
+import Schedule from "./AdminRoutes/schedule/Schedule";
 import AdminDetails from "./AdminRoutes/AdminDetails";
 import { IoIosArrowBack } from "react-icons/io";
 
@@ -16,7 +16,7 @@ function AdminDashboard({ setisLoggedInAdmin }) {
     "Admin Details",
   ];
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(3);
   const [isBackActive, setisBackActive] = useState(false);
   const [toggle, settoggle] = useState(false);
 
