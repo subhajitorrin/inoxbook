@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const scheduleSchema = new mongoose.Schema({
     screen: {
-        type: Number,
+        type: String,
         required: true
     },
     movie: {
@@ -14,15 +14,15 @@ const scheduleSchema = new mongoose.Schema({
         required: true
     },
     startTime: {
-        type: Date,
+        type: String,
         required: true
     },
     endTime: {
-        type: Date,
+        type: String,
         required: true
     },
     nextShowTime: {
-        type: Date,
+        type: String,
         default: null
     }
 });
