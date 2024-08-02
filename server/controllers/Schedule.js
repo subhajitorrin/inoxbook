@@ -81,4 +81,39 @@ async function getSchedulesByDate(req, res) {
     }
 }
 
-export { addSchedule, getSchedules, deleteSchedule, updateSchedule, getSchedulesByDate }
+async function getScreenAvailability(req, res) {
+    const { screen, date, startTime, endTime } = req.body;
+    const start = new Date(startTime);
+    const end = new Date(endTime);
+    try {
+        const conflictingShows = await scheduleModel.find({
+            screen,
+            date,
+        });
+
+        let flag = true
+
+        for (const item of conflictingShows) {
+            const exStart = new Date(item.startTime)
+            const exEnd = new Date(item.endTime)
+            if ((start >= exStart && start <= exEnd) || (end >= exStart && end <= exEnd)) {
+                flag = false
+                break
+            }
+        }
+
+        if (flag) {
+            res.status(200).json({ "status": "screen available", conflictingShows })
+        } else {
+            res.status(201).json({ "status": "screen not available" })
+        }
+    } catch (err) {
+        console.log("Error while fetching screen availability", err);
+        res.status(500).json({
+            message: "Failed to fetch screen availability",
+            error: err.message
+        })
+    }
+}
+
+export { addSchedule, getSchedules, deleteSchedule, updateSchedule, getSchedulesByDate, getScreenAvailability }

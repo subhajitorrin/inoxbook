@@ -19,8 +19,13 @@ function ScheduleCard({
   const [movie, setMovie] = useState({ movieId: "", title: "", duration: "" });
   const [selectedScreen, setSelectedScreen] = useState(null);
   const [toggleScreen, setToggleScreen] = useState(false);
+  const [screenList, setscreenList] = useState([
+    "Screen 1",
+    "Screen 2",
+    "Screen 3",
+  ]);
+  const [boolScreenList, setBoolScreenList] = useState([true, true, true]);
 
-  const screenList = ["Screen 1", "Screen 2", "Screen 3"];
   const screenRef = useRef(null);
 
   useEffect(() => {
@@ -151,6 +156,64 @@ function ScheduleCard({
     return new Date(date.getTime() + minutes * 60000);
   }
 
+  async function getSchedulesByDate(date) {
+    const response = await axios.get(
+      `http://localhost:5000/admin/getschedulesbydate/${date}`
+    );
+    if (response.status === 200) {
+      return response.data.schedules;
+    } else {
+      return null;
+    }
+  }
+
+  async function isScreenAvailable(sch, date, sTime, eTime) {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/admin/getscreenavailability",
+        {
+          screen: sch,
+          date,
+          startTime: sTime,
+          endTime: eTime,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status === 200) {
+        return true;
+      }
+      if (response.status === 201) {
+        return false;
+      }
+    } catch (error) {
+      console.log("Error while fetching screen availability", error);
+    }
+    return false;
+  }
+
+  useEffect(() => {
+    async function updateScreenAvailability() {
+      const waitForPromise = await Promise.all(
+        screenList.map(async (item, index) => {
+          const response = await isScreenAvailable(
+            item,
+            date,
+            startTime,
+            endTime
+          );
+          return response;
+        })
+      );
+      setBoolScreenList(waitForPromise);
+    }
+    if (date && endTime && startTime && movie.movieId != "" && !isDelete)
+      updateScreenAvailability();
+  }, [date, startTime, movie]);
+
   return (
     <div className=" w-full flex text-[17px]  pb-[1rem] rounded-[5px] border-b border-[#ffffff38] ">
       <div
@@ -216,6 +279,12 @@ function ScheduleCard({
       >
         <span
           onClick={() => {
+            if (!date || !startTime || movie.title == "") {
+              if (!date) toast.warn("Select date");
+              if (!startTime) toast.warn("Select start time");
+              if (movie.title == "") toast.warn("Select movie");
+              return;
+            }
             setToggleScreen((prev) => !prev);
           }}
           className="border border-white relative w-[150px] text-center py-[5px] rounded-[5px] cursor-pointer flex justify-center gap-[10px] items-center"
@@ -234,8 +303,12 @@ function ScheduleCard({
             {screenList.map((item, index) => {
               return (
                 <p
+                  style={{
+                    backgroundColor: boolScreenList[index] ? "white" : "grey",
+                    pointerEvents: boolScreenList[index] ? "auto" : "none",
+                  }}
                   key={index}
-                  className="text-black hover:bg-[#cbcbcb] p-[1rem] cursor-pointer"
+                  className="text-black p-[1rem] cursor-pointer "
                   onClick={() => {
                     setSelectedScreen(item);
                     setToggleScreen(false);
