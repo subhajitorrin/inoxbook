@@ -15,3 +15,9 @@ html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.scrollNone::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

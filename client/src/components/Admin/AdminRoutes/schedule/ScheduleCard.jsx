@@ -83,7 +83,21 @@ function ScheduleCard({
     return `${hours}hr ${mins}m`;
   }
 
-  function handleScheduleDelete() {}
+  async function handleScheduleDelete() {
+    try {
+      const res = await axios.delete(
+        `http://localhost:5000/admin/deleteschedule/${item._id}`
+      );
+      if (res.status === 200) {
+        toast.success("Schedule Deleted");
+        settoggleUpdateSchedule((prev) => !prev);
+      }
+    } catch (error) {
+      console.log("Error while deleted schedule", error);
+      toast.warning("Schedule delete error");
+    }
+  }
+
   async function handleScheduleAdd() {
     if (date && startTime && selectedScreen && endTime) {
       console.log({

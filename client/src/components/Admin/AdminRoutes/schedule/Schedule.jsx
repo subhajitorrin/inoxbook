@@ -101,20 +101,13 @@ function Schedule() {
       <p className="w-full text-center font-[500] text-[17px] ">
         Already Scheduled
       </p>
-      <div className="w-full flex flex-col gap-[2rem] overflow-y-auto py-[2rem]">
-        {/* <ScheduleCard
-          key={index}
-          allMovies={allMovies}
-          isDelete={true}
-          item={sch}
-        /> */}
+      <div className="w-full flex flex-col gap-[2rem] overflow-y-auto py-[2rem] scrollNone">
         {dateSlots.map((item, index) => {
           return (
             <div key={`${index}-1`} className="flex flex-col gap-[1rem]">
               <p>{formatDate(item.date)}</p>
               <div className="flex flex-col gap-[1rem]">
                 {item.schedules.map((sch, i) => {
-                  console.log(item.schedules.length);
                   return (
                     <ScheduleCard
                       key={i}
@@ -122,6 +115,7 @@ function Schedule() {
                       isDelete={true}
                       item={sch}
                       isDeleteBtn={i == item.schedules.length - 1}
+                      settoggleUpdateSchedule={settoggleUpdateSchedule}
                     />
                   );
                 })}

@@ -3,7 +3,6 @@ import scheduleModel from "../models/scheduleModel.js"
 async function addSchedule(req, res) {
     try {
         const newScheduleData = req.body
-        console.log(newScheduleData);
         const newSchedule = new scheduleModel(newScheduleData)
         const dbres = await newSchedule.save()
         if (dbres) {
@@ -29,6 +28,7 @@ async function getSchedules(req, res) {
 
 async function deleteSchedule(req, res) {
     const { id } = req.params;
+    console.log("inside delete scheduel");
     try {
         const dbres = await scheduleModel.findByIdAndDelete(id);
         if (dbres) {
