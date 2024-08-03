@@ -1,23 +1,44 @@
 import React, { useState } from "react";
 import "./AdminLogin.css";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 function AdminLogin({ setisLoggedInAdmin }) {
   const [email, setemail] = useState(null);
   const [password, setpassword] = useState(null);
-  function handleAdminLogin() {
+  async function handleAdminLogin() {
     if (!email || !password) {
       toast.warn("Enter credentials!!!");
       return;
     }
-    if (email == "111" && password == "111") {
-      localStorage.setItem("isAdminLoggedIn", true);
-      setisLoggedInAdmin(true);
-      toast.success("Admin login successfull");
-    } else {
-      toast.warn("Wrong admin credentials!!!");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/adminlogin",
+        { username: email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        localStorage.setItem("isAdminLoggedIn", "true");
+        localStorage.setItem("theaterId", response.data.theaterId);
+        setisLoggedInAdmin(true);
+        toast.success("Admin login successful");
+      } else if (response.status === 401) {
+        toast.warn("Wrong admin credentials!!!");
+      } else {
+        toast.warn("Unexpected response from server");
+      }
+    } catch (error) {
+      toast.error("An error occurred during login");
+      console.error("Login error:", error); // Log the error for debugging
     }
   }
+
   return (
     <div className="select-none h-screen w-full flex items-center justify-center adminLoginContainer">
       <div className="adminWrapper flex flex-col justify-between p-[40px] w-[500px] h-[550px] rounded-[10px] py-[55px]">

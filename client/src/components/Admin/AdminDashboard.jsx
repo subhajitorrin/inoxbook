@@ -4,7 +4,7 @@ import Dashboard from "./AdminRoutes/Dashboard";
 import AddMovies from "./AdminRoutes/AddMovies";
 import UpdateMovies from "./AdminRoutes/UpdateMovies";
 import Schedule from "./AdminRoutes/schedule/Schedule";
-import AdminDetails from "./AdminRoutes/AdminDetails";
+import AdminDetails from "./AdminRoutes/details/AdminDetails";
 import { IoIosArrowBack } from "react-icons/io";
 
 function AdminDashboard({ setisLoggedInAdmin }) {
@@ -16,7 +16,7 @@ function AdminDashboard({ setisLoggedInAdmin }) {
     "Admin Details",
   ];
 
-  const [activeIndex, setActiveIndex] = useState(3);
+  const [activeIndex, setActiveIndex] = useState(4);
   const [isBackActive, setisBackActive] = useState(false);
   const [toggle, settoggle] = useState(false);
 
@@ -85,6 +85,7 @@ function AdminDashboard({ setisLoggedInAdmin }) {
               localStorage.removeItem("updateMovieId");
               localStorage.removeItem("isAdminLoggedIn");
               localStorage.removeItem("activeIndex");
+              localStorage.removeItem("theaterId");
             }}
           >
             Logout

@@ -1,21 +1,55 @@
-import theaterList from "../data/theaterdata.json" assert { type: "json" };
-
-function getTheaterById(req, res) {
-    const { id } = req.params;
-    if (!id) {
-        return res.status(400).json({ error: "Theater ID is required" });
-    }
+import theaterModel from "../models/theaterModel.js"
+async function addTheater(req, res) {
+    const { name, address, location } = req.body
     try {
-        const theater = theaterList.find((item) => item.id == id);
-        if (theater) {
-            return res.status(200).json({ theater });
-        } else {
-            return res.status(404).json({ error: "Theater not found" });
+        const theaterData = new theaterModel({
+            name, address, location
+        })
+        const dbres = await theaterData.save()
+        if (dbres) {
+            res.status(200).json({ msg: "Theater added successfully" })
         }
     } catch (error) {
-        console.error("Error fetching movie details:", error);
-        return res.status(500).json({ error: "An internal server error occurred" });
+        console.log(error);
+        res.status(500).json({ msg: "Error while adding theater", error })
+    }
+}
+async function updateTheater(req, res) {
+    const { id } = req.params
+    const updatedData = req.body
+    try {
+        const dbres = await theaterModel.findByIdAndUpdate(id, updatedData, { new: true })
+        if (dbres) {
+            res.status(200).json({
+                message: "Theater updated successfully",
+                theater: dbres
+            })
+        } else {
+            res.status(400).json({ message: 'Theater not found' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: "Error while updating theater", error })
     }
 }
 
-export default getTheaterById
+async function getTheaterById(req, res) {
+    const { id } = req.params
+    try {
+        const theater = await theaterModel.findById(id)
+        if (theater) {
+            res.status(200).json({
+                message: "Theater retrieved successfully",
+                theater
+            })
+        } else {
+            res.status(404).json({ message: 'Theater not found' })
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: "Error while retrieving theater", error })
+    }
+}
+
+
+export { addTheater, updateTheater, getTheaterById }

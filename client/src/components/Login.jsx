@@ -162,7 +162,7 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
               className="hover:bg-[#da4b63] hover:text-[white] w-full hover:border-transparent transition-all ease-linear duration-100 cursor-pointer flex items-center justify-center border border-[#00000054] rounded-[5px] text-center py-[10px] font-[500]"
             >
               <TfiEmail className="absolute left-[20px]" />
-              <p>Continue with Email</p>
+              <p>User Login</p>
             </div>
             <div
               onClick={() => {
