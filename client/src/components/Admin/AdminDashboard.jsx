@@ -16,7 +16,7 @@ function AdminDashboard({ setisLoggedInAdmin }) {
     "Admin Details",
   ];
 
-  const [activeIndex, setActiveIndex] = useState(3);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isBackActive, setisBackActive] = useState(false);
   const [toggle, settoggle] = useState(false);
 

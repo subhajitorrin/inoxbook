@@ -43,11 +43,13 @@ function ScheduleCard({
 
         if (res.status === 200) {
           res.data.forEach((item, index) => {
-            const obj = {
-              scrName: item.name,
-              scrId: item._id,
-            };
-            setscreenList((prev) => [...prev, obj]);
+            if (item.name) {
+              const obj = {
+                scrName: item.name,
+                scrId: item._id,
+              };
+              setscreenList((prev) => [...prev, obj]);
+            }
           });
         } else {
           console.error(`Unexpected response status: ${res.status}`);

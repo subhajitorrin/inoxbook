@@ -97,7 +97,7 @@ function AdminDetails() {
     }
 
     fetchAllScreensByTheater();
-  }, []);
+  }, [toggleFetchScreens]);
 
   return (
     <div className="h-full w-full p-[3%] flex justify-evenly">
