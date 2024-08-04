@@ -21,6 +21,10 @@ function ScheduleCard({
   const [toggleScreen, setToggleScreen] = useState(false);
   const [screenList, setscreenList] = useState([]);
   const [boolScreenList, setBoolScreenList] = useState([true, true, true]);
+  const movieContainerRef = useRef(null);
+  const screenContainerRef = useRef(null);
+  const movieDropdown = useRef(null);
+  const screenDropdown = useRef(null);
 
   useEffect(() => {
     console.log(selectedScreen);
@@ -107,7 +111,7 @@ function ScheduleCard({
       if (!movie || !date) {
         setstartTime(value);
       }
-      setSelectedScreen(null)
+      setSelectedScreen(null);
     }
   }
 
@@ -167,7 +171,7 @@ function ScheduleCard({
           setstartTime(null);
           setendTime(null);
           setMovie({ movieId: "", title: "", duration: "" });
-          setSelectedScreen(null)
+          setSelectedScreen(null);
           settoggleUpdateSchedule((prev) => !prev);
         }
       } catch (error) {
@@ -236,6 +240,26 @@ function ScheduleCard({
     if (date && endTime && startTime && movie.movieId != "" && !isDelete)
       updateScreenAvailability();
   }, [date, startTime, movie]);
+
+  useEffect(() => {
+    function closeDropdown(e) {
+      if (
+        (movieDropdown.current &&
+          !movieDropdown.current.contains(e.target) &&
+          !movieContainerRef.current.contains(e.target)) ||
+        (screenDropdown.current &&
+          !screenDropdown.current.contains(e.target) &&
+          !screenContainerRef.current.contains(e.target))
+      ) {
+        setToggleSelectMovie(false);
+        setToggleScreen(false);
+      }
+    }
+    document.addEventListener("click", closeDropdown);
+    return () => {
+      document.removeEventListener("mousedown", closeDropdown);
+    };
+  }, []);
 
   return (
     <div className=" w-full flex text-[17px]  pb-[1rem] rounded-[5px] border-b border-[#ffffff38] ">
@@ -310,6 +334,7 @@ function ScheduleCard({
             }
             setToggleScreen((prev) => !prev);
           }}
+          ref={screenContainerRef}
           className="border border-white relative w-[150px] text-center py-[5px] rounded-[5px] cursor-pointer flex justify-center gap-[10px] items-center"
         >
           {selectedScreen ? (
@@ -322,7 +347,10 @@ function ScheduleCard({
           )}
         </span>
         {toggleScreen && (
-          <div className="absolute w-[100px] bg-white right-[25%] rounded-[10px] top-[110%] overflow-hidden">
+          <div
+            ref={screenDropdown}
+            className="absolute w-[100px] bg-white right-[25%] rounded-[10px] top-[110%] overflow-hidden"
+          >
             {screenList.map((item, index) => {
               return (
                 <p
@@ -358,6 +386,7 @@ function ScheduleCard({
           onClick={() => {
             setToggleSelectMovie((prev) => !prev);
           }}
+          ref={movieContainerRef}
           className="cursor-pointer w-[90%] flex justify-between border border-white py-[5px] rounded-[5px] px-[2rem] items-center"
         >
           {movie.title == "" ? (
@@ -370,7 +399,10 @@ function ScheduleCard({
           )}
         </div>
         {toggleSelectMovie && (
-          <div className=" h-[600px] overflow-auto w-[350px] absolute right-[5%] top-[110%] bg-white text-black rounded-[7px] ">
+          <div
+            ref={movieDropdown}
+            className=" h-[600px] overflow-auto w-[350px] absolute right-[5%] top-[110%] bg-white text-black rounded-[7px] "
+          >
             {allMovies.map((item, index) => {
               return (
                 <div
