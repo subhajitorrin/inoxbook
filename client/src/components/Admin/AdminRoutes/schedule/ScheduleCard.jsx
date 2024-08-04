@@ -23,6 +23,10 @@ function ScheduleCard({
   const [boolScreenList, setBoolScreenList] = useState([true, true, true]);
 
   useEffect(() => {
+    console.log(selectedScreen);
+  }, [selectedScreen]);
+
+  useEffect(() => {
     async function fetchAllScreensByTheater() {
       try {
         const theaterid = localStorage.getItem("theaterId");
@@ -57,7 +61,7 @@ function ScheduleCard({
       setdate(item.date);
       setstartTime(item.startTime);
       setendTime(item.endTime);
-      setSelectedScreen(item.screen);
+      setSelectedScreen({ scrName: item.screenName, scrId: item.screen });
       const matchMovie = allMovies.find((mov) => mov._id === item.movie);
       if (matchMovie) {
         setMovie({
@@ -103,6 +107,7 @@ function ScheduleCard({
       if (!movie || !date) {
         setstartTime(value);
       }
+      setSelectedScreen(null)
     }
   }
 
@@ -130,7 +135,7 @@ function ScheduleCard({
   async function handleScheduleAdd() {
     if (date && startTime && selectedScreen && endTime) {
       console.log({
-        screen: selectedScreen,
+        screen: selectedScreen.scrId,
         movie: movie.movieId,
         date,
         startTime,
@@ -142,7 +147,8 @@ function ScheduleCard({
         const response = await axios.post(
           "http://localhost:5000/admin/addschedule",
           {
-            screen: selectedScreen,
+            screen: selectedScreen.scrId,
+            screenName: selectedScreen.scrName,
             movie: movie.movieId,
             date,
             startTime,
@@ -158,6 +164,10 @@ function ScheduleCard({
 
         if (response.status === 200) {
           toast.success("Schedule added");
+          setstartTime(null);
+          setendTime(null);
+          setMovie({ movieId: "", title: "", duration: "" });
+          setSelectedScreen(null)
           settoggleUpdateSchedule((prev) => !prev);
         }
       } catch (error) {
@@ -178,17 +188,6 @@ function ScheduleCard({
 
   function addMinutes(date, minutes) {
     return new Date(date.getTime() + minutes * 60000);
-  }
-
-  async function getSchedulesByDate(date) {
-    const response = await axios.get(
-      `http://localhost:5000/admin/getschedulesbydate/${date}`
-    );
-    if (response.status === 200) {
-      return response.data.schedules;
-    } else {
-      return null;
-    }
   }
 
   async function isScreenAvailable(sch, date, sTime, eTime) {
@@ -224,7 +223,7 @@ function ScheduleCard({
       const waitForPromise = await Promise.all(
         screenList.map(async (item, index) => {
           const response = await isScreenAvailable(
-            item.scrName,
+            item.scrId,
             date,
             startTime,
             endTime
@@ -314,7 +313,7 @@ function ScheduleCard({
           className="border border-white relative w-[150px] text-center py-[5px] rounded-[5px] cursor-pointer flex justify-center gap-[10px] items-center"
         >
           {selectedScreen ? (
-            <span>{selectedScreen}</span>
+            <span>{selectedScreen.scrName}</span>
           ) : (
             <span className="flex">
               <span>Screen</span>{" "}
@@ -334,7 +333,10 @@ function ScheduleCard({
                   key={index}
                   className="text-black p-[1rem] cursor-pointer "
                   onClick={() => {
-                    setSelectedScreen(item.scrName);
+                    setSelectedScreen({
+                      scrName: item.scrName,
+                      scrId: item.scrId,
+                    });
                     setToggleScreen(false);
                   }}
                 >

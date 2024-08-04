@@ -1,8 +1,12 @@
 import mongoose from "mongoose";
 const scheduleSchema = new mongoose.Schema({
     screen: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'screens',
         required: true
+    },
+    screenName: {
+        type: String
     },
     movie: {
         type: mongoose.Schema.Types.ObjectId,

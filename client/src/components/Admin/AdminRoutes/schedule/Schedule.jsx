@@ -42,6 +42,7 @@ function Schedule() {
       `http://localhost:5000/admin/getschedulesbydate/${date}`
     );
     if (response.status === 200) {
+      console.log("schedules by date", response.data.schedules);
       return response.data.schedules;
     } else {
       return null;
