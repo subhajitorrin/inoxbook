@@ -116,4 +116,32 @@ async function getScreenAvailability(req, res) {
     }
 }
 
-export { addSchedule, getSchedules, deleteSchedule, updateSchedule, getSchedulesByDate, getScreenAvailability }
+async function getSchedulesByMovieIdandDate(req, res) {
+    const { id, date, theater } = req.params
+    try {
+        const providedDate = new Date(date);
+        const startOfDay = new Date(providedDate);
+        startOfDay.setUTCHours(0, 0, 0, 0);
+
+        const endOfDay = new Date(providedDate);
+        endOfDay.setUTCHours(23, 59, 59, 999);
+
+        const dbres = await scheduleModel.find({
+            movie: id, date: {
+                $gte: startOfDay, $lte: endOfDay
+            },
+            theaterId: theater
+        })
+
+        console.log(dbres);
+        res.status(200).json({ schedules: dbres })
+    } catch (error) {
+        console.log("Error while fetching schedules", err);
+        res.status(500).json({
+            message: "Failed to fetch schedule",
+            error: err.message
+        })
+    }
+}
+
+export { addSchedule, getSchedules, deleteSchedule, updateSchedule, getSchedulesByDate, getScreenAvailability, getSchedulesByMovieIdandDate }

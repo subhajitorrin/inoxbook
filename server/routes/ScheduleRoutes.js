@@ -1,10 +1,11 @@
 import express from "express"
-import { addSchedule, getSchedules, deleteSchedule, updateSchedule, getSchedulesByDate, getScreenAvailability } from "../controllers/Schedule.js"
+import { addSchedule, getSchedules, deleteSchedule, updateSchedule, getSchedulesByDate, getScreenAvailability, getSchedulesByMovieIdandDate } from "../controllers/Schedule.js"
 const ScheduleRoutes = express.Router()
-ScheduleRoutes.post("/addschedule", addSchedule)
-ScheduleRoutes.post("/getscreenavailability", getScreenAvailability)
-ScheduleRoutes.get("/getschedules", getSchedules)
-ScheduleRoutes.get("/getschedulesbydate/:id", getSchedulesByDate)
-ScheduleRoutes.delete("/deleteschedule/:id", deleteSchedule)
-ScheduleRoutes.put("/updateschedule/:id", updateSchedule)
+ScheduleRoutes.post("/admin/addschedule", addSchedule)
+ScheduleRoutes.post("/admin/getscreenavailability", getScreenAvailability)
+ScheduleRoutes.get("/admin/getschedules", getSchedules)
+ScheduleRoutes.get("/getschedulesbymovieiddate/:id/:date/:theater", getSchedulesByMovieIdandDate)
+ScheduleRoutes.get("/admin/getschedulesbydate/:id", getSchedulesByDate)
+ScheduleRoutes.delete("/admin/deleteschedule/:id", deleteSchedule)
+ScheduleRoutes.put("/admin/updateschedule/:id", updateSchedule)
 export default ScheduleRoutes 

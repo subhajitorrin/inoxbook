@@ -8,6 +8,11 @@ const scheduleSchema = new mongoose.Schema({
     screenName: {
         type: String
     },
+    theaterId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'theaters',
+        required: true
+    },
     movie: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'currentmovies',

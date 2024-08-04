@@ -7,32 +7,15 @@ import MovieTimingCard from "./MovieTimingCard";
 import { GoDotFill } from "react-icons/go";
 import axios from "axios";
 
-function MovieTheaterCard({ theater, movieId, datecode }) {
-  const [theaterDetail, settheaterDetail] = useState(null);
+function MovieTheaterCard({ schedule }) {
   const [showTimes, setshowTimes] = useState([]);
-  useEffect(() => {
-    setshowTimes(theater.timings);
-  }, [theater]);
-  useEffect(() => {
-    async function getTheaterById() {
-      try {
-        const res = await axios.get(
-          `http://localhost:5000/gettheaterbyid/${theater.theaterId}`
-        );
-        settheaterDetail(res.data.theater);
-      } catch (error) {
-        console.log("Error while fetching movie detail", error);
-      }
-    }
-    getTheaterById();
-  }, [theater]);
 
   return (
-    theaterDetail && (
+    schedule && (
       <div className="min-h-[130px] border-b border-[#0000001f] flex pb-[1.5rem]">
         <div className="w-[30%] flex flex-col gap-[.7rem]">
-          <p className="font-[500] text-[20px]">{theaterDetail.name}</p>
-          <p className="text-[12px]  w-[80%]">{theaterDetail.address}</p>
+          <p className="font-[500] text-[20px]">{schedule.theaterName}</p>
+          <p className="text-[12px]  w-[80%]">{schedule.theaterAddress}</p>
           <div className="flex gap-[10px]">
             <button className="border border-[#00000040] flex items-center gap-[7px] text-[12px] px-[10px] py-[1px] rounded-[20px]">
               <MdOutlineDirections />
@@ -66,17 +49,17 @@ function MovieTheaterCard({ theater, movieId, datecode }) {
         </div>
         <div className="w-[70%]  flex flex-col gap-[1rem] justify-center">
           <div className="w-full flex gap-[2rem] flex-wrap">
-            {showTimes.map((item, index) => {
+            {schedule.timings.map((item, index) => {
               // console.log(item);
               return (
                 <MovieTimingCard
                   key={index}
-                  type={item.type}
-                  showtime={item.time}
-                  showid={item.showid}
-                  theaterId={theaterDetail.id}
-                  movieId={movieId}
-                  datecode={datecode}
+                  type={"2D"}
+                  showtime={item.startTime}
+                  scheduleId={item._id}
+                  theaterId={item.theaterId}
+                  movieId={item.movie}
+                  date={item.date}
                 />
               );
             })}

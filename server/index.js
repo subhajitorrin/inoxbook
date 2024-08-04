@@ -26,7 +26,7 @@ app.use("/", SeatMatrixRoutes);
 app.use("/", BookingRoutes);
 app.use("/", VerifyRoutes);
 app.use("/", UserRoutes);
-app.use("/admin", ScheduleRoutes);
+app.use("/", ScheduleRoutes);
 app.use("/", AuthRoutes)
 app.use("/", ScreenRoutes)
 

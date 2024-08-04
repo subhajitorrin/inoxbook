@@ -21,20 +21,18 @@ function ScheduleCard({
   const [toggleScreen, setToggleScreen] = useState(false);
   const [screenList, setscreenList] = useState([]);
   const [boolScreenList, setBoolScreenList] = useState([true, true, true]);
+  const [theaterId, setTheaterId] = useState(null);
   const movieContainerRef = useRef(null);
   const screenContainerRef = useRef(null);
   const movieDropdown = useRef(null);
   const screenDropdown = useRef(null);
 
   useEffect(() => {
-    console.log(selectedScreen);
-  }, [selectedScreen]);
-
-  useEffect(() => {
     async function fetchAllScreensByTheater() {
       try {
         const theaterid = localStorage.getItem("theaterId");
-        console.log(theaterid);
+        setTheaterId(theaterid);
+
         if (!theaterid) return;
 
         const res = await axios.get(
@@ -78,6 +76,20 @@ function ScheduleCard({
       }
     }
   }, [isDelete, item, allMovies]);
+
+  function convertToUTC(dateString, offset) {
+    // Parse the date string into a Date object
+    const localDate = new Date(dateString);
+
+    // Calculate the offset in milliseconds
+    const offsetMilliseconds = offset * 60 * 60 * 1000;
+
+    // Convert local date to UTC by subtracting the offset
+    const utcDate = new Date(localDate.getTime() - offsetMilliseconds);
+
+    // Format the UTC date into a string
+    return utcDate.toUTCString();
+  }
 
   function handleDateTimeChange(key, value) {
     if (key === "date") {
@@ -139,15 +151,15 @@ function ScheduleCard({
   }
 
   async function handleScheduleAdd() {
-    if (date && startTime && selectedScreen && endTime) {
-      console.log({
-        screen: selectedScreen.scrId,
-        movie: movie.movieId,
-        date,
-        startTime,
-        endTime,
-        nextShowTime: endTime,
-      });
+    if (date && startTime && selectedScreen && endTime && theaterId) {
+      // console.log({
+      //   screen: selectedScreen.scrId,
+      //   movie: movie.movieId,
+      //   date,
+      //   startTime,
+      //   endTime,
+      //   nextShowTime: endTime,
+      // });
 
       try {
         const response = await axios.post(
@@ -160,6 +172,7 @@ function ScheduleCard({
             startTime,
             endTime,
             nextShowTime: endTime,
+            theaterId,
           },
           {
             headers: {

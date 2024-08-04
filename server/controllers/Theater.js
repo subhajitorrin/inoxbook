@@ -51,5 +51,20 @@ async function getTheaterById(req, res) {
     }
 }
 
+async function getAllTheaters(req, res) {
+    try {
+        const dbres = await theaterModel.find({}).exec()
+        if (dbres.length > 0) {
+            res.status(200).json({
+                message: "Theaters retrieved successfully",
+                theaters: dbres
+            })
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ msg: "Error while retrieving all theaters", err })
+    }
+}
 
-export { addTheater, updateTheater, getTheaterById }
+
+export { addTheater, updateTheater, getTheaterById,getAllTheaters }

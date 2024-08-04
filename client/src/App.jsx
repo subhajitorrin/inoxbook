@@ -67,17 +67,29 @@ function App() {
     }
     getUserAtRender();
   }, [toggleLogin]);
-  const shouldHideNavbar = location.pathname.startsWith("/seatmatrix") || location.pathname.startsWith("/admin");
+  const shouldHideNavbar =
+    location.pathname.startsWith("/seatmatrix") ||
+    location.pathname.startsWith("/admin");
   return (
     <div className="">
-      <Login settoggleLogin={settoggleLogin} setuser={setuser} wrappersArr={wrappersArr} setWrappersArr={setWrappersArr}/>
+      <Login
+        settoggleLogin={settoggleLogin}
+        setuser={setuser}
+        wrappersArr={wrappersArr}
+        setWrappersArr={setWrappersArr}
+      />
       {!shouldHideNavbar && (
-        <Navbar settoggleLogin={settoggleLogin} user={user} setuser={setuser} setWrappersArr={setWrappersArr}/>
+        <Navbar
+          settoggleLogin={settoggleLogin}
+          user={user}
+          setuser={setuser}
+          setWrappersArr={setWrappersArr}
+        />
       )}
       <Routes>
         <Route path="/" element={<Home settoggleLogin={settoggleLogin} />} />
         <Route path="/moviedetail/:id" element={<MovieDetail />} />
-        {/* <Route path="/timings/:id" element={<MovieTiming />} /> */}
+        <Route path="/timings/:id" element={<MovieTiming />} />
         <Route path="/admin" element={<Admin />} />
         <Route
           path="/seatmatrix/:id"

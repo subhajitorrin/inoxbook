@@ -8,14 +8,42 @@ import Navbar from "../components/Navbar";
 function MovieTiming() {
   const { id } = useParams();
   const [movieDetail, setmovieDetail] = useState(null);
-  const [movieTimings, setmovieTimings] = useState([]);
+  const [upcomingDates, setupcomingDates] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [schedules, setSchedules] = useState([]);
+  const [theaterList, setTheaterList] = useState([]);
+
+  useEffect(() => {
+    async function getAllTheaters() {
+      const res = await axios.get("http://localhost:5000/getalltheaters");
+      if (res.status === 200) {
+        setTheaterList(res.data.theaters);
+        // console.log("Theater lists",res.data.theaters);
+      }
+    }
+    getAllTheaters();
+  }, [id]);
+
+  useEffect(() => {
+    function generateNext7Days() {
+      const today = new Date();
+      const dates = [];
+
+      for (let i = 1; i <= 7; i++) {
+        const nextDate = new Date();
+        nextDate.setDate(today.getDate() + i);
+        const date = nextDate.toDateString();
+        setupcomingDates((prev) => [...prev, date]);
+      }
+    }
+    generateNext7Days();
+  }, [id]);
+
   useEffect(() => {
     async function getMovieDetailById() {
       try {
         const res = await axios.get(`http://localhost:5000/moviedetail/${id}`);
         setmovieDetail(res.data.movie);
-        setmovieTimings(res.data.movie.timings);
       } catch (error) {
         console.log("Error while fetching movie detail", error);
       }
@@ -24,8 +52,29 @@ function MovieTiming() {
   }, [id]);
 
   useEffect(() => {
-    // if (movieDetail) console.log(movieDetail.movie);
-  }, [movieDetail]);
+    async function getSchedulesByMovieIdAndDateandTheaterId() {
+      theaterList.forEach(async (theater, index) => {
+        const res = await axios.get(
+          `http://localhost:5000/getschedulesbymovieiddate/${id}/${upcomingDates[selectedIndex]}/${theater._id}`
+        );
+        // setSchedules(res.data.schedules);
+        const schs = res.data.schedules;
+        // console.log("Timing of theater",theater.name,res.data.schedules);
+        const obj = {
+          theaterId: theater._id,
+          theaterName: theater.name,
+          theaterAddress: theater.address,
+          timings: res.data.schedules,
+        };
+        // console.log(obj);
+        setSchedules((prev) => {
+          return [...prev, obj];
+        });
+      });
+    }
+    if (id && upcomingDates.length > 0 && theaterList.length > 0)
+      getSchedulesByMovieIdAndDateandTheaterId();
+  }, [id, upcomingDates, selectedIndex, theaterList]);
 
   function formatMinutesToHours(minutes) {
     const hours = Math.floor(minutes / 60);
@@ -38,8 +87,8 @@ function MovieTiming() {
       <>
         {/* <Navbar /> */}
         <div className="min-h-screen my-[1rem] px-[15%] w-full flex select-none flex-col">
-          <div className="flex pb-[1.5rem]  border-b border-[#00000057] w-full h-[140px]">
-            <div className="flex flex-col gap-[7px] ">
+          <div className="flex pb-[1.5rem]  border-b border-[#00000057] w-full h-[200px]">
+            <div className="flex flex-col gap-[7px] h-full justify-center">
               <h1 className="text-[30px] font-bold">{movieDetail.title}</h1>
               <div className="flex gap-[10px] font-[600]">
                 {formatMinutesToHours(movieDetail.duration)}
@@ -63,9 +112,9 @@ function MovieTiming() {
                 })}
               </div>
             </div>
-            <div className="ml-[2rem] h-[120px] w-[400px] rounded-[10px] overflow-hidden">
+            <div className="ml-[2rem] w-[120px] h-[100%] rounded-[10px] overflow-hidden">
               <img
-                src={movieDetail.backPoster}
+                src={movieDetail.posterUrl}
                 alt=""
                 className="h-full w-full object-cover"
               />
@@ -76,10 +125,10 @@ function MovieTiming() {
                 show.
               </p>
               <div className="flex gap-[10px] justify-center items-center h-full">
-                {movieTimings.map((item, index) => {
+                {upcomingDates.map((item, index) => {
                   return (
                     <MovieDateCard
-                      date={item.date}
+                      date={item}
                       key={index}
                       isSelected={index === selectedIndex}
                       onClick={() => setSelectedIndex(index)}
@@ -90,19 +139,8 @@ function MovieTiming() {
             </div>
           </div>
           <div className="mt-[2rem] flex flex-col gap-[3rem]">
-            {movieTimings.map((item, index) => {
-              if (index !== selectedIndex) return null;
-              return item.theaters.map((theater, i) => {
-                if (!movieTimings[selectedIndex] > 0) return;
-                return (
-                  <MovieTheaterCard
-                    key={`theater${i}`}
-                    theater={theater}
-                    movieId={movieDetail._id}
-                    datecode={movieTimings[selectedIndex].date}
-                  />
-                );
-              });
+            {schedules.map((item, index) => {
+              return <MovieTheaterCard key={index} schedule={item} />;
             })}
           </div>
         </div>
