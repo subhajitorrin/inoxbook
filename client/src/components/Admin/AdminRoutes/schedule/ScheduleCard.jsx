@@ -19,14 +19,38 @@ function ScheduleCard({
   const [movie, setMovie] = useState({ movieId: "", title: "", duration: "" });
   const [selectedScreen, setSelectedScreen] = useState(null);
   const [toggleScreen, setToggleScreen] = useState(false);
-  const [screenList, setscreenList] = useState([
-    "Screen 1",
-    "Screen 2",
-    "Screen 3",
-  ]);
+  const [screenList, setscreenList] = useState([]);
   const [boolScreenList, setBoolScreenList] = useState([true, true, true]);
 
-  const screenRef = useRef(null);
+  useEffect(() => {
+    async function fetchAllScreensByTheater() {
+      try {
+        const theaterid = localStorage.getItem("theaterId");
+        console.log(theaterid);
+        if (!theaterid) return;
+
+        const res = await axios.get(
+          `http://localhost:5000/getallscreens/${theaterid}`
+        );
+
+        if (res.status === 200) {
+          res.data.forEach((item, index) => {
+            const obj = {
+              scrName: item.name,
+              scrId: item._id,
+            };
+            setscreenList((prev) => [...prev, obj]);
+          });
+        } else {
+          console.error(`Unexpected response status: ${res.status}`);
+        }
+      } catch (error) {
+        console.error("Error while fetching screens", error);
+      }
+    }
+
+    fetchAllScreensByTheater();
+  }, []);
 
   useEffect(() => {
     if (isDelete) {
@@ -200,7 +224,7 @@ function ScheduleCard({
       const waitForPromise = await Promise.all(
         screenList.map(async (item, index) => {
           const response = await isScreenAvailable(
-            item,
+            item.scrName,
             date,
             startTime,
             endTime
@@ -310,11 +334,11 @@ function ScheduleCard({
                   key={index}
                   className="text-black p-[1rem] cursor-pointer "
                   onClick={() => {
-                    setSelectedScreen(item);
+                    setSelectedScreen(item.scrName);
                     setToggleScreen(false);
                   }}
                 >
-                  {item}
+                  {item.scrName}
                 </p>
               );
             })}

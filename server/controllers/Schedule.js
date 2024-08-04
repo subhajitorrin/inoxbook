@@ -87,6 +87,7 @@ async function getScreenAvailability(req, res) {
     const end = new Date(endTime);
     try {
         const conflictingShows = await scheduleModel.find({
+            // _id: mongoose.Types.ObjectId('66ae65a9895485a50e288077'),
             screen,
             date,
         });

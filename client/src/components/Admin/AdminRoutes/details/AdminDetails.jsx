@@ -76,16 +76,28 @@ function AdminDetails() {
   }
 
   useEffect(() => {
-    async function getAllScreens() {
+    async function fetchAllScreensByTheater() {
       try {
-        const res = await axios.get(`http://localhost:5000/getallscreens`);
-        setScreenList(res.data);
-      } catch (err) {
-        console.log(err);
+        const theaterid = localStorage.getItem("theaterId");
+        console.log(theaterid);
+        if (!theaterid) return;
+
+        const res = await axios.get(
+          `http://localhost:5000/getallscreens/${theaterid}`
+        );
+
+        if (res.status === 200) {
+          setScreenList(res.data);
+        } else {
+          console.error(`Unexpected response status: ${res.status}`);
+        }
+      } catch (error) {
+        console.error("Error while fetching screens", error);
       }
     }
-    getAllScreens();
-  }, [toggleFetchScreens]);
+
+    fetchAllScreensByTheater();
+  }, []);
 
   return (
     <div className="h-full w-full p-[3%] flex justify-evenly">

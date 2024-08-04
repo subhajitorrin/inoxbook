@@ -1,5 +1,5 @@
 import express from "express"
-import { addTheater, updateTheater,getTheaterById } from "../controllers/Theater.js"
+import { addTheater, updateTheater, getTheaterById } from "../controllers/Theater.js"
 
 const TheaterRoutes = express.Router()
 

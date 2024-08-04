@@ -43,8 +43,9 @@ async function updateScreen(req, res) {
 }
 
 async function getAllScreens(req, res) {
+    const { theaterid } = req.params
     try {
-        const screens = await screenModel.find();
+        const screens = await screenModel.find({ theaterId: theaterid });
         res.status(200).json(screens);
     } catch (err) {
         console.log(err);
@@ -104,6 +105,7 @@ async function deleteCategory(req, res) {
             { $unset: { [categoryField]: "" } }
         );
         if (updateResult.modifiedCount == 0) {
+            res.status(300).json({ msg: "Category not deleted" })
             res.status(300).json({ msg: "Category not deleted" })
         } else {
             res.status(200).json({ msg: "Category deleted successfully" })

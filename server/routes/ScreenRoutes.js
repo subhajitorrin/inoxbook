@@ -3,7 +3,7 @@ import { addScreen, deleteScreen, getAllScreens, updateScreen, deleteCategory } 
 const ScreenRoutes = express.Router();
 
 ScreenRoutes.post("/addscreen", addScreen)
-ScreenRoutes.get("/getallscreens", getAllScreens)
+ScreenRoutes.get("/getallscreens/:theaterid", getAllScreens)
 ScreenRoutes.put("/updatescreen/:id", updateScreen)
 ScreenRoutes.delete("/deletecategory/:scrid/:catid", deleteCategory)
 ScreenRoutes.delete("/deletescreen/:id", deleteScreen)
