@@ -17,7 +17,12 @@ function MovieTimingCard({
         result += str[i];
       }
     }
-    return result;
+    return result.slice(0, 8);
+  }
+
+  function formatTime(time) {
+    const istTime = convertToISTAnd12HourFormat(time);
+    return istTime
   }
 
   function convertToISTAnd12HourFormat(isoString) {
@@ -51,7 +56,9 @@ function MovieTimingCard({
       className="font-[500] border border-[#00000040] inline-block px-[10px] py-[3px] rounded-[4px] cursor-pointer"
       onClick={() => {
         navigate(
-          `/seatmatrix/${movieId}-${scheduleId}-${theaterId}-${date}-${showtime}`
+          `/seatmatrix/${movieId}-${scheduleId}-${theaterId}-${removeDashes(
+            date
+          )}-${formatTime(showtime)}`
         );
       }}
     >

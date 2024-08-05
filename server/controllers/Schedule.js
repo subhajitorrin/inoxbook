@@ -144,4 +144,22 @@ async function getSchedulesByMovieIdandDate(req, res) {
     }
 }
 
-export { addSchedule, getSchedules, deleteSchedule, updateSchedule, getSchedulesByDate, getScreenAvailability, getSchedulesByMovieIdandDate }
+async function getScheduleById(req, res) {
+    const { id } = req.params
+    try {
+        const dbres = await scheduleModel.findById(id)
+        if (dbres) {
+            res.status(200).json({ msg: "Schedule find successfull", schedule: dbres })
+        } else {
+            res.status(404).json({ msg: "Schedule not present" })
+        }
+    } catch (err) {
+        console.log("Error while fetching schedule", err);
+        res.status(500).json({
+            message: "Failed to fetch schedule",
+            error: err.message
+        })
+    }
+}
+
+export { addSchedule, getSchedules, deleteSchedule, updateSchedule, getSchedulesByDate, getScreenAvailability, getSchedulesByMovieIdandDate, getScheduleById }

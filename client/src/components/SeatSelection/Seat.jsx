@@ -9,32 +9,8 @@ function Seat({
   setdisplaySeatWarning,
 }) {
   const [onselect, setOnselect] = useState(false);
-  const timeoutRef = useRef(null);
-  function handleOnclick() {
-    if (onselect) {
-      setOnselect(false);
-      setIsSeatSelected((prev) => ({
-        counter: prev.counter - 1,
-        seatids: prev.seatids.filter((id) => id !== seatid),
-      }));
-    } else {
-      if (alreadySelected < 10) {
-        setOnselect(true);
-        setIsSeatSelected((prev) => ({
-          counter: prev.counter + 1,
-          seatids: [...prev.seatids, seatid],
-        }));
-      } else {
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-        }
-        setdisplaySeatWarning(true);
-        timeoutRef.current = setTimeout(() => {
-          setdisplaySeatWarning(false);
-          timeoutRef.current = null;
-        }, 3000);
-      }
-    }
+  function handleOnclick(){
+    
   }
 
   return available ? (

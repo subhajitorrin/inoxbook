@@ -116,4 +116,20 @@ async function deleteCategory(req, res) {
     }
 }
 
-export { addScreen, updateScreen, deleteScreen, getAllScreens, deleteCategory }
+async function getScreenDetail(req, res) {
+    const { id } = req.params;
+    try {
+        const dbres = await screenModel.findById(id);
+        if (dbres) {
+            res.status(200).json({ msg: "Screen data fetch successful", screen: dbres });
+        } else {
+            res.status(404).json({ msg: "Screen not found" });
+        }
+    } catch (err) {
+        console.error('Error while fetching screen detail:', err);
+        res.status(500).json({ msg: "Error while fetching screen detail", err });
+    }
+}
+
+
+export { addScreen, updateScreen, deleteScreen, getAllScreens, deleteCategory, getScreenDetail }

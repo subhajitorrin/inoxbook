@@ -53,13 +53,15 @@ function MovieTiming() {
 
   useEffect(() => {
     async function getSchedulesByMovieIdAndDateandTheaterId() {
+      setSchedules([]);
       theaterList.forEach(async (theater, index) => {
         const res = await axios.get(
           `http://localhost:5000/getschedulesbymovieiddate/${id}/${upcomingDates[selectedIndex]}/${theater._id}`
         );
         // setSchedules(res.data.schedules);
         const schs = res.data.schedules;
-        // console.log("Timing of theater",theater.name,res.data.schedules);
+        console.log("Timing of theater", theater.name, res.data.schedules);
+        if (schs.length === 0) return;
         const obj = {
           theaterId: theater._id,
           theaterName: theater.name,
@@ -67,6 +69,7 @@ function MovieTiming() {
           timings: res.data.schedules,
         };
         // console.log(obj);
+        // setSchedules([])
         setSchedules((prev) => {
           return [...prev, obj];
         });
