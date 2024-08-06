@@ -32,7 +32,15 @@ function Sidenavbar({
     settoggleSideNavbar(false);
   }
   function handleOffSidebar(e) {
-    console.log(e);
+    let flag = false;
+    e.target.classList.forEach((item) => {
+      if (item === "sidenavbar") {
+        flag = true;
+      }
+    });
+    if (flag) {
+      settoggleSideNavbar(false);
+    }
   }
   return (
     <div
@@ -118,6 +126,7 @@ function Sidenavbar({
           }}
         />
       </div>
+      <div className="h-full w-full sidenavbar"></div>
     </div>
   );
 }
