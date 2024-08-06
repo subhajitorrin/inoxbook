@@ -58,7 +58,7 @@ function Home({ settoggleLogin, toggleSideNavbar }) {
       <div className=" min-h-screen  w-full overflow-y-hidden px-[15%]">
         <div className="h-[250px] w-full border border-black my-[1rem]"></div>
         <MovieCardsRow
-          movierow={recommendedMovies}
+          movierow={currentMovies}
           rowtitle="Recommended Movies"
         />
         <MovieCardsRow movierow={hotmovies} rowtitle="Hot Movies" />

@@ -43,9 +43,9 @@ function TicketCard({ ticketId }) {
     movieId &&
     poster && (
       <div className="bg-white shadow-lg cursor-pointer select-none gap-[1rem] rounded-[10px] p-[1.5rem] h-[550px] w-[380px] border border-[#00000030] flex flex-col justify-between">
-        <div className="h-[45%] w-full flex gap-[1rem]">
+        <div className="h-[45%] w-full flex gap-[1rem] ">
           <div className="rounded-[10px] w-[150px] h-[100%] overflow-hidden">
-            <img src={poster} alt="" className="h-full" />
+            <img src={poster} alt="" className="h-full object-cover" />
           </div>
           <div className="flex flex-col gap-[10px]">
             <p className="text-[20px] font-[500]">{ticket.moviename}</p>
@@ -63,8 +63,8 @@ function TicketCard({ ticketId }) {
             Have a great time watching the movie!
           </p>
         </div>
-        <div className="flex min-h-[30%] w-full">
-          <div className="w-[150px] flex justify-center mt-[1rem]">
+        <div className="flex min-h-[30%] w-full ">
+          <div className="w-[130px] flex justify-center mt-[1rem]">
             <div className="">
               <QRCode
                 size={100}
@@ -94,7 +94,7 @@ function TicketCard({ ticketId }) {
         </div>
         <div className="flex justify-between text-[.9rem] font-[500]">
           <p className="">Total Amount</p>
-          <p>Rs.{ticket.price}</p>
+          <p>Rs.{ticket.price * ticket.seatCount}.00</p>
         </div>
       </div>
     )

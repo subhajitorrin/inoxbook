@@ -220,11 +220,11 @@ function SeatSelection({ user, settoggleLogin }) {
       return;
     }
 
-    // const paymentRes = await handlePayment();
-    // if (!paymentRes) {
-    //   toast.warning("Payment failed!");
-    //   return;
-    // }
+    const paymentRes = await handlePayment();
+    if (!paymentRes) {
+      toast.warning("Payment failed!");
+      return;
+    }
 
     let starIdsArr = [];
     selectedCategory.forEach((item) => {
