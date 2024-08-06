@@ -33,6 +33,10 @@ const scheduleSchema = new mongoose.Schema({
     nextShowTime: {
         type: String,
         default: null
+    },
+    bookedSeats: {
+        type: [{ row: String, seat: Number }],
+        default: []
     }
 });
 const scheduleModel = mongoose.model("schedules", scheduleSchema)

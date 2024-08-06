@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ToastifyContainer from "./components/ToastifyContainer";
 import axios from "axios";
 import Admin from "./pages/Admin";
+import BookingTicket from "./components/SeatSelection/BookingTicket";
 
 function App() {
   const [toggleLogin, settoggleLogin] = useState(false);
@@ -69,7 +70,7 @@ function App() {
   }, [toggleLogin]);
   const shouldHideNavbar =
     location.pathname.startsWith("/seatmatrix") ||
-    location.pathname.startsWith("/admin");
+    location.pathname.startsWith("/admin") || location.pathname.startsWith("/payment");
   return (
     <div className="">
       <Login
@@ -91,6 +92,7 @@ function App() {
         <Route path="/moviedetail/:id" element={<MovieDetail />} />
         <Route path="/timings/:id" element={<MovieTiming />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/payment/:id" element={<BookingTicket />} />
         <Route
           path="/seatmatrix/:id"
           element={

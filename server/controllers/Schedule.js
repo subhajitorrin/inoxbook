@@ -165,4 +165,52 @@ async function getScheduleById(req, res) {
     }
 }
 
-export { addSchedule, getSchedules, deleteSchedule, updateSchedule, getSchedulesByDate, getScreenAvailability, getSchedulesByMovieIdandDate, getScheduleById }
+function isItemInArray(item, array) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].row === item.row && array[i].seat === item.seat) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkArrayPresence(firstArray, secondArray) {
+    for (let i = 0; i < secondArray.length; i++) {
+        if (!isItemInArray(secondArray[i], firstArray)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+async function blockTheSeats(req, res) {
+    try {
+        const { scheduleId, bookedSeats } = req.body;
+
+        const schedule = await scheduleModel.findById(scheduleId);
+        let existingBookedSeats = schedule.bookedSeats;
+        const refinedExisting = existingBookedSeats.map((item) => {
+            return { row: item.row, seat: item.seat }
+        })
+
+        if (checkArrayPresence(refinedExisting, bookedSeats)) {
+            return res.status(201).json({ msg: "One or more seats are already booked." });
+        }
+
+        const dbres = await scheduleModel.findByIdAndUpdate(scheduleId,
+            { $addToSet: { bookedSeats } },
+            { new: true }
+        )
+        if (dbres) {
+            res.status(200).json({ msg: "Seats are blocked" })
+        } else {
+            res.status(400).json({ msg: "Schedule not found!" })
+        }
+    } catch (error) {
+        console.error('Error blocking seats:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+export { addSchedule, getSchedules, deleteSchedule, updateSchedule, getSchedulesByDate, getScreenAvailability, getSchedulesByMovieIdandDate, getScheduleById, blockTheSeats }

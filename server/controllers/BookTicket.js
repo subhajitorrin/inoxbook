@@ -4,61 +4,51 @@ import ticketModel from "../models/ticketModel.js";
 import mailSender from "../utility/sendMail.js";
 import getSeatByIndex from "../utility/getSeatByIndex.js"
 
+function arrToString(arr){
+    let str = ""
+    arr.forEach((item)=>{
+        str+=`${item} `
+    })
+    return str
+}
+
 async function bookticket(req, res) {
-    const { showid, seats, userId, ticketDetail, email, name } = req.body;
+    const BookingData = req.body;
+    const bookingId = generateRandomString()
+    BookingData.bookingId = bookingId
     try {
-        const seatMatrix = await seatMatrixModel.findOne({ showid });
-        if (!seatMatrix) {
-            return res.status(404).json({ error: "Seat matrix not found" });
-        }
-        for (let seatIndex of seats) {
-            if (seatMatrix.seats[seatIndex] === false) {
-                return res.status(400).json({ error: `Seat ${seatIndex} is already booked` });
-            }
-            seatMatrix.seats[seatIndex] = false;
-        }
-        const ticket = new ticketModel({
-            ...ticketDetail,
-            seats,
-            bookingId: generateRandomString()
-        })
 
-        const seatMatrixres = await seatMatrix.save();
-        const ticketRes = await ticket.save();
-        await userModel.findByIdAndUpdate(userId, {
-            $push: { ticket: ticketRes._id }
-        });
+        const newBooking = new ticketModel(BookingData);
+        const ticketRes = await newBooking.save()
 
-        let seatsStr = ""
-        seats.forEach((item) => {
-            seatsStr += getSeatByIndex(item) + ", "
-        })
+        if (!ticketRes) res.status(202).json({ msg: "Ticket booking dismissed" })
 
+        const email = "zummsg@gmail.com"
         const title = "Ticket Booking Successfull"
         const body = `
-    <h1>Booking Confirmation</h1>
-    <p>Dear Customer,</p>
-    <p>Thank you ${name} for booking with us! Your ticket has been successfully booked. Below are the details of your booking:</p>
-    <h2>Booking Details</h2>
-    <ul>
-        <li><strong>Movie Name:</strong> ${ticketDetail.moviename}</li>
-        <li><strong>Language:</strong> ${ticketDetail.language}</li>
-        <li><strong>Date:</strong> ${ticketDetail.date}</li>
-        <li><strong>Time:</strong> ${ticketDetail.time}</li>
-        <li><strong>Theater:</strong> ${ticketDetail.theater}</li>
-        <li><strong>Seat Count:</strong> ${ticketDetail.seatCount}</li>
-        <li><strong>Booked Seats:</strong> ${seatsStr}</li>
-        <li><strong>Seat Category:</strong> ${ticketDetail.seatCategory}</li>
-        <li><strong>Price:</strong> ₹${ticketDetail.price}</li>
-        <li><strong>Screen:</strong> ${ticketDetail.screen}</li>
-    </ul>
-    <p>We hope you have a great time at the movie!</p>
-    <p>If you have any questions or need further assistance, feel free to contact us.</p>
-    <p>Best regards,<br>INOXBOOK Team</p>
-`;
+            <h1>Booking Confirmation</h1>
+            <p>Dear Customer,</p>
+            <p>Thank you ${"ORRIN"} for booking with us! Your ticket has been successfully booked. Below are the details of your booking:</p>
+            <h2>Booking Details</h2>
+            <ul>
+                <li><strong>Movie Name:</strong> ${BookingData.moviename}</li>
+                <li><strong>Language:</strong> ${BookingData.language}</li>
+                <li><strong>Date:</strong> ${BookingData.date}</li>
+                <li><strong>Time:</strong> ${BookingData.time}</li>
+                <li><strong>Theater:</strong> ${BookingData.theater}</li>
+                <li><strong>Seat Count:</strong> ${BookingData.seatCount}</li>
+                <li><strong>Booked Seats:</strong> ${arrToString(BookingData.seats)}</li>
+                <li><strong>Seat Category:</strong> ${BookingData.seatCategory}</li>
+                <li><strong>Price:</strong> ₹${BookingData.price}</li>
+                <li><strong>Screen:</strong> ${BookingData.screen}</li>
+            </ul>
+            <p>We hope you have a great time at the movie!</p>
+            <p>If you have any questions or need further assistance, feel free to contact us.</p>
+            <p>Best regards,<br>INOXBOOK Team</p>
+        `;
         await mailSender(email, title, body)
 
-        res.status(200).json({ msg: "Booking successful", ticket: ticketRes });
+        res.status(200).json({ msg: "Booking successful", ticket: "" });
     } catch (error) {
         console.error("Error booking tickets:", error);
         res.status(500).json({ error: "An internal server error occurred" });
