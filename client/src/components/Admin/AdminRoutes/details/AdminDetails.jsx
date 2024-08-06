@@ -79,7 +79,7 @@ function AdminDetails() {
     async function fetchAllScreensByTheater() {
       try {
         const theaterid = localStorage.getItem("theaterId");
-        console.log(theaterid);
+        // console.log(theaterid);
         if (!theaterid) return;
 
         const res = await axios.get(

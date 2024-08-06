@@ -83,6 +83,7 @@ function Screen({ screenData, theaterId, settoggleFetchScreens }) {
         obj
       );
       if (res.status === 200) {
+        console.log(res.data.finalScreen);
         settoggleFetchScreens((prev) => !prev);
         toast.success("Screen updated");
       }

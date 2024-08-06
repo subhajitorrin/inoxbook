@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import HeaderSeatSelection from "../components/SeatSelection/HeaderSeatSelection";
 import SeatFlagHeader from "../components/SeatSelection/SeatFlagHeader";
 import SeatCategory from "../components/SeatSelection/SeatCategory";
+import Seat from "../components/SeatSelection/Seat";
 
 function SeatSelection() {
   const { id } = useParams();
@@ -18,6 +19,14 @@ function SeatSelection() {
   const [seatMatrix, setSeatMatrix] = useState([]);
   const [screen, setscreen] = useState(null);
   const [schedule, setSchedule] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState([]);
+  const [activeCategory, setactiveCategory] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [isAnySeatIsActive, setisAnySeatIsActive] = useState(false);
+
+  useEffect(() => {
+    console.log(selectedCategory);
+  }, [selectedCategory]);
 
   useEffect(() => {
     const params = id.split("-");
@@ -27,14 +36,6 @@ function SeatSelection() {
     setDate(params[3]);
     setTime(params[4]);
   }, [id]);
-
-  useEffect(() => {
-    // console.log(movieId);
-    // console.log(scheduleId);
-    // console.log(theaterId);
-    // console.log(date);
-    // console.log(time);
-  }, [movieId, scheduleId, theaterId, date, time]);
 
   async function getMovieDetailById(id) {
     try {
@@ -63,20 +64,12 @@ function SeatSelection() {
         `http://localhost:5000/getschedulebyid/${schid}`
       );
       if (res.status !== 200) return;
-      setSchedule(res.data.schedule);
       const screenres = await axios.get(
         `http://localhost:5000/getscreenbyid/${res.data.schedule.screen}`
       );
+      setSchedule(screenres);
       setscreen(screenres.data.screen);
-      if (screenres.data.screen.category1) {
-        setSeatMatrix((prev) => [...prev, screenres.data.screen.category1]);
-      }
-      if (screenres.data.screen.category2) {
-        setSeatMatrix((prev) => [...prev, screenres.data.screen.category2]);
-      }
-      if (screenres.data.screen.category3) {
-        setSeatMatrix((prev) => [...prev, screenres.data.screen.category3]);
-      }
+      setSeatMatrix(screenres.data.screen.seatmatrix);
     } catch (err) {
       console.error("Error fetching seat matrix:", err);
     }
@@ -99,13 +92,18 @@ function SeatSelection() {
       getSeatMatrixByScreen(scheduleId);
     }
   }, [scheduleId]);
-  // useEffect(() => {
-  //   if (seatMatrix.length > 0) console.log(seatMatrix);
-  // }, [seatMatrix]);
+
+  useEffect(() => {
+    if (selectedCategory.length > 0 && activeCategory && activeCategory.price) {
+      const price = activeCategory.price;
+      const n = selectedCategory.length;
+      setTotalPrice(price * n);
+    }
+  }, [selectedCategory, activeCategory]);
 
   return (
     id && (
-      <div className="w-full flex items-center flex-col gap-[2rem] select-none">
+      <div className="w-full flex items-center flex-col gap-[2rem] select-none relative ">
         {/* Header portion */}
         <HeaderSeatSelection
           movieDetail={movieDetail}
@@ -116,9 +114,43 @@ function SeatSelection() {
         {/* Seat flags header */}
         <SeatFlagHeader />
         {/* Body portion */}
-        {seatMatrix.map((item, index) => {
-          return <SeatCategory key={index} category={item} />;
-        })}
+        <div className="flex w-[60%] flex-wrap">
+          {seatMatrix.map((item, index) => {
+            return (
+              <SeatCategory
+                key={index}
+                category={item}
+                setSelectedCategory={setSelectedCategory}
+                setactiveCategory={setactiveCategory}
+                activeCategory={activeCategory}
+              />
+            );
+          })}
+        </div>
+        {/* screen this side */}
+        <div
+          style={{
+            marginBottom: selectedCategory.length > 0 ? "130px" : "50px",
+          }}
+        >
+          <img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" />
+        </div>
+        {/* selected seat display */}
+        {selectedCategory.length > 0 && (
+          <div className="flex justify-evenly items-center w-full bg-white border-t border-[#00000030] fixed bottom-0 h-[100px]">
+            <div className="font-[500] text-[17px]">
+              <p className="text-[18px] font-bold">&#8377;{totalPrice}</p>
+              <p>
+                Tickets {selectedCategory.length} x {activeCategory.price}
+              </p>
+            </div>
+            <div className="">
+              <button className="px-[2rem] py-[1rem] bg-black rounded-[7px] text-white font-[500]">
+                Book Ticket
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     )
   );

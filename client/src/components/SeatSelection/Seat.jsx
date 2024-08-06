@@ -1,17 +1,43 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 function Seat({
+  row,
   seatNumber,
   available,
   seatid,
-  setIsSeatSelected,
-  alreadySelected,
-  setdisplaySeatWarning,
+  setSelectedSeats,
+  activeCategory,
+  categoryname,
+  selectedSeats,
+  setactiveCategory,
+  price,
 }) {
   const [onselect, setOnselect] = useState(false);
-  function handleOnclick(){
-    
+
+  function handleOnclick() {
+    if (selectedSeats.length < 10) {
+      setOnselect((prev) => !prev);
+      setactiveCategory({ categoryname, price });
+    } else {
+      toast.warning("Maximum 10 seats");
+    }
   }
+
+  useEffect(() => {
+    if (activeCategory && activeCategory.categoryname !== categoryname) {
+      setOnselect(false);
+      setSelectedSeats([]);
+    }
+  }, [activeCategory, categoryname, setSelectedSeats]);
+
+  useEffect(() => {
+    if (onselect) {
+      setSelectedSeats((prev) => [...prev, { seatNumber, seatid, row }]);
+    } else {
+      setSelectedSeats((prev) => prev.filter((seat) => seat.seatid !== seatid));
+    }
+  }, [onselect, seatNumber, seatid, row, setSelectedSeats]);
 
   return available ? (
     <div

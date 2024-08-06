@@ -1,5 +1,6 @@
 import screenModel from "../models/screenModel.js"
 import theaterModel from "../models/theaterModel.js"
+import { v4 as uuidv4 } from 'uuid';
 async function addScreen(req, res) {
     const screenData = req.body
     try {
@@ -20,19 +21,61 @@ async function addScreen(req, res) {
     }
 }
 
+const isEmpty = (obj) => {
+    return Object.keys(obj).length === 0;
+}
+
+const initializeSeatMatrix = async (screen) => {
+    const categoryList = [screen.category1, screen.category2, screen.category3].filter(item => item && item.seats && item.price && item.name);
+    const breakPoint = 10
+    let seatmatrix = []
+    let alpha = 'A'
+    let prevAlpha = ''
+
+    categoryList.forEach((item, index) => {
+        console.log(isEmpty(item));
+        let seatrows = []
+        for (let i = 0; i < item.seats; i++) {
+            if (i % breakPoint === 0) {
+                seatrows.push({ row: alpha, columns: [] })
+                prevAlpha = alpha
+                alpha = String.fromCharCode(alpha.charCodeAt(0) + 1);
+            }
+            seatrows[seatrows.length - 1].columns.push({
+                column: (i % breakPoint) + 1,
+                category: item.name,
+                price: item.price,
+                isBooked: false,
+                seatCode: `${prevAlpha}${(i % breakPoint) + 1}`
+            })
+        }
+        let obj = {
+            category: item.name,
+            price: item.price,
+            seatrows
+        }
+        seatmatrix.push(obj)
+    })
+    screen.seatmatrix = seatmatrix
+    const finalScreen = await screenModel.findByIdAndUpdate(screen._id, screen, { new: true })
+    return finalScreen
+};
+
+
 async function updateScreen(req, res) {
     const screenId = req.params.id;
     const screenData = req.body;
 
     try {
-        const updatedScreen = await screenModel.findByIdAndUpdate(
+        const updatedScreenRes = await screenModel.findByIdAndUpdate(
             screenId,
             screenData,
             { new: true }
         );
 
-        if (updatedScreen) {
-            res.status(200).json({ msg: "Screen updated successfully", updatedScreen });
+        if (updatedScreenRes) {
+            const finalScreen = await initializeSeatMatrix(updatedScreenRes)
+            res.status(200).json({ msg: "Screen updated successfully", finalScreen });
         } else {
             res.status(404).json({ msg: "Screen not found" });
         }
