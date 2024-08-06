@@ -3,6 +3,9 @@ import scheduleModel from "../models/scheduleModel.js"
 async function addSchedule(req, res) {
     try {
         const newScheduleData = req.body
+        const nextDay = new Date(newScheduleData.date);
+        nextDay.setDate(nextDay.getDate() + 1);
+        newScheduleData.date = nextDay
         const newSchedule = new scheduleModel(newScheduleData)
         const dbres = await newSchedule.save()
         if (dbres) {

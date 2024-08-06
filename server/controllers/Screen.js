@@ -27,7 +27,7 @@ const isEmpty = (obj) => {
 
 const initializeSeatMatrix = async (screen) => {
     const categoryList = [screen.category1, screen.category2, screen.category3].filter(item => item && item.seats && item.price && item.name);
-    const breakPoint = 10
+    const breakPoint = 20
     let seatmatrix = []
     let alpha = 'A'
     let prevAlpha = ''

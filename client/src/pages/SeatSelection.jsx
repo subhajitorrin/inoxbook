@@ -112,9 +112,9 @@ function SeatSelection() {
           time={time}
         />
         {/* Seat flags header */}
-        <SeatFlagHeader />
+        <SeatFlagHeader date={date} />
         {/* Body portion */}
-        <div className="flex w-[60%] flex-wrap">
+        <div className="flex w-[60%] flex-wrap  ">
           {seatMatrix.map((item, index) => {
             return (
               <SeatCategory
@@ -132,6 +132,7 @@ function SeatSelection() {
           style={{
             marginBottom: selectedCategory.length > 0 ? "130px" : "50px",
           }}
+          className="ml-[60px]"
         >
           <img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" />
         </div>

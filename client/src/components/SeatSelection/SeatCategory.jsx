@@ -16,7 +16,7 @@ function SeatCategory({
   }, [selectedSeats]);
 
   return (
-    <div className=" w-[100%] flex flex-col gap-[1rem]">
+    <div className=" w-[100%] flex flex-col gap-[1rem] items-center">
       <p className="text-[17px] font-bold uppercase text-center mt-[2rem]">
         {category.category}: &#8377;{category.price}
       </p>
