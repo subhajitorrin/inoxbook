@@ -4,16 +4,16 @@ import ticketModel from "../models/ticketModel.js";
 import mailSender from "../utility/sendMail.js";
 import getSeatByIndex from "../utility/getSeatByIndex.js"
 
-function arrToString(arr){
+function arrToString(arr) {
     let str = ""
-    arr.forEach((item)=>{
-        str+=`${item} `
+    arr.forEach((item) => {
+        str += `${item} `
     })
     return str
 }
 
 async function bookticket(req, res) {
-    const BookingData = req.body;
+    const { user, BookingData } = req.body;
     const bookingId = generateRandomString()
     BookingData.bookingId = bookingId
     try {
@@ -21,14 +21,20 @@ async function bookticket(req, res) {
         const newBooking = new ticketModel(BookingData);
         const ticketRes = await newBooking.save()
 
+        console.log("Ticket res", ticketRes);
+
         if (!ticketRes) res.status(202).json({ msg: "Ticket booking dismissed" })
 
-        const email = "zummsg@gmail.com"
+        await userModel.findByIdAndUpdate(user.userId, {
+            $push: { ticket: ticketRes._id }
+        })
+
+        const email = user.email
         const title = "Ticket Booking Successfull"
         const body = `
             <h1>Booking Confirmation</h1>
             <p>Dear Customer,</p>
-            <p>Thank you ${"ORRIN"} for booking with us! Your ticket has been successfully booked. Below are the details of your booking:</p>
+            <p>Thank you ${user.name} for booking with us! Your ticket has been successfully booked. Below are the details of your booking:</p>
             <h2>Booking Details</h2>
             <ul>
                 <li><strong>Movie Name:</strong> ${BookingData.moviename}</li>
@@ -46,7 +52,7 @@ async function bookticket(req, res) {
             <p>If you have any questions or need further assistance, feel free to contact us.</p>
             <p>Best regards,<br>INOXBOOK Team</p>
         `;
-        await mailSender(email, title, body)
+        // await mailSender(email, title, body)
 
         res.status(200).json({ msg: "Booking successful", ticket: "" });
     } catch (error) {

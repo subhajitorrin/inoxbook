@@ -1,4 +1,5 @@
 import userModel from "../models/userModel.js";
+import ticketModel from "../models/ticketModel.js"
 
 async function createuser(req, res) {
     const { email, name } = req.body;
@@ -33,4 +34,19 @@ async function getUser(req, res) {
     }
 }
 
-export { createuser, getUser }
+async function getAllTicketByUserId(req, res) {
+    const { id } = req.params
+    try {
+        const ticketRes = await userModel.findById(id)
+        if (ticketRes) {
+            res.status(200).json({ msg: "Tickets fetched successfully", tickets: ticketRes.ticket });
+        } else {
+            res.status(201).json({ msg: "No tickets found", tickets: [] });
+        }
+    } catch (err) {
+        console.error("Error fetching ticket:", err);
+        res.status(500).json({ msg: "Server error" });
+    }
+}
+
+export { createuser, getUser, getAllTicketByUserId }

@@ -4,6 +4,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { IoTicketOutline } from "react-icons/io5";
 import { MdOutlineArrowRight } from "react-icons/md";
 import { MdHelpOutline } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 function Sidenavbar({
   toggleSideNavbar,
@@ -13,6 +14,7 @@ function Sidenavbar({
   setuser,
   setWrappersArr,
 }) {
+  const navigate = useNavigate();
   const [menulist, setmenulist] = useState([
     {
       icon: <IoTicketOutline />,
@@ -76,6 +78,12 @@ function Sidenavbar({
                 {menulist.map((item, index) => {
                   return (
                     <div
+                      onClick={() => {
+                        if (index == 0) {
+                          navigate(`/mybookings/${user.userId}`);
+                          settoggleSideNavbar(false);
+                        }
+                      }}
                       key={index}
                       className="flex flex-col cursor-pointer hover:bg-[#c6c6c6] px-[1rem] py-[5px]"
                     >

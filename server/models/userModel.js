@@ -10,10 +10,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "Guest"
     },
-    ticket: {
-        type: [String],
-        default: []
-    }
+    ticket:
+        [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "tickets"
+        }]
 });
 
 const userModel = mongoose.model('users', userSchema);

@@ -1,6 +1,7 @@
 import express from "express"
-import { createuser, getUser } from "../controllers/User.js"
+import { createuser, getAllTicketByUserId, getUser } from "../controllers/User.js"
 const UserRoutes = express.Router()
 UserRoutes.post("/createuser", createuser)
 UserRoutes.post("/getuser", getUser)
+UserRoutes.get("/gettickets/:id",getAllTicketByUserId)
 export default UserRoutes

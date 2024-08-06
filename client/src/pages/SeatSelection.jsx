@@ -219,11 +219,12 @@ function SeatSelection({ user, settoggleLogin }) {
     if (!blockRes) {
       return;
     }
-    const paymentRes = await handlePayment();
-    if (!paymentRes) {
-      toast.warning("Payment failed!");
-      return;
-    }
+
+    // const paymentRes = await handlePayment();
+    // if (!paymentRes) {
+    //   toast.warning("Payment failed!");
+    //   return;
+    // }
 
     let starIdsArr = [];
     selectedCategory.forEach((item) => {
@@ -232,6 +233,7 @@ function SeatSelection({ user, settoggleLogin }) {
     const dateWeekDay = `${getWeekday(date)}, ${formatDate(date)}`;
     const obj = {
       moviename: movieDetail.title,
+      movieId,
       language: "Hindi",
       date: dateWeekDay,
       time: time,
@@ -244,12 +246,15 @@ function SeatSelection({ user, settoggleLogin }) {
     };
 
     try {
-      const res = await axios.post("http://localhost:5000/bookticket", obj);
+      const res = await axios.post("http://localhost:5000/bookticket", {
+        user,
+        BookingData: obj,
+      });
       if (res.status === 200) {
         setSelectedCategory([]);
         setactiveCategory(null);
         toast.success("Ticket booking successfull");
-        navigate("/");
+        navigate(`/mybookings/${user.userId}`);
       } else if (202) {
         toast.warn("Try again later!");
       }

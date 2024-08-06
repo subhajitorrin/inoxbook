@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const ticketSchema = new mongoose.Schema({
     moviename: String,
+    movieId: { type: mongoose.Schema.Types.ObjectId, ref: "currentmovies" },
     language: String,
     date: String,
     time: String,
@@ -16,3 +17,4 @@ const ticketSchema = new mongoose.Schema({
 const ticketModel = mongoose.model('tickets', ticketSchema);
 
 export default ticketModel;
+export { ticketSchema }

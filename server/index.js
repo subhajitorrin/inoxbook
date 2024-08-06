@@ -10,6 +10,7 @@ import UserRoutes from "./routes/UserRoutes.js";
 import ScheduleRoutes from "./routes/ScheduleRoutes.js";
 import AuthRoutes from "./routes/AuthRoute.js";
 import ScreenRoutes from "./routes/ScreenRoutes.js";
+import TicketRouter from "./routes/TicketRoute.js";
 
 const mongoURL = "mongodb+srv://orrin2op:9800@inoxbook.2thzfjd.mongodb.net/inoxbook?retryWrites=true&w=majority&appName=inoxbook"
 const PORT = 5000;
@@ -29,6 +30,7 @@ app.use("/", UserRoutes);
 app.use("/", ScheduleRoutes);
 app.use("/", AuthRoutes)
 app.use("/", ScreenRoutes)
+app.use("/", TicketRouter)
 
 mongoose.connect(mongoURL).then(() => {
     app.listen(PORT, () => {

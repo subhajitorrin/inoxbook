@@ -112,4 +112,20 @@ async function deleteMovieById(req, res) {
     }
 }
 
-export { getAllMovies, getMovieDetailById, addNewMovie, updateMovieById, deleteMovieById }
+async function getMoviePosterLink(req, res) {
+    const { id } = req.params
+    try {
+        const posterRes = await movieModel.findById(id)
+        if (posterRes) {
+            res.status(200).json({ poster: posterRes.posterUrl })
+        }
+    } catch (err) {
+        console.log("Error while fetching poster", err);
+        res.status(500).json({
+            message: "Error while fetching poster",
+            err: err.message
+        })
+    }
+}
+
+export { getAllMovies, getMovieDetailById, addNewMovie, updateMovieById, deleteMovieById, getMoviePosterLink }

@@ -15,11 +15,12 @@ import axios from "axios";
 import Admin from "./pages/Admin";
 import BookingTicket from "./components/SeatSelection/BookingTicket";
 import Sidenavbar from "./components/SideNavbar/Sidenavbar";
+import MyBookings from "./pages/MyBookings";
 
 function App() {
   const [toggleLogin, settoggleLogin] = useState(false);
   const [toggleSideNavbar, settoggleSideNavbar] = useState(false);
-  const [wrappersArr, setWrappersArr] = useState([false, false, true, false]);
+  const [wrappersArr, setWrappersArr] = useState([true, false, false, false]);
   const [user, setuser] = useState(null);
   const location = useLocation();
 
@@ -126,7 +127,7 @@ function App() {
         <Route path="/moviedetail/:id" element={<MovieDetail />} />
         <Route path="/timings/:id" element={<MovieTiming />} />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/payment/:id" element={<BookingTicket />} />
+        <Route path="/mybookings/:id" element={<MyBookings />} />
         <Route
           path="/seatmatrix/:id"
           element={
