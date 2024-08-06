@@ -18,7 +18,10 @@ function MyBookings() {
   }, [id]);
 
   return (
-    <div className="bg-[#e2e2e2] min-h-[91vh] select-none">
+    <div
+      style={{ background: 'linear-gradient(to bottom, white 10%, #dfdfdf)' }}
+      className="h-[91.3vh] select-none"
+    >
       <p className="text-center my-[10px] font-[500] pt-[1rem]">
         * Click to download your tickets
       </p>

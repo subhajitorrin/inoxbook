@@ -1,21 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
-const ticket = {
-  _id: "66b27f3012f06a4ee0431a21",
-  moviename: "Kill",
-  language: "Hindi",
-  date: "Wed, 07 Aug",
-  time: "3:30 PM",
-  theater: "RDB Cinemas, Kolkata",
-  seatCount: 3,
-  seatCategory: "gold",
-  seats: ["B18", "B19", "B20"],
-  bookingId: "CMOCO",
-  price: 300,
-  screen: "ORRIN",
-  __v: 0,
-};
+import QRCode from "react-qr-code";
 
 function TicketCard({ ticketId }) {
   const [ticket, setTicket] = useState(null);
@@ -78,9 +63,16 @@ function TicketCard({ ticketId }) {
             Have a great time watching the movie!
           </p>
         </div>
-        <div className="flex gap-[1rem] min-h-[30%] w-full">
-          <div className="w-[150px] h-[150px] border border-black flex items-center justify-center">
-            qr here
+        <div className="flex min-h-[30%] w-full">
+          <div className="w-[150px] flex justify-center mt-[1rem]">
+            <div className="">
+              <QRCode
+                size={100}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                value={ticket.bookingId}
+                viewBox={`0 0 256 256`}
+              />
+            </div>
           </div>
           <div className="flex flex-col gap-[10px] text-center flex-1 ">
             {ticket.seatCount > 1 ? (
