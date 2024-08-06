@@ -4,8 +4,15 @@ import { RiArrowDropDownFill } from "react-icons/ri";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { IoTicketOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { FaRegCircleUser } from "react-icons/fa6";
 
-function Navbar({ settoggleLogin, user, setuser, setWrappersArr }) {
+function Navbar({
+  settoggleLogin,
+  user,
+  setuser,
+  setWrappersArr,
+  settoggleSideNavbar,
+}) {
   const navigate = useNavigate();
   function handleLogout() {
     localStorage.removeItem("userid");
@@ -38,7 +45,7 @@ function Navbar({ settoggleLogin, user, setuser, setWrappersArr }) {
           <IoIosSearch />
         </button>
       </div>
-      <div className="flex items-center gap-[20px]">
+      <div className="flex items-center gap-[20px] ">
         <button className="flex items-center gap-[3px]">
           Kolkata
           <div className="relative text-[20px] top-[1px]">
@@ -46,14 +53,14 @@ function Navbar({ settoggleLogin, user, setuser, setWrappersArr }) {
           </div>
         </button>
         {user ? (
-          <p className="flex gap-[20px] items-center">
+          <p
+            className="flex gap-[10px] items-center cursor-pointer"
+            onClick={() => {
+              settoggleSideNavbar(true);
+            }}
+          >
+            <FaRegCircleUser className="text-[20px]" />
             {user.name}
-            <button
-              className="bg-[#da4b63] rounded-[5px] px-[10px] py-[2px] text-white"
-              onClick={handleLogout}
-            >
-              Log out
-            </button>
           </p>
         ) : (
           <button
@@ -62,11 +69,16 @@ function Navbar({ settoggleLogin, user, setuser, setWrappersArr }) {
               settoggleLogin(true);
             }}
           >
-            Sign in
+            Login
           </button>
         )}
 
-        <div className="text-[20px] cursor-pointer">
+        <div
+          className="text-[20px] cursor-pointer"
+          onClick={() => {
+            settoggleSideNavbar(true);
+          }}
+        >
           <CgMenuRightAlt />
         </div>
       </div>

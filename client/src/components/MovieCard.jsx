@@ -20,7 +20,7 @@ function MovieCard({ id, title, img, languages, rating }) {
       <div className="h-[400px] w-full rounded-[10px] overflow-hidden mb-[5px]">
         <img src={img} className="h-full w-full object-cover" />
       </div>
-      <div className="font-bold text-[15px]">{title}</div>
+      <div className="font-bold text-[15px]">{title.slice(0, 30)}</div>
       <div className="flex gap-[5px] items-center">
         <MdOutlineStarPurple500 className="text-[#da4b63]" />
         {rating}/10

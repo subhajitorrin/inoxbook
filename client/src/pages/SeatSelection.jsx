@@ -9,7 +9,7 @@ import Seat from "../components/SeatSelection/Seat";
 import BookingTicket from "../components/SeatSelection/BookingTicket";
 import { toast } from "react-toastify";
 
-function SeatSelection() {
+function SeatSelection({ user, settoggleLogin }) {
   const navigate = useNavigate();
   const { id } = useParams();
   const [movieId, setMovieId] = useState(null);
@@ -210,6 +210,11 @@ function SeatSelection() {
   }
 
   async function handleBookTicket() {
+    if (!user) {
+      settoggleLogin(true);
+      return;
+    }
+
     const blockRes = await blockTheSeats();
     if (!blockRes) {
       return;

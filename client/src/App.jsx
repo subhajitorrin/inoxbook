@@ -14,12 +14,27 @@ import ToastifyContainer from "./components/ToastifyContainer";
 import axios from "axios";
 import Admin from "./pages/Admin";
 import BookingTicket from "./components/SeatSelection/BookingTicket";
+import Sidenavbar from "./components/SideNavbar/Sidenavbar";
 
 function App() {
   const [toggleLogin, settoggleLogin] = useState(false);
+  const [toggleSideNavbar, settoggleSideNavbar] = useState(false);
   const [wrappersArr, setWrappersArr] = useState([true, false, false, false]);
   const [user, setuser] = useState(null);
   const location = useLocation();
+
+  useEffect(() => {
+    if (toggleSideNavbar) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [toggleSideNavbar]);
+
   useEffect(() => {
     if (toggleLogin) {
       gsap.to("#loginContainer", {
@@ -70,7 +85,9 @@ function App() {
   }, [toggleLogin]);
   const shouldHideNavbar =
     location.pathname.startsWith("/seatmatrix") ||
-    location.pathname.startsWith("/admin") || location.pathname.startsWith("/payment");
+    location.pathname.startsWith("/admin") ||
+    location.pathname.startsWith("/payment");
+
   return (
     <div className="">
       <Login
@@ -79,16 +96,33 @@ function App() {
         wrappersArr={wrappersArr}
         setWrappersArr={setWrappersArr}
       />
+      <Sidenavbar
+        toggleSideNavbar={toggleSideNavbar}
+        settoggleSideNavbar={settoggleSideNavbar}
+        user={user}
+        settoggleLogin={settoggleLogin}
+        setuser={setuser}
+        setWrappersArr={setWrappersArr}
+      />
       {!shouldHideNavbar && (
         <Navbar
           settoggleLogin={settoggleLogin}
           user={user}
           setuser={setuser}
           setWrappersArr={setWrappersArr}
+          settoggleSideNavbar={settoggleSideNavbar}
         />
       )}
       <Routes>
-        <Route path="/" element={<Home settoggleLogin={settoggleLogin} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              settoggleLogin={settoggleLogin}
+              toggleSideNavbar={toggleSideNavbar}
+            />
+          }
+        />
         <Route path="/moviedetail/:id" element={<MovieDetail />} />
         <Route path="/timings/:id" element={<MovieTiming />} />
         <Route path="/admin" element={<Admin />} />
