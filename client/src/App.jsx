@@ -5,7 +5,7 @@ import MovieDetail from "./pages/MovieDetail";
 import MovieTiming from "./pages/MovieTiming";
 import SeatSelection from "./pages/SeatSelection";
 import Navbar from "./components/Navbar";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import "./App.css";
 import gsap from "gsap";
 import { toast } from "react-toastify";
@@ -19,7 +19,7 @@ import Sidenavbar from "./components/SideNavbar/Sidenavbar";
 function App() {
   const [toggleLogin, settoggleLogin] = useState(false);
   const [toggleSideNavbar, settoggleSideNavbar] = useState(false);
-  const [wrappersArr, setWrappersArr] = useState([true, false, false, false]);
+  const [wrappersArr, setWrappersArr] = useState([false, false, true, false]);
   const [user, setuser] = useState(null);
   const location = useLocation();
 

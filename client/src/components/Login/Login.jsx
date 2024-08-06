@@ -2,15 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import { TfiEmail } from "react-icons/tfi";
 import { RxCross2 } from "react-icons/rx";
 import { FaAngleLeft } from "react-icons/fa";
-import OtpBox from "./OtpBox";
+import OtpBox from "../OtpBox";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { RiAdminLine } from "react-icons/ri";
+import OtpRow from "./OtpRow";
 
 function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
   // const [wrappersArr, setWrappersArr] = useState([true, false, false, false]);
-  const [otpArray, setOtpArray] = useState(["", "", "", "", ""]);
+  const [otp, setOtp] = useState(null);
   const [email, setemail] = useState("");
   const [name, setname] = useState("");
   const [isOtpScreen, setisOtpScreen] = useState(false);
@@ -58,26 +59,16 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
     }
   }
 
-  const handleFocusNext = (index) => {
-    const nextIndex = index + 1;
-    if (nextIndex < otpArray.length) {
-      document.querySelectorAll(".otpInputFields")[nextIndex].focus();
-    }
-  };
-
-  const handleFocusPrev = (index) => {
-    const prevIndex = index - 1;
-    if (prevIndex >= 0) {
-      document.querySelectorAll(".otpInputFields")[prevIndex].focus();
-    }
-  };
-
   async function handleVerifyOtp() {
+    if (otp.length !== 5) {
+      toast.warning("Fill the otp");
+      return;
+    }
     try {
       setverifyLoading(true);
       const serverres = await axios.post(
         "http://localhost:5000/verifyotp",
-        { email, optid, otp: otpArray.join("") },
+        { email, optid, otp },
         {
           headers: {
             "Content-Type": "application/json",
@@ -234,17 +225,8 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
             </div>
             <div className="">
               <p className="font-[500] mb-[10px]">Enter OTP</p>
-              <div className="flex justify-between w-full">
-                {otpArray.map((item, index) => (
-                  <OtpBox
-                    key={index}
-                    index={index}
-                    onFocusNext={handleFocusNext}
-                    onFocusPrev={handleFocusPrev}
-                    isOtpScreen={isOtpScreen}
-                    setOtpArray={setOtpArray}
-                  />
-                ))}
+              <div className="w-full">
+                <OtpRow setOtp={setOtp} />
               </div>
             </div>
             <div className="">
