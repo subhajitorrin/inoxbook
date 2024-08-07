@@ -26,27 +26,26 @@ const isEmpty = (obj) => {
 }
 
 const initializeSeatMatrix = async (screen) => {
+    console.log(screen);
     const categoryList = [screen.category1, screen.category2, screen.category3].filter(item => item && item.seats && item.price && item.name);
-    const breakPoint = 20
     let seatmatrix = []
     let alpha = 'A'
     let prevAlpha = ''
 
     categoryList.forEach((item, index) => {
-        console.log(isEmpty(item));
         let seatrows = []
         for (let i = 0; i < item.seats; i++) {
-            if (i % breakPoint === 0) {
+            if (i % item.rowBreak === 0) {
                 seatrows.push({ row: alpha, columns: [] })
                 prevAlpha = alpha
                 alpha = String.fromCharCode(alpha.charCodeAt(0) + 1);
             }
             seatrows[seatrows.length - 1].columns.push({
-                column: (i % breakPoint) + 1,
+                column: (i % item.rowBreak) + 1,
                 category: item.name,
                 price: item.price,
                 isBooked: false,
-                seatCode: `${prevAlpha}${(i % breakPoint) + 1}`
+                seatCode: `${prevAlpha}${(i % item.rowBreak) + 1}`
             })
         }
         let obj = {
@@ -129,7 +128,7 @@ async function deleteCategory(req, res) {
 
         const screenRes = await screenModel.findById(scrid);
 
-        console.log(screenRes);
+        // console.log(screenRes);
 
 
 

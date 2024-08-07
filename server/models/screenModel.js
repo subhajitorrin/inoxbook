@@ -16,19 +16,25 @@ const screenSchema = new mongoose.Schema({
         id: { type: String },
         name: { type: String },
         seats: { type: Number },
-        price: { type: Number }
+        price: { type: Number },
+        rowBreak: { type: Number },
+        gaps: { type: String },
     },
     category2: {
         id: { type: String },
         name: { type: String },
         seats: { type: Number },
-        price: { type: Number }
+        price: { type: Number },
+        rowBreak: { type: Number },
+        gaps: { type: String },
     },
     category3: {
         id: { type: String },
         name: { type: String },
         seats: { type: Number },
-        price: { type: Number }
+        price: { type: Number },
+        rowBreak: { type: Number },
+        gaps: { type: String },
     }
 });
 

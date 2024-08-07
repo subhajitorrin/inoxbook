@@ -1,17 +1,43 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { MdArrowDropDown } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
 
 function Screen({ screenData, theaterId, settoggleFetchScreens }) {
   const [name, setName] = useState("");
   const [categories, setCategories] = useState([]);
+  const [seatGapToggles, setSeatGapToggles] = useState({});
+
+  useEffect(() => {
+    console.log(categories);
+  }, [categories]);
 
   const handleCategoryChange = (id, field, value) => {
-    setCategories(
-      categories.map((category) =>
-        category.id === id ? { ...category, [field]: value } : category
-      )
-    );
+    if (field == "seats" || field == "price" || field == "rowBreak") {
+      const numArr = value.split("");
+      for (let i = 0; i < numArr.length; i++) {
+        if (!(numArr[i] >= 0 && numArr[i] <= 9)) {
+          return;
+        }
+      }
+    }
+
+    if (field === "gaps") {
+      setCategories(
+        categories.map((category) =>
+          category.id === id
+            ? { ...category, [field]: [...category[field], value] }
+            : category
+        )
+      );
+    } else {
+      setCategories(
+        categories.map((category) =>
+          category.id === id ? { ...category, [field]: value } : category
+        )
+      );
+    }
   };
 
   const handleAddCategory = () => {
@@ -21,7 +47,14 @@ function Screen({ screenData, theaterId, settoggleFetchScreens }) {
     }
     setCategories([
       ...categories,
-      { id: Date.now(), name: "", seats: "", price: "" },
+      {
+        id: Date.now(),
+        name: "",
+        seats: "",
+        price: "",
+        rowBreak: "",
+        gaps: [],
+      },
     ]);
   };
 
@@ -75,6 +108,8 @@ function Screen({ screenData, theaterId, settoggleFetchScreens }) {
           price: category.price || 0,
           name: category.name || "",
           id: category.id || "",
+          rowBreak: category.rowBreak || 10,
+          gaps: category.gaps.join("-"),
         };
       });
 
@@ -104,8 +139,24 @@ function Screen({ screenData, theaterId, settoggleFetchScreens }) {
       screenData.category2,
       screenData.category3,
     ].filter(Boolean);
+    if (updatedCategories[0]) {
+      updatedCategories[0].gaps = updatedCategories[0].gaps.split("-");
+    }
+    if (updatedCategories[1]) {
+      updatedCategories[1].gaps = updatedCategories[1].gaps.split("-");
+    }
+    if (updatedCategories[2]) {
+      updatedCategories[2].gaps = updatedCategories[2].gaps.split("-");
+    }
     setCategories(updatedCategories);
   }, [screenData]);
+
+  const handleClearGaps = (categoryId) => {
+    const temp = categories.map((cat) =>
+      cat.id === categoryId ? { ...cat, gaps: [] } : cat
+    );
+    setCategories(temp);
+  };
 
   return (
     <div className="flex gap-[20px] flex-col border-b border-[#ffffff61] pb-[2rem]">
@@ -120,55 +171,150 @@ function Screen({ screenData, theaterId, settoggleFetchScreens }) {
           }}
           type="text"
           value={name}
-          className="h-[40px] rounded-[5px] px-[20px] w-[280px] outline-none"
+          className="h-[40px] rounded-[5px] px-[20px] w-[100%] outline-none ml-[4px]"
           placeholder="Enter screen name"
         />
       </div>
-      {categories.map((category, index) => (
-        <div
-          key={category._id || index}
-          className="flex gap-[1rem] justify-between"
-        >
-          <p className="text-[15px] w-[150px]">Category {index+1}</p>
-          <div className="flex flex-col gap-[20px]">
-            <input
-              onChange={(e) => {
-                handleCategoryChange(category.id, "name", e.target.value);
-              }}
-              type="text"
-              value={category.name}
-              className="h-[40px] rounded-[5px] px-[20px] w-[280px] outline-none"
-              placeholder="Enter category name"
-            />
-            <div className="flex gap-[20px]">
+      {categories.map((category, index) => {
+        return (
+          <div
+            key={category._id || index}
+            className="flex gap-[1rem] justify-between "
+          >
+            <p className="text-[15px] w-[150px]">Category {index + 1}</p>
+            <div className="flex flex-col gap-[20px] w-[100%]">
               <input
                 onChange={(e) => {
-                  handleCategoryChange(category.id, "seats", e.target.value);
+                  handleCategoryChange(category.id, "name", e.target.value);
                 }}
                 type="text"
-                value={category.seats}
-                className="h-[40px] rounded-[5px] px-[20px] w-[130px] outline-none"
-                placeholder="Seats"
+                value={category.name}
+                className="h-[40px] rounded-[5px] px-[20px] w-[100%] outline-none"
+                placeholder="Enter category name"
               />
-              <input
-                onChange={(e) => {
-                  handleCategoryChange(category.id, "price", e.target.value);
-                }}
-                type="text"
-                value={category.price}
-                className="h-[40px] rounded-[5px] px-[20px] w-[130px] outline-none"
-                placeholder="Price"
-              />
+              <div className="flex gap-[20px] justify-between">
+                <div className="flex flex-col gap-[5px] mt-[-10px]">
+                  <p className="text-center">Seats</p>
+                  <input
+                    onChange={(e) => {
+                      handleCategoryChange(
+                        category.id,
+                        "seats",
+                        e.target.value
+                      );
+                    }}
+                    maxLength={3}
+                    type="text"
+                    value={category.seats}
+                    className="h-[40px] rounded-[5px] px-[20px] w-[80px] outline-none"
+                    placeholder="Seats"
+                  />
+                </div>
+                <div className="flex flex-col gap-[5px] mt-[-10px]">
+                  <p className="text-center">Price</p>
+                  <input
+                    onChange={(e) => {
+                      handleCategoryChange(
+                        category.id,
+                        "price",
+                        e.target.value
+                      );
+                    }}
+                    maxLength={4}
+                    type="text"
+                    value={category.price}
+                    className="h-[40px] rounded-[5px] px-[20px] w-[80px] outline-none"
+                    placeholder="Price"
+                  />
+                </div>
+                <div className="flex flex-col gap-[5px] mt-[-10px]">
+                  <p className="text-center">Row Break</p>
+                  <input
+                    onChange={(e) => {
+                      handleCategoryChange(
+                        category.id,
+                        "rowBreak",
+                        e.target.value
+                      );
+                    }}
+                    maxLength={2}
+                    type="text"
+                    value={category.rowBreak}
+                    className="h-[40px] rounded-[5px] px-[20px] w-[80px] outline-none"
+                    placeholder="Break"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col gap-[5px] mt-[-10px]">
+                <p className="">Gap at seat</p>
+                <div className="flex relative">
+                  {seatGapToggles[category.id] && (
+                    <div className="overflow-y-auto py-[10px] flex flex-col gap-[10px] max-h-[230px] w-full bg-white absolute top-[110%] rounded-[5px] text-black">
+                      {category.rowBreak == "" ? (
+                        <p className="hover:bg-[#e6e6e6] bg-white cursor-pointer text-center py-[5px]">
+                          Enter max seats per row
+                        </p>
+                      ) : (
+                        Array.from(
+                          { length: category.rowBreak },
+                          (_, index) => (
+                            <p
+                              key={index}
+                              onClick={() => {
+                                handleCategoryChange(
+                                  category.id,
+                                  "gaps",
+                                  index + 1
+                                );
+                              }}
+                              className="hover:bg-[#e6e6e6] bg-white cursor-pointer text-center py-[5px]"
+                            >
+                              Gap at seat {index + 1}
+                            </p>
+                          )
+                        )
+                      )}
+                    </div>
+                  )}
+                  <div className="relative w-[85%]">
+                    <textarea
+                      type="text"
+                      className="overflow-y-visible py-[5px] border border-white bg-transparent w-[100%] min-h-[40px] rounded-l-[7px] outline-none px-[20px] cursor-default"
+                      readOnly={true}
+                      placeholder="Gap at seat"
+                      value={category.gaps.join(", ")}
+                    />
+                    <span
+                      onClick={() => {
+                        handleClearGaps(category.id);
+                      }}
+                    >
+                      <RxCross2 className="absolute right-[10px] top-[30%] cursor-pointer" />
+                    </span>
+                  </div>
+                  <div
+                    onClick={() => {
+                      setSeatGapToggles((prev) => ({
+                        ...prev,
+                        [category.id]: !prev[category.id],
+                      }));
+                    }}
+                    className="h-[91%] flex items-center justify-center w-[15%] border-r border-t border-b rounded-r-[7px] border-white cursor-pointer"
+                  >
+                    <MdArrowDropDown className="text-[25px]" />
+                  </div>
+                </div>
+              </div>
+              <button
+                className="bg-red-500 text-white py-[5px] px-[10px] rounded-[5px] mb-[10px]"
+                onClick={() => handleDeleteCategory(category.id)}
+              >
+                Delete
+              </button>
             </div>
-            <button
-              className="bg-red-500 text-white py-[5px] px-[10px] rounded-[5px]"
-              onClick={() => handleDeleteCategory(category.id)}
-            >
-              Delete
-            </button>
           </div>
-        </div>
-      ))}
+        );
+      })}
       <div className="flex gap-[20px]">
         <button
           className="w-full bg-blue-500 text-white py-[5px] rounded-[5px]"
