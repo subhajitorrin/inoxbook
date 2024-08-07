@@ -50,6 +50,7 @@ function OtpRow({ setOtp }) {
   function handlePaste(e) {
     e.preventDefault();
     let data = e.clipboardData.getData("text");
+    data = data.trim();
     if (data.length > 5) {
       toast.warn("Wrong OTP!");
       return;

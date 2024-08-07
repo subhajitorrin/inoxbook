@@ -20,6 +20,7 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
   const [verifyLoading, setverifyLoading] = useState(false);
   const [resendTimer, setresendTimer] = useState(null);
   const emailRef = useRef(null);
+  const nameRef = useRef(null);
 
   useEffect(() => {
     if (!resendTimer) return;
@@ -80,6 +81,8 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
         setuser(serverres.data);
         settoggleLogin(false);
         localStorage.setItem("userid", serverres.data.userId);
+        setemail("");
+        setname("");
         toast.success("Login Successfull");
       }
       if (serverres.status == 201) {
@@ -121,9 +124,11 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
           }
         );
         if (serverRes.status == 200) {
-          toast.success("Login Successfull");
           settoggleLogin(false);
+          setemail("");
+          setname("");
           localStorage.setItem("userid", serverRes.data.userId);
+          toast.success("Login Successfull");
         }
       }
     } catch (err) {
@@ -137,7 +142,16 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
     if (emailRef.current) {
       emailRef.current.focus();
     }
+    if (nameRef.current) {
+      nameRef.current.focus();
+    }
   }, [wrappersArr]);
+
+  useEffect(() => {
+    if (otp && otp.length === 5) {
+      handleVerifyOtp();
+    }
+  }, [otp]);
 
   return (
     <div
@@ -196,7 +210,6 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                      console.log(e.key);
                       handleSendOtp();
                     }
                   }}
@@ -294,6 +307,12 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
                   onChange={(e) => {
                     setname(e.target.value);
                   }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleCreateUser();
+                    }
+                  }}
+                  ref={nameRef}
                   value={name}
                   type="text"
                   placeholder="Enter your name"
