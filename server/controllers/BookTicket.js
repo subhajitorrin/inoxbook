@@ -45,14 +45,14 @@ async function bookticket(req, res) {
                 <li><strong>Seat Count:</strong> ${BookingData.seatCount}</li>
                 <li><strong>Booked Seats:</strong> ${arrToString(BookingData.seats)}</li>
                 <li><strong>Seat Category:</strong> ${BookingData.seatCategory}</li>
-                <li><strong>Price:</strong> ₹${BookingData.price}</li>
+                <li><strong>Price:</strong> ₹${BookingData.price * BookingData.seatCount}</li>
                 <li><strong>Screen:</strong> ${BookingData.screen}</li>
             </ul>
             <p>We hope you have a great time at the movie!</p>
             <p>If you have any questions or need further assistance, feel free to contact us.</p>
             <p>Best regards,<br>INOXBOOK Team</p>
         `;
-        // await mailSender(email, title, body)
+        await mailSender(email, title, body)
 
         res.status(200).json({ msg: "Booking successful", ticket: "" });
     } catch (error) {

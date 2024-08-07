@@ -52,15 +52,15 @@ function AdminDashboard({ setisLoggedInAdmin }) {
     }
   }
 
-  useEffect(() => {
-    window.addEventListener("beforeunload", (event) => {
-      setisLoggedInAdmin(false);
-      localStorage.removeItem("updateMovieId");
-      localStorage.removeItem("isAdminLoggedIn");
-      localStorage.removeItem("activeIndex");
-      localStorage.removeItem("theaterId");
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("beforeunload", (event) => {
+  //     setisLoggedInAdmin(false);
+  //     localStorage.removeItem("updateMovieId");
+  //     localStorage.removeItem("isAdminLoggedIn");
+  //     localStorage.removeItem("activeIndex");
+  //     localStorage.removeItem("theaterId");
+  //   });
+  // }, []);
 
   return (
     <div className="adminDashboardContainer">

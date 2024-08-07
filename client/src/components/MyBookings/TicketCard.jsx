@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import QRCode from "react-qr-code";
+import domtoimage from "dom-to-image";
 
 function TicketCard({ ticketId }) {
   const [ticket, setTicket] = useState(null);
   const [movieId, setMovieId] = useState(null);
   const [poster, setPoster] = useState(null);
+  const ticketRef = useRef(null);
   useEffect(() => {
     async function fetchTicketDetail(ticketId) {
       try {
@@ -38,11 +40,30 @@ function TicketCard({ ticketId }) {
     }
     if (movieId) fetchPoster(movieId);
   }, [movieId]);
+
+  async function handleDownloadTicket() {
+    if (ticketRef.current) {
+      try {
+        const data = await domtoimage.toJpeg(ticketRef.current);
+        let link = document.createElement("a");
+        link.download = `Ticket-${ticket.bookingId}`;
+        link.href = data;
+        link.click();
+      } catch (err) {
+        console.log("Error while download ticket", err);
+      }
+    }
+  }
+
   return (
     ticket &&
     movieId &&
     poster && (
-      <div className="bg-white shadow-lg cursor-pointer select-none gap-[1rem] rounded-[10px] p-[1.5rem] h-[550px] w-[380px] border border-[#00000030] flex flex-col justify-between">
+      <div
+        ref={ticketRef}
+        className="bg-white shadow-lg cursor-pointer select-none gap-[1rem] rounded-[10px] p-[1.5rem] h-[550px] w-[380px] border border-[#00000030] flex flex-col justify-between"
+        onClick={handleDownloadTicket}
+      >
         <div className="h-[45%] w-full flex gap-[1rem] ">
           <div className="rounded-[10px] w-[150px] h-[100%] overflow-hidden">
             <img src={poster} alt="" className="h-full object-cover" />
