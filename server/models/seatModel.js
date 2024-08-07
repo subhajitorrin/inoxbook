@@ -5,7 +5,7 @@ const seatSchema = new mongoose.Schema({
     category: { type: String, required: true },
     price: { type: Number, required: true },
     isBooked: { type: Boolean, default: false },
-    seatCode: { type: String, required: true }
+    seatCode: { type: String, required: true },
 });
 
 const seatModel = mongoose.model('seats', seatSchema);

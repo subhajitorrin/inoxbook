@@ -324,7 +324,7 @@ function SeatSelection({ user, settoggleLogin }) {
               style={{
                 marginBottom: selectedCategory.length > 0 ? "130px" : "50px",
               }}
-              className="ml-[60px]"
+              className="ml-[60px] mt-[2rem]"
             >
               <img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" />
             </div>

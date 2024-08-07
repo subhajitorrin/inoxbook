@@ -26,7 +26,6 @@ const isEmpty = (obj) => {
 }
 
 const initializeSeatMatrix = async (screen) => {
-    console.log(screen);
     const categoryList = [screen.category1, screen.category2, screen.category3].filter(item => item && item.seats && item.price && item.name);
     let seatmatrix = []
     let alpha = 'A'
@@ -34,6 +33,7 @@ const initializeSeatMatrix = async (screen) => {
 
     categoryList.forEach((item, index) => {
         let seatrows = []
+        const gaps = item.gaps.split("-")
         for (let i = 0; i < item.seats; i++) {
             if (i % item.rowBreak === 0) {
                 seatrows.push({ row: alpha, columns: [] })
@@ -48,10 +48,12 @@ const initializeSeatMatrix = async (screen) => {
                 seatCode: `${prevAlpha}${(i % item.rowBreak) + 1}`
             })
         }
+
         let obj = {
             category: item.name,
             price: item.price,
-            seatrows
+            seatrows,
+            gaps
         }
         seatmatrix.push(obj)
     })

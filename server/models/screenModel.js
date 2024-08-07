@@ -9,7 +9,8 @@ const screenSchema = new mongoose.Schema({
         seatrows: [{
             row: { type: String },
             columns: { type: [seatSchema], default: [] }
-        }]
+        }],
+        gaps: { type: [Number], default: [] }
     }],
     theaterId: { type: mongoose.Schema.Types.ObjectId, ref: 'theaters', required: true },
     category1: {

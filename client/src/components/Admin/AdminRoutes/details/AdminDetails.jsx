@@ -102,7 +102,7 @@ function AdminDetails() {
   return (
     <div className="h-full w-full p-[3%] flex justify-evenly">
       {/* theater details */}
-      {/* <div className="flex flex-col gap-[2rem] w-[440px]">
+      <div className="flex flex-col gap-[2rem] w-[440px]">
         <p className="pb-[10px] text-center font-bold text-[18px] border-b border-[#ffffff61]">
           Theater Detail
         </p>
@@ -131,7 +131,7 @@ function AdminDetails() {
             cols="30"
             value={address}
             rows="3"
-            className="bg-transparent p-[20px] border border-white rounded-[7px] outline-none"
+            className="bg-transparent p-[20px] border border-white rounded-[7px] outline-none h-[170px]"
             placeholder="Enter theater address"
           ></textarea>
         </div>
@@ -157,7 +157,7 @@ function AdminDetails() {
             Save
           </button>
         </div>
-      </div> */}
+      </div>
       {/* screen details */}
       <div className="w-[440px] flex flex-col gap-[2rem] overflow-y-auto scrollNone">
         <p className="pb-[10px] text-center font-bold text-[18px] border-b border-[#ffffff61]">

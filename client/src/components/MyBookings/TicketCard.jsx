@@ -115,7 +115,7 @@ function TicketCard({ ticketId }) {
         </div>
         <div className="flex justify-between text-[.9rem] font-[500]">
           <p className="">Total Amount</p>
-          <p>Rs.{ticket.price * ticket.seatCount}.00</p>
+          <p>Rs.{ticket.price}.00</p>
         </div>
       </div>
     )
