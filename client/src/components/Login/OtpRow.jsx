@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 function OtpRow({ setOtp }) {
   const [otpArr, setOtpArr] = useState(new Array(5).fill(""));
+  const firstOtpRef = useRef(null);
+  const lastOtpRef = useRef(null);
   function handleInputChange(ele, index) {
     const value = ele.value;
     if (!(value >= 0 && value <= 9)) {
@@ -38,11 +41,49 @@ function OtpRow({ setOtp }) {
     setOtp(otpArr.join(""));
   }, [otpArr]);
 
+  useEffect(() => {
+    if (firstOtpRef.current) {
+      firstOtpRef.current.focus();
+    }
+  }, []);
+
+  function handlePaste(e) {
+    e.preventDefault();
+    let data = e.clipboardData.getData("text");
+    if (data.length > 5) {
+      toast.warn("Wrong OTP!");
+      return;
+    }
+    const tempOtpArr = data.split("");
+    for (let i = 0; i < tempOtpArr.length; i++) {
+      if (!(parseInt(tempOtpArr[i]) >= 0 && parseInt(tempOtpArr[i]) <= 9)) {
+        toast.warn("Wrong OTP!");
+        return;
+      }
+    }
+    let strToNumOtp = [];
+    for (let i = 0; i < tempOtpArr.length; i++) {
+      strToNumOtp[i] = parseInt(tempOtpArr[i]);
+    }
+    setOtpArr(strToNumOtp);
+    if (lastOtpRef.current) {
+      lastOtpRef.current.focus();
+    }
+  }
+
   return (
     <div className="flex justify-between">
       {otpArr.map((item, index) => {
         return (
           <input
+            ref={
+              index === 0
+                ? firstOtpRef
+                : index === otpArr.length - 1
+                ? lastOtpRef
+                : null
+            }
+            value={item}
             key={index}
             maxLength="1"
             type="text"
@@ -66,6 +107,7 @@ function OtpRow({ setOtp }) {
             onClick={(e) => {
               handleOnClick(e.target, index);
             }}
+            onPaste={index === 0 ? handlePaste : null}
           />
         );
       })}

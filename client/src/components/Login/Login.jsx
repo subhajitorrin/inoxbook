@@ -19,6 +19,7 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
   const [isLoading, setIsLoading] = useState(false);
   const [verifyLoading, setverifyLoading] = useState(false);
   const [resendTimer, setresendTimer] = useState(null);
+  const emailRef = useRef(null);
 
   useEffect(() => {
     if (!resendTimer) return;
@@ -79,6 +80,7 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
         setuser(serverres.data);
         settoggleLogin(false);
         localStorage.setItem("userid", serverres.data.userId);
+        toast.success("Login Successfull");
       }
       if (serverres.status == 201) {
         toast.success("OTP verified");
@@ -93,6 +95,8 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
     } catch (err) {
       console.log(err);
     } finally {
+      setemail("");
+      setname("");
       setverifyLoading(false);
     }
   }
@@ -130,6 +134,12 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
       setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (emailRef.current) {
+      emailRef.current.focus();
+    }
+  }, [wrappersArr]);
 
   return (
     <div
@@ -182,8 +192,15 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
               <div className="">
                 <p className="font-[500] mb-[10px]">Email</p>
                 <input
+                  ref={emailRef}
                   onChange={(e) => {
                     setemail(e.target.value);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      console.log(e.key);
+                      handleSendOtp();
+                    }
                   }}
                   value={email}
                   type="email"
