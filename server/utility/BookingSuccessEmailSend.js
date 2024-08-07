@@ -144,7 +144,7 @@ function HtmlContent(BookingData, poster, qrCodeUrl) {
           </div>
           <div class="footer">
             <p>Total Amount</p>
-            <p>Rs.${BookingData.price * BookingData.seatCount}</p>
+            <p>Rs.${BookingData.price}</p>
           </div>
         </div>
       </body>
@@ -196,7 +196,7 @@ async function BookingSuccessEmailSend(user, BookingData, poster) {
                 <li><strong>Seat Count:</strong> ${BookingData.seatCount}</li>
                 <li><strong>Booked Seats:</strong> ${arrToString(BookingData.seats)}</li>
                 <li><strong>Seat Category:</strong> ${BookingData.seatCategory}</li>
-                <li><strong>Price:</strong> ₹${BookingData.price * BookingData.seatCount}</li>
+                <li><strong>Price:</strong> ₹${BookingData.price}</li>
                 <li><strong>Screen:</strong> ${BookingData.screen}</li>
                 <li><strong>Booking Id:</strong> ${BookingData.bookingId}</li>
             </ul>

@@ -4,6 +4,7 @@ import BookingSuccessEmailSend from "../utility/BookingSuccessEmailSend.js";
 
 async function bookticket(req, res) {
     const { user, BookingData, poster } = req.body;
+    console.log("Price is ",BookingData.price);
     const bookingId = generateRandomString()
     BookingData.bookingId = bookingId
     try {

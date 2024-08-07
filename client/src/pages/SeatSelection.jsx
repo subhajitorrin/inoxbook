@@ -172,11 +172,11 @@ function SeatSelection({ user, settoggleLogin }) {
     };
   }, []);
 
-  async function handlePayment() {
+  async function handlePayment(withGstPrice) {
     return new Promise((resolve, reject) => {
       const options = {
         key: "rzp_test_7cs83Ikm791P0j",
-        amount: parseInt(totalPrice * 100),
+        amount: parseInt(withGstPrice * 100),
         currency: "INR",
         name: "INOXBOOK",
         description: "Book your seat",
@@ -189,12 +189,12 @@ function SeatSelection({ user, settoggleLogin }) {
           resolve(true);
         },
         prefill: {
-          name: "Subhajit Ghosh",
-          email: "clashwithsubhajit6@gmail.com",
-          contact: "9800952875",
+          name: user.name,
+          email: user.email,
+          contact: "",
         },
         notes: {
-          address: "Junbedia, Bankura",
+          address: "",
         },
         theme: {
           color: "#3399cc",
@@ -211,18 +211,36 @@ function SeatSelection({ user, settoggleLogin }) {
     });
   }
 
-  async function handleBookTicket() {
-    const paymentRes = await handlePayment();
+  async function handleBookTicket(withGstPrice) {
+    let starIdsArr = [];
+    selectedCategory.forEach((item) => {
+      starIdsArr.push(item.seatid);
+    });
+    const dateWeekDay = `${getWeekday(date)}, ${formatDate(date)}`;
+    const obj = {
+      moviename: movieDetail.title,
+      movieId,
+      language: "Hindi",
+      date: dateWeekDay,
+      time: time,
+      theater: `${theaterDetail.name}, ${theaterDetail.location}`,
+      seatCount: selectedCategory.length,
+      seatCategory: activeCategory.categoryname,
+      price: withGstPrice,
+      screen: screen.name,
+      seats: starIdsArr,
+    };
+
+    const paymentRes = await handlePayment(withGstPrice);
     if (!paymentRes) {
       toast.warning("Payment failed!");
       return;
     }
 
-
     try {
       const res = await axios.post("http://localhost:5000/bookticket", {
         user,
-        BookingData: paymentData,
+        BookingData: obj,
         poster: movieDetail.posterUrl,
       });
       if (res.status === 200) {
@@ -331,7 +349,10 @@ function SeatSelection({ user, settoggleLogin }) {
             )}
           </>
         ) : (
-          <Payment handleBookTicket={handleBookTicket} paymentData={paymentData} setTotalPriceX={setTotalPrice}/>
+          <Payment
+            handleBookTicket={handleBookTicket}
+            paymentData={paymentData}
+          />
         )}
       </div>
     )

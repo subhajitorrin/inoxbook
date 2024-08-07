@@ -209,7 +209,7 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
                     setemail(e.target.value);
                   }}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") {
+                    if (e.key === "Enter" && !isLoading) {
                       handleSendOtp();
                     }
                   }}
@@ -308,7 +308,7 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
                     setname(e.target.value);
                   }}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") {
+                    if (e.key === "Enter" && !isLoading) {
                       handleCreateUser();
                     }
                   }}

@@ -3,15 +3,18 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { IoTicketOutline } from "react-icons/io5";
 import { PiDeviceMobile } from "react-icons/pi";
 
-function Payment({ handleBookTicket, paymentData, setTotalPriceX }) {
+function Payment({ handleBookTicket, paymentData }) {
   const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(()=>{
+    console.log(paymentData);
+  },[paymentData])
 
   useEffect(() => {
     const calculatedPrice =
       Math.floor(paymentData.price * paymentData.seatCount * 0.18) +
       paymentData.price * paymentData.seatCount;
     setTotalPrice(calculatedPrice);
-    setTotalPriceX(calculatedPrice);
   }, [paymentData]);
 
   return (
