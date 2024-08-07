@@ -6,8 +6,8 @@ import HeaderSeatSelection from "../components/SeatSelection/HeaderSeatSelection
 import SeatFlagHeader from "../components/SeatSelection/SeatFlagHeader";
 import SeatCategory from "../components/SeatSelection/SeatCategory";
 import Seat from "../components/SeatSelection/Seat";
-import BookingTicket from "../components/SeatSelection/BookingTicket";
 import { toast } from "react-toastify";
+import Payment from "../components/SeatSelection/Payment";
 
 function SeatSelection({ user, settoggleLogin }) {
   const navigate = useNavigate();
@@ -29,6 +29,8 @@ function SeatSelection({ user, settoggleLogin }) {
   const [isBookingPage, setIsBookingPage] = useState(false);
   const [alreadyBookedList, setAlreadyBookedList] = useState([]);
   const [toggle, settoggle] = useState(false);
+  const [paymentToggle, setPaymentToggle] = useState(false);
+  const [paymentData, setPaymentData] = useState(null);
 
   useEffect(() => {
     const params = id.split("-");
@@ -210,19 +212,39 @@ function SeatSelection({ user, settoggleLogin }) {
   }
 
   async function handleBookTicket() {
+    const paymentRes = await handlePayment();
+    if (!paymentRes) {
+      toast.warning("Payment failed!");
+      return;
+    }
+
+
+    try {
+      const res = await axios.post("http://localhost:5000/bookticket", {
+        user,
+        BookingData: paymentData,
+        poster: movieDetail.posterUrl,
+      });
+      if (res.status === 200) {
+        setSelectedCategory([]);
+        setactiveCategory(null);
+        toast.success("Ticket booking successfull");
+        navigate(`/mybookings/${user.userId}`);
+      } else if (202) {
+        toast.warn("Try again later!");
+      }
+    } catch (Err) {
+      console.log("Error while booking ticket", Err);
+    }
+  }
+
+  async function handleGotoPayment() {
     if (!user) {
       settoggleLogin(true);
       return;
     }
-
     const blockRes = await blockTheSeats();
     if (!blockRes) {
-      return;
-    }
-
-    const paymentRes = await handlePayment();
-    if (!paymentRes) {
-      toast.warning("Payment failed!");
       return;
     }
 
@@ -245,24 +267,11 @@ function SeatSelection({ user, settoggleLogin }) {
       seats: starIdsArr,
     };
 
-    try {
-      const res = await axios.post("http://localhost:5000/bookticket", {
-        user,
-        BookingData: obj,
-        poster: movieDetail.posterUrl,
-      });
-      if (res.status === 200) {
-        setSelectedCategory([]);
-        setactiveCategory(null);
-        toast.success("Ticket booking successfull");
-        navigate(`/mybookings/${user.userId}`);
-      } else if (202) {
-        toast.warn("Try again later!");
-      }
-    } catch (Err) {
-      console.log("Error while booking ticket", Err);
-    }
+    setPaymentData(obj);
+
+    setPaymentToggle(true);
   }
+
   return (
     id && (
       <div className="w-full flex items-center flex-col gap-[2rem] select-none relative ">
@@ -273,50 +282,56 @@ function SeatSelection({ user, settoggleLogin }) {
           date={date}
           time={time}
         />
-        {/* Seat flags header */}
-        <SeatFlagHeader date={date} />
-        {/* Body portion */}
-        <div className="flex w-[60%] flex-wrap  ">
-          {seatMatrix.map((item, index) => {
-            return (
-              <SeatCategory
-                key={index}
-                category={item}
-                setSelectedCategory={setSelectedCategory}
-                setactiveCategory={setactiveCategory}
-                activeCategory={activeCategory}
-                alreadyBookedList={alreadyBookedList}
-              />
-            );
-          })}
-        </div>
-        {/* screen this side */}
-        <div
-          style={{
-            marginBottom: selectedCategory.length > 0 ? "130px" : "50px",
-          }}
-          className="ml-[60px]"
-        >
-          <img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" />
-        </div>
-        {/* selected seat display */}
-        {selectedCategory.length > 0 && (
-          <div className="flex justify-evenly items-center w-full bg-white border-t border-[#00000030] fixed bottom-0 h-[100px]">
-            <div className="font-[500] text-[17px]">
-              <p className="text-[18px] font-bold">&#8377;{totalPrice}</p>
-              <p>
-                Tickets {selectedCategory.length} x {activeCategory.price}
-              </p>
+        {!paymentToggle ? (
+          <>
+            {/* Seat flags header */}
+            <SeatFlagHeader date={date} />
+            {/* Body portion */}
+            <div className="flex w-[60%] flex-wrap  ">
+              {seatMatrix.map((item, index) => {
+                return (
+                  <SeatCategory
+                    key={index}
+                    category={item}
+                    setSelectedCategory={setSelectedCategory}
+                    setactiveCategory={setactiveCategory}
+                    activeCategory={activeCategory}
+                    alreadyBookedList={alreadyBookedList}
+                  />
+                );
+              })}
             </div>
-            <div className="">
-              <button
-                className="px-[2rem] py-[1rem] bg-black rounded-[7px] text-white font-[500]"
-                onClick={handleBookTicket}
-              >
-                Book Ticket
-              </button>
+            {/* screen this side */}
+            <div
+              style={{
+                marginBottom: selectedCategory.length > 0 ? "130px" : "50px",
+              }}
+              className="ml-[60px]"
+            >
+              <img src="https://assetscdn1.paytm.com/movies_new/_next/static/media/screen-icon.8dd7f126.svg" />
             </div>
-          </div>
+            {/* selected seat display */}
+            {selectedCategory.length > 0 && (
+              <div className="flex justify-evenly items-center w-full bg-white border-t border-[#00000030] fixed bottom-0 h-[100px]">
+                <div className="font-[500] text-[17px]">
+                  <p className="text-[18px] font-bold">&#8377;{totalPrice}</p>
+                  <p>
+                    Tickets {selectedCategory.length} x {activeCategory.price}
+                  </p>
+                </div>
+                <div className="">
+                  <button
+                    className="px-[2rem] py-[1rem] bg-black rounded-[7px] text-white font-[500]"
+                    onClick={handleGotoPayment}
+                  >
+                    Book Ticket
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
+          <Payment handleBookTicket={handleBookTicket} paymentData={paymentData} setTotalPriceX={setTotalPrice}/>
         )}
       </div>
     )

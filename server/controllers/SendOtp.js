@@ -25,7 +25,7 @@ async function verifyotp(req, res) {
         const otpresponse = await otpModel.findById(optid);
 
         if (!otpresponse) {
-            return res.status(300).json({ msg: "OTP expired, send again" });
+            return res.status(203).json({ msg: "OTP expired, send again" });
         }
 
         if (otpresponse.otp === otp) {
@@ -36,7 +36,7 @@ async function verifyotp(req, res) {
                 return res.status(201).json({});
             }
         } else {
-            return res.status(301).json({ msg: "Wrong OTP" });
+            return res.status(202).json({ msg: "Wrong OTP" });
         }
     } catch (error) {
         console.error(error);

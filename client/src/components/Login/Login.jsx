@@ -84,11 +84,14 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
         toast.success("OTP verified");
         setWrappersArr([false, false, false, true]);
       }
-      if (serverres.status == 301) {
+      if (serverres.status == 202) {
         toast.warning("Wrong OTP");
       }
+      if (serverres.status == 203) {
+        toast.warning("OTP expired, send again");
+      }
     } catch (err) {
-      console.log(err.status);
+      console.log(err);
     } finally {
       setverifyLoading(false);
     }

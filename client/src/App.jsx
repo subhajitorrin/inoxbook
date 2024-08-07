@@ -13,7 +13,6 @@ import "react-toastify/dist/ReactToastify.css";
 import ToastifyContainer from "./components/ToastifyContainer";
 import axios from "axios";
 import Admin from "./pages/Admin";
-import BookingTicket from "./components/SeatSelection/BookingTicket";
 import Sidenavbar from "./components/SideNavbar/Sidenavbar";
 import MyBookings from "./pages/MyBookings";
 
