@@ -95,8 +95,6 @@ function Login({ settoggleLogin, setuser, wrappersArr, setWrappersArr }) {
     } catch (err) {
       console.log(err);
     } finally {
-      setemail("");
-      setname("");
       setverifyLoading(false);
     }
   }
