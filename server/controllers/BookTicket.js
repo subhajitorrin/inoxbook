@@ -1,19 +1,9 @@
-import seatMatrixModel from "../models/seatMatrixModel.js";
 import userModel from "../models/userModel.js";
 import ticketModel from "../models/ticketModel.js";
-import mailSender from "../utility/sendMail.js";
-import getSeatByIndex from "../utility/getSeatByIndex.js"
-
-function arrToString(arr) {
-    let str = ""
-    arr.forEach((item) => {
-        str += `${item} `
-    })
-    return str
-}
+import BookingSuccessEmailSend from "../utility/BookingSuccessEmailSend.js";
 
 async function bookticket(req, res) {
-    const { user, BookingData } = req.body;
+    const { user, BookingData, poster } = req.body;
     const bookingId = generateRandomString()
     BookingData.bookingId = bookingId
     try {
@@ -29,30 +19,7 @@ async function bookticket(req, res) {
             $push: { ticket: ticketRes._id }
         })
 
-        const email = user.email
-        const title = "Ticket Booking Successfull"
-        const body = `
-            <h1>Booking Confirmation</h1>
-            <p>Dear Customer,</p>
-            <p>Thank you ${user.name} for booking with us! Your ticket has been successfully booked. Below are the details of your booking:</p>
-            <h2>Booking Details</h2>
-            <ul>
-                <li><strong>Movie Name:</strong> ${BookingData.moviename}</li>
-                <li><strong>Language:</strong> ${BookingData.language}</li>
-                <li><strong>Date:</strong> ${BookingData.date}</li>
-                <li><strong>Time:</strong> ${BookingData.time}</li>
-                <li><strong>Theater:</strong> ${BookingData.theater}</li>
-                <li><strong>Seat Count:</strong> ${BookingData.seatCount}</li>
-                <li><strong>Booked Seats:</strong> ${arrToString(BookingData.seats)}</li>
-                <li><strong>Seat Category:</strong> ${BookingData.seatCategory}</li>
-                <li><strong>Price:</strong> ₹${BookingData.price * BookingData.seatCount}</li>
-                <li><strong>Screen:</strong> ${BookingData.screen}</li>
-            </ul>
-            <p>We hope you have a great time at the movie!</p>
-            <p>If you have any questions or need further assistance, feel free to contact us.</p>
-            <p>Best regards,<br>INOXBOOK Team</p>
-        `;
-        await mailSender(email, title, body)
+        await BookingSuccessEmailSend(user, BookingData, poster)
 
         res.status(200).json({ msg: "Booking successful", ticket: "" });
     } catch (error) {

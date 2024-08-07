@@ -249,6 +249,7 @@ function SeatSelection({ user, settoggleLogin }) {
       const res = await axios.post("http://localhost:5000/bookticket", {
         user,
         BookingData: obj,
+        poster: movieDetail.posterUrl,
       });
       if (res.status === 200) {
         setSelectedCategory([]);
