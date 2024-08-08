@@ -29,13 +29,13 @@ function Payment({ handleBookTicket, paymentData, isLoading }) {
               BOOKING SYMMARY
             </p>
             <p className="text-[20px] font-[500]">{paymentData.moviename}</p>
-            <p>
+            <p className="">
               {paymentData.date} | {paymentData.time}
             </p>
-            <p className="uppercase">
-              {paymentData.seatCategory} -{" "}
+            <p className="uppercase ">
+              <span className="font-[500]">{paymentData.seatCategory}</span> -{" "}
               {paymentData.seats.map((item, index) => {
-                return <span key={index}>{item},</span>;
+                return <span key={index}>{item}, </span>;
               })}
             </p>
             <p className="font-[500]">
