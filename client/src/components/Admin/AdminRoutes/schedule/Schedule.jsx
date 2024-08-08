@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ScheduleCard from "./ScheduleCard";
+import moment from "moment-timezone";
 
 function Schedule() {
   const [allSchedules, setallSchedules] = useState([]);
@@ -62,7 +63,7 @@ function Schedule() {
   }, []);
 
   function formatDate(input) {
-    const inputDate = new Date(input);
+    const inputDate = new Date(utcToist(input));
     const monthNames = [
       "January",
       "February",
@@ -81,6 +82,12 @@ function Schedule() {
     const month = monthNames[inputDate.getMonth()];
     const year = inputDate.getFullYear();
     return `${day} ${month} ${year}`;
+  }
+
+  function utcToist(utcDateFromDB) {
+    return moment(utcDateFromDB)
+      .tz("Asia/Kolkata")
+      .format("YYYY-MM-DD HH:mm:ss");
   }
 
   return (

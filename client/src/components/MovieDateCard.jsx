@@ -25,9 +25,9 @@ function MovieDateCard({ date, isSelected, onClick }) {
       "DEC",
     ];
 
-    const weekday = weekdays[date.getUTCDay()];
-    const month = months[date.getUTCMonth()];
-    const day = date.getUTCDate();
+    const weekday = weekdays[date.getDay()];
+    const month = months[date.getMonth()];
+    const day = date.getDate();
 
     setTimingobj({
       weekday: weekday,

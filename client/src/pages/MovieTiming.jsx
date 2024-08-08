@@ -12,6 +12,7 @@ function MovieTiming() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [schedules, setSchedules] = useState([]);
   const [theaterList, setTheaterList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function getAllTheaters() {
@@ -29,11 +30,12 @@ function MovieTiming() {
       const today = new Date();
       const dates = [];
 
-      for (let i = 1; i <= 7; i++) {
+      for (let i = 0; i < 7; i++) {
         const nextDate = new Date();
         nextDate.setDate(today.getDate() + i);
         const date = nextDate.toDateString();
         setupcomingDates((prev) => [...prev, date]);
+        // console.log(date);
       }
     }
     generateNext7Days();
@@ -53,27 +55,32 @@ function MovieTiming() {
 
   useEffect(() => {
     async function getSchedulesByMovieIdAndDateandTheaterId() {
-      setSchedules([]);
-      theaterList.forEach(async (theater, index) => {
-        const res = await axios.get(
-          `http://localhost:5000/getschedulesbymovieiddate/${id}/${upcomingDates[selectedIndex]}/${theater._id}`
-        );
-        // setSchedules(res.data.schedules);
-        const schs = res.data.schedules;
-        console.log("Timing of theater", theater.name, res.data.schedules);
-        if (schs.length === 0) return;
-        const obj = {
-          theaterId: theater._id,
-          theaterName: theater.name,
-          theaterAddress: theater.address,
-          timings: res.data.schedules,
-        };
-        // console.log(obj);
-        // setSchedules([])
-        setSchedules((prev) => {
-          return [...prev, obj];
+      setIsLoading(true);
+      try {
+        setSchedules([]);
+        theaterList.forEach(async (theater, index) => {
+          const res = await axios.get(
+            `http://localhost:5000/getschedulesbymovieiddate/${id}/${upcomingDates[selectedIndex]}/${theater._id}`
+          );
+          // setSchedules(res.data.schedules);
+          const schs = res.data.schedules;
+          // console.log("Timing of theater", theater.name, res.data.schedules);
+          if (schs.length === 0) return;
+          const obj = {
+            theaterId: theater._id,
+            theaterName: theater.name,
+            theaterAddress: theater.address,
+            timings: res.data.schedules,
+          };
+          // console.log(obj);
+          // setSchedules([])
+          setSchedules((prev) => {
+            return [...prev, obj];
+          });
         });
-      });
+      } catch (err) {
+        console.log("Error while fetching ");
+      }
     }
     if (id && upcomingDates.length > 0 && theaterList.length > 0)
       getSchedulesByMovieIdAndDateandTheaterId();

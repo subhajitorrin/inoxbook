@@ -3,9 +3,9 @@ import scheduleModel from "../models/scheduleModel.js"
 async function addSchedule(req, res) {
     try {
         const newScheduleData = req.body
-        const nextDay = new Date(newScheduleData.date);
-        nextDay.setDate(nextDay.getDate() + 1);
-        newScheduleData.date = nextDay
+        // const nextDay = new Date(newScheduleData.date);
+        // nextDay.setDate(nextDay.getDate() + 1);
+        // newScheduleData.date = nextDay
         const newSchedule = new scheduleModel(newScheduleData)
         const dbres = await newSchedule.save()
         if (dbres) {
@@ -31,7 +31,7 @@ async function getSchedules(req, res) {
 
 async function deleteSchedule(req, res) {
     const { id } = req.params;
-    console.log("inside delete scheduel");
+    // console.log("inside delete scheduel");
     try {
         const dbres = await scheduleModel.findByIdAndDelete(id);
         if (dbres) {
@@ -86,8 +86,10 @@ async function getSchedulesByDate(req, res) {
 
 async function getScreenAvailability(req, res) {
     const { screen, date, startTime, endTime } = req.body;
-    const start = new Date(startTime);
-    const end = new Date(endTime);
+
+    const start = new Date(startTime).getTime();
+    const end = new Date(endTime).getTime();
+
     try {
         const conflictingShows = await scheduleModel.find({
             screen,
@@ -97,17 +99,21 @@ async function getScreenAvailability(req, res) {
         let flag = true
 
         for (const item of conflictingShows) {
-            const exStart = new Date(item.startTime)
-            const exEnd = new Date(item.endTime)
+            const exStart = new Date(item.startTime).getTime() - 1200000;
+            const exEnd = new Date(item.endTime).getTime() + 1200000; // 20min(in milisec) extra for next show
             if ((start >= exStart && start <= exEnd) || (end >= exStart && end <= exEnd)) {
                 flag = false
                 break
             }
         }
 
+        // console.log("Flag is ", flag);
+
         if (flag) {
+            console.log("screen available");
             res.status(200).json({ "status": "screen available", conflictingShows })
         } else {
+            console.log("screen not available");
             res.status(201).json({ "status": "screen not available" })
         }
     } catch (err) {
@@ -123,21 +129,17 @@ async function getSchedulesByMovieIdandDate(req, res) {
     const { id, date, theater } = req.params
     try {
         const providedDate = new Date(date);
-        const startOfDay = new Date(providedDate);
-        startOfDay.setUTCHours(0, 0, 0, 0);
-
-        const endOfDay = new Date(providedDate);
-        endOfDay.setUTCHours(23, 59, 59, 999);
 
         const dbres = await scheduleModel.find({
-            movie: id, date: {
-                $gte: startOfDay, $lte: endOfDay
-            },
-            theaterId: theater
+            movie: id, theaterId: theater, date: providedDate
         })
 
-        console.log(dbres);
-        res.status(200).json({ schedules: dbres })
+        if (dbres.length > 0) {
+            res.status(200).json({ schedules: dbres })
+        } else {
+            res.status(201).json({ schedules: [] })
+        }
+
     } catch (error) {
         console.log("Error while fetching schedules", err);
         res.status(500).json({

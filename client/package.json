@@ -16,6 +16,7 @@
     "faker": "^6.6.6",
     "gsap": "^3.12.5",
     "install": "^0.13.0",
+    "moment-timezone": "^0.5.45",
     "names": "^1.0.0",
     "npm": "^10.8.2",
     "razorpay": "^2.9.4",

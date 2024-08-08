@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
 import { MdArrowDropDown } from "react-icons/md";
 import axios from "axios";
+import moment from "moment-timezone";
 
 function ScheduleCard({
   allMovies,
@@ -26,6 +27,7 @@ function ScheduleCard({
   const screenContainerRef = useRef(null);
   const movieDropdown = useRef(null);
   const screenDropdown = useRef(null);
+  const enddateRef = useRef(null);
 
   useEffect(() => {
     async function fetchAllScreensByTheater() {
@@ -60,11 +62,25 @@ function ScheduleCard({
     fetchAllScreensByTheater();
   }, []);
 
+  function utcToist(utcDateFromDB) {
+    return moment(utcDateFromDB)
+      .tz("Asia/Kolkata")
+      .format("YYYY-MM-DD HH:mm:ss");
+  }
+
   useEffect(() => {
     if (isDelete) {
+      setstartTime(utcToist(item.startTime));
+
+      // let previousDay = new Date(item.date);
+      // previousDay = new Date(previousDay.setDate(previousDay.getDate() - 1));
+      // setdate(previousDay);
+
+      setdate(utcToist(item.date));
       setdate(item.date);
-      setstartTime(item.startTime);
-      setendTime(item.endTime);
+
+      setendTime(utcToist(item.endTime));
+
       setSelectedScreen({ scrName: item.screenName, scrId: item.screen });
       const matchMovie = allMovies.find((mov) => mov._id === item.movie);
       if (matchMovie) {
@@ -76,20 +92,6 @@ function ScheduleCard({
       }
     }
   }, [isDelete, item, allMovies]);
-
-  function convertToUTC(dateString, offset) {
-    // Parse the date string into a Date object
-    const localDate = new Date(dateString);
-
-    // Calculate the offset in milliseconds
-    const offsetMilliseconds = offset * 60 * 60 * 1000;
-
-    // Convert local date to UTC by subtracting the offset
-    const utcDate = new Date(localDate.getTime() - offsetMilliseconds);
-
-    // Format the UTC date into a string
-    return utcDate.toUTCString();
-  }
 
   function handleDateTimeChange(key, value) {
     if (key === "date") {
@@ -149,6 +151,14 @@ function ScheduleCard({
       toast.warning("Schedule delete error");
     }
   }
+
+  // useEffect(() => {
+  //   console.log({
+  //     date,
+  //     startTime,
+  //     endTime,
+  //   });
+  // }, [movie]);
 
   async function handleScheduleAdd() {
     if (date && startTime && selectedScreen && endTime && theaterId) {
@@ -322,15 +332,27 @@ function ScheduleCard({
         }}
         className="w-[16.6666666667%]  text-center"
       >
-        <DatePicker
-          className="w-[150px] text-center py-[5px] rounded-[5px] cursor-pointer pointer-events-none opacity-[.5]"
-          selected={endTime}
-          showTimeSelect
-          showTimeSelectOnly
-          placeholderText="Select Time"
-          timeIntervals={15}
-          dateFormat="h:mm aa"
-        />
+        {isDelete ? (
+          <DatePicker
+            className="w-[150px] text-center py-[5px] rounded-[5px] pointer-events-none"
+            selected={endTime}
+            showTimeSelect
+            showTimeSelectOnly
+            placeholderText="Select Time"
+            timeIntervals={15}
+            dateFormat="h:mm aa"
+          />
+        ) : (
+          <DatePicker
+            className="w-[150px] text-center py-[5px] rounded-[5px] pointer-events-none opacity-[.4]"
+            selected={endTime}
+            showTimeSelect
+            showTimeSelectOnly
+            placeholderText="Select Time"
+            timeIntervals={15}
+            dateFormat="h:mm aa"
+          />
+        )}
       </div>
       <div
         style={{
