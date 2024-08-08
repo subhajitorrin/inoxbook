@@ -12,10 +12,6 @@ function SeatCategory({
   const [gaps, setGaps] = useState([]);
 
   useEffect(() => {
-    console.log(gaps);
-  }, [gaps]);
-
-  useEffect(() => {
     if (category && category.gaps.length > 0) {
       setGaps(category.gaps);
     }

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import moment from "moment-timezone";
 
 function MovieTimingCard({
   type,
@@ -10,19 +11,14 @@ function MovieTimingCard({
   date,
 }) {
   const navigate = useNavigate();
-  function removeDashes(str) {
-    let result = "";
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] !== "-") {
-        result += str[i];
-      }
-    }
-    return result.slice(0, 8);
+
+  function utcToist(utcDateFromDB) {
+    return moment(utcDateFromDB).tz("Asia/Kolkata").format("YYYY-MM-DD");
   }
 
   function formatTime(time) {
     const istTime = convertToISTAnd12HourFormat(time);
-    return istTime
+    return istTime;
   }
 
   function convertToISTAnd12HourFormat(isoString) {
@@ -56,9 +52,9 @@ function MovieTimingCard({
       className="font-[500] border border-[#00000040] inline-block px-[10px] py-[3px] rounded-[4px] cursor-pointer"
       onClick={() => {
         navigate(
-          `/seatmatrix/${movieId}-${scheduleId}-${theaterId}-${removeDashes(
-            date
-          )}-${formatTime(showtime)}`
+          `/seatmatrix/${movieId}-${scheduleId}-${theaterId}-${utcToist(date)
+            .split("-")
+            .join("")}-${formatTime(showtime)}`
         );
       }}
     >

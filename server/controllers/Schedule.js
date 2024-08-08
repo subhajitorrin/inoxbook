@@ -17,8 +17,9 @@ async function addSchedule(req, res) {
 }
 
 async function getSchedules(req, res) {
+    const { theaterId } = req.params
     try {
-        const dbres = await scheduleModel.find().sort({ date: 1 }).exec();
+        const dbres = await scheduleModel.find({ theaterId }).sort({ date: 1 }).exec();
         if (dbres) {
             res.status(200).json({ schedules: dbres })
         } else {

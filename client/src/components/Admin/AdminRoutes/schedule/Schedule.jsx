@@ -10,9 +10,11 @@ function Schedule() {
   const [dateSlots, setDateSlots] = useState([]);
   useEffect(() => {
     async function getAllSchedules() {
+      const theaterId = localStorage.getItem("theaterId");
       try {
+        if (!theaterId) return;
         const response = await axios.get(
-          "http://localhost:5000/admin/getschedules"
+          `http://localhost:5000/admin/getschedules/${theaterId}`
         );
         if (response.status === 200) {
           const setOfDates = [

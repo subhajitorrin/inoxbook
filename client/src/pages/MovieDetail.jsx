@@ -5,19 +5,20 @@ import YouTube from "react-youtube";
 import MovieCardsRow from "../components/MovieCardsRow";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { BeatLoader, FadeLoader } from "react-spinners";
 
 function MovieDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [movieDetail, setmovieDetail] = useState(null);
   const [currentMovies, setcurrentMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getMovieDetailById() {
       try {
         const res = await axios.get(`http://localhost:5000/moviedetail/${id}`);
         setmovieDetail(res.data.movie);
-        console.log(res.data.movie);
       } catch (error) {
         console.log("Error while fetching movie detail", error);
       }
@@ -65,6 +66,10 @@ function MovieDetail() {
     }
     return array;
   }
+
+  const handleVideoReady = () => {
+    setIsLoading(false);
+  };
 
   return (
     movieDetail && (
@@ -128,10 +133,17 @@ function MovieDetail() {
               </div>
             </div>
             <div className="w-[70%] flex flex-col gap-[1rem] h-full ">
-              <div className=" h-[450px] w-[100%]  rounded-[10px] overflow-hidden">
+              <div
+                className={`h-[450px] w-[100%] rounded-[10px] overflow-hidden ${
+                  isLoading && "flex items-center justify-center"
+                }`}
+              >
+                {isLoading && <FadeLoader color="#da4b63" />}
                 <YouTube
                   videoId={getYouTubeId(movieDetail.trailerUrl)}
                   opts={opts}
+                  onReady={handleVideoReady}
+                  className={isLoading ? "hidden" : "block"}
                 />
               </div>
               <div className="flex justify-center w-full flex-col items-center gap-[5px]">
