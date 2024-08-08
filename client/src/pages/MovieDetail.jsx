@@ -6,6 +6,7 @@ import MovieCardsRow from "../components/MovieCardsRow";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { BeatLoader, FadeLoader } from "react-spinners";
+import Footer from "../components/Footer";
 
 function MovieDetail() {
   const { id } = useParams();
@@ -188,6 +189,7 @@ function MovieDetail() {
             />
           </div>
         </div>
+        <Footer />
       </>
     )
   );

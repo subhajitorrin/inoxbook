@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import MovieCardsRow from "../components/MovieCardsRow";
 import axios from "axios";
+import Footer from "../components/Footer";
 
 function Home({ settoggleLogin, toggleSideNavbar }) {
   const [currentMovies, setcurrentMovies] = useState([]);
@@ -97,13 +98,16 @@ function Home({ settoggleLogin, toggleSideNavbar }) {
     <>
       <div className=" min-h-screen  w-full overflow-y-hidden ">
         <div className="w-full overflow-x-hidden relative">
-          <div className="h-full w-full absolute z-[200] flex justify-center items-end pb-[2rem]">
-            <div className="flex gap-[5px]">
+          <div className="h-full w-full absolute flex justify-center items-end pb-[2rem]">
+            <div className="flex gap-[5px] z-[10]">
               {carousolList.map((item, index) => {
                 if (index > 0 && index < carousolList.length - 1) {
                   return (
                     <div
-                      style={{ backgroundColor: currentSlide===index-1?"white":"grey" }}
+                      style={{
+                        backgroundColor:
+                          currentSlide === index - 1 ? "white" : "grey",
+                      }}
                       className="h-[7px] w-[7px] rounded-[100%]"
                     ></div>
                   );
@@ -143,6 +147,7 @@ function Home({ settoggleLogin, toggleSideNavbar }) {
           <MovieCardsRow movierow={bengaliMovies} rowtitle="Bengali Movies" />
         </div>
       </div>
+      <Footer />
     </>
   );
 }

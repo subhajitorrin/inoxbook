@@ -46,7 +46,7 @@ function Sidenavbar({
   }
   return (
     <div
-      className="bg-[#00000049] fixed w-full h-screen transition-all ease-linear duration-200 backdrop-filter backdrop-blur-[5px]"
+      className="bg-[#00000049] z-[100] fixed w-full h-screen transition-all ease-linear duration-200 backdrop-filter backdrop-blur-[5px]"
       style={{
         opacity: toggleSideNavbar ? "1" : "0",
         pointerEvents: toggleSideNavbar ? "auto" : "none",

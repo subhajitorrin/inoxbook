@@ -15,6 +15,7 @@ import axios from "axios";
 import Admin from "./pages/Admin";
 import Sidenavbar from "./components/SideNavbar/Sidenavbar";
 import MyBookings from "./pages/MyBookings";
+import Footer from "./components/Footer";
 
 function App() {
   const [toggleLogin, settoggleLogin] = useState(false);
@@ -134,6 +135,7 @@ function App() {
           }
         />
       </Routes>
+      {/* {!shouldHideNavbar && <Footer />} */}
       <ToastifyContainer />
     </div>
   );

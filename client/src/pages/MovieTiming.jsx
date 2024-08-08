@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import MovieDateCard from "../components/MovieDateCard";
 import MovieTheaterCard from "../components/MovieTheaterCard";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function MovieTiming() {
   const { id } = useParams();
@@ -154,6 +155,7 @@ function MovieTiming() {
             })}
           </div>
         </div>
+        <Footer />
       </>
     )
   );
