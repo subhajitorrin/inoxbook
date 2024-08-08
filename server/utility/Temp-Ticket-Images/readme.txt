@@ -1,0 +1,1 @@
+This folder will be used to generate temporary ticket images, which will be deleted after they have been served.
