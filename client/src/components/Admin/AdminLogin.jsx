@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./AdminLogin.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -28,6 +27,8 @@ function AdminLogin({ setisLoggedInAdmin }) {
         localStorage.setItem("theaterId", response.data.theaterId);
         setisLoggedInAdmin(true);
         toast.success("Admin login successful");
+        setemail(null);
+        setpassword(null);
       } else if (response.status === 401) {
         toast.warn("Wrong admin credentials!!!");
       } else {
@@ -40,43 +41,42 @@ function AdminLogin({ setisLoggedInAdmin }) {
   }
 
   return (
-    <div className="select-none h-screen w-full flex items-center justify-center adminLoginContainer">
-      <div className="adminWrapper flex flex-col justify-between p-[40px] w-[500px] h-[550px] rounded-[10px] py-[55px]">
-        <p className="text-center font-bold text-[30px] uppercase ">
-          Admin Panel
+    <div className="h-screen w-full flex items-center justify-center bg-[#111111]">
+      <div className="h-[550px] w-[450px] text-white bg-[#2b2b2b] border border-black rounded-[10px] p-[2rem] flex flex-col justify-between py-[3rem] select-none">
+        <p className="text-[30px] font-bold text-center uppercase">
+          Admin Login
         </p>
-        <div className="flex flex-col gap-[30px]">
+        <div className="flex flex-col gap-[1rem]">
           <div className="">
-            <label htmlFor="text">Username</label>
+            <p className="text-[15px] mb-[7px] font-[500]">Username</p>
             <input
+              className="bg-[#424242] w-full border border-[#00000057] outline-none rounded-[6px] h-[50px] px-[20px]"
+              type="text"
               onChange={(e) => {
                 setemail(e.target.value);
               }}
-              type="text"
-              name="text"
               placeholder="Enter admin username"
-              className="mt-[7px] border border-[#00000044]  w-full px-[20px] text-[15px] py-[10px] rounded-[10px]"
             />
           </div>
           <div className="">
-            <label htmlFor="email">Password</label>
-
+            <p className="text-[15px] mb-[7px] font-[500]">Password</p>
             <input
+              className="bg-[#424242] w-full border border-[#00000057] outline-none rounded-[6px] h-[50px] px-[20px]"
+              type="password"
               onChange={(e) => {
                 setpassword(e.target.value);
               }}
-              type="email"
-              name="email"
               placeholder="Enter admin password"
-              className="mt-[7px] border border-[#00000044]  w-full px-[20px] text-[15px] py-[10px] rounded-[10px]"
             />
           </div>
         </div>
-        <div
-          onClick={handleAdminLogin}
-          className="hover:bg-[#346527] bg-[#3c752c] text-[white] w-full hover:border-transparent transition-all ease-linear duration-100 cursor-pointer flex items-center justify-center rounded-[5px] text-center h-[40px] font-[500]"
-        >
-          Login
+        <div className="">
+          <button
+            onClick={handleAdminLogin}
+            className="w-full bg-[#dd3c3c] py-[8px] text-white font-[500] rounded-[5px]"
+          >
+            Login
+          </button>
         </div>
       </div>
     </div>

@@ -350,7 +350,7 @@ function ScheduleCard({
             setToggleScreen((prev) => !prev);
           }}
           ref={screenContainerRef}
-          className="border border-white relative w-[150px] text-center py-[5px] rounded-[5px] cursor-pointer flex justify-center gap-[10px] items-center"
+          className="bg-[#4242428b]  relative w-[150px] text-center py-[5px] rounded-[5px] cursor-pointer flex justify-center gap-[10px] items-center"
         >
           {selectedScreen ? (
             <span>{selectedScreen.scrName}</span>
@@ -364,7 +364,7 @@ function ScheduleCard({
         {toggleScreen && (
           <div
             ref={screenDropdown}
-            className="absolute w-[100px] bg-white right-[25%] rounded-[10px] top-[110%] overflow-hidden"
+            className="z-[200] absolute w-[100px] bg-white right-[25%] rounded-[10px] top-[110%] overflow-hidden"
           >
             {screenList.map((item, index) => {
               return (
@@ -402,7 +402,7 @@ function ScheduleCard({
             setToggleSelectMovie((prev) => !prev);
           }}
           ref={movieContainerRef}
-          className="cursor-pointer w-[90%] flex justify-between border border-white py-[5px] rounded-[5px] px-[2rem] items-center"
+          className="cursor-pointer w-[90%] flex justify-between bg-[#4242428b]  py-[5px] rounded-[5px] px-[2rem] items-center"
         >
           {movie.title == "" ? (
             <span className="flex items-center justify-between w-full px-[15%] relative">
@@ -416,7 +416,7 @@ function ScheduleCard({
         {toggleSelectMovie && (
           <div
             ref={movieDropdown}
-            className=" h-[600px] overflow-auto w-[350px] absolute right-[5%] top-[110%] bg-white text-black rounded-[7px] "
+            className="opacity-[1] z-[200] h-[600px] overflow-auto w-[350px] absolute right-[5%] top-[110%] bg-white text-black rounded-[7px] "
           >
             {allMovies.map((item, index) => {
               return (
@@ -425,7 +425,7 @@ function ScheduleCard({
                   onClick={() => {
                     handleSelectMovie(item);
                   }}
-                  className="hover:bg-[#cbcbcb] flex items-center justify-between p-[1rem] gap-[1rem] my-[1rem] cursor-pointer"
+                  className="hover:bg-[#cbcbcb] bg-white  flex items-center justify-between p-[1rem] gap-[1rem] my-[1rem] cursor-pointer"
                 >
                   <div className="h-[100px]">
                     <img
@@ -460,16 +460,16 @@ function ScheduleCard({
               opacity: isDeleteBtn ? "1" : ".5",
             }}
             onClick={handleScheduleDelete}
-            className="px-[1rem] py-[7px] rounded-[7px] text-[15px] font-[500] "
+            className="px-[1rem] py-[7px] rounded-[7px] text-[15px] font-[500] w-[80px] "
           >
             <span>Delete</span>
           </button>
         ) : (
           <button
             onClick={handleScheduleAdd}
-            className="px-[1rem] py-[7px] bg-[green]  rounded-[7px] text-[15px] font-[500] "
+            className="px-[1rem] py-[7px] bg-[green]  rounded-[7px] text-[15px] font-[500] w-[80px] text-center"
           >
-            <span>add</span>
+            <span>Add</span>
           </button>
         )}
       </div>

@@ -1,5 +1,5 @@
 .adminDashboardContainer {
-  background: url("https://res.cloudinary.com/difxhccup/image/upload/v1722364281/loki-season-1-tv-series-2021-tom-hiddleston-marvel-comics-3840x2160-6177_zca3py.jpg");
+  /* background: url("https://res.cloudinary.com/difxhccup/image/upload/v1722364281/loki-season-1-tv-series-2021-tom-hiddleston-marvel-comics-3840x2160-6177_zca3py.jpg"); */
   /* background: url("https://4kwallpapers.com/images/walls/thumbs_3t/12411.jpeg"); */
   background-size: cover;
   height: 100vh;
@@ -8,22 +8,29 @@
   align-items: center;
   justify-content: center;
   user-select: none;
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #111111;
 }
 
 .adminWrapper {
   height: 90%;
   width: 90%;
   display: flex;
-  background-color: rgba(0.7, 0.7, 0.7, 0.7);
+  /* background-color: rgba(0.7, 0.7, 0.7, 0.7); */
   border-radius: 15px;
-  border: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background-color: #2b2b2b2d;
+}
+
+.adminWrapper input, textarea{
+  background-color: #4242428b;
+  outline: none;
 }
 
 .sidebar {
   height: 100%;
   width: 15%;
-  border-right: 1px solid white;
+  border-right: 2px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -46,7 +53,7 @@
 
 .navItem {
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0);
+  /* border-right: 1px solid rgba(255, 255, 255, 0); */
   border-radius: 7px;
   font-size: 15px;
   padding: 10px;
@@ -60,7 +67,7 @@
 }
 
 .logoutButton {
-  background-color: #3c752c;
+  background-color: #dd3c3c;
   color: white;
   width: 100%;
   border: none;
@@ -75,7 +82,7 @@
 }
 
 .logoutButton:hover {
-  background-color: #346028;
+  background-color: #c03636;
 }
 
 .mainContent {
@@ -86,7 +93,7 @@
 .header {
   height: 10%;
   width: 100%;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,6 +104,6 @@
   font-weight: bold;
   text-transform: uppercase;
 }
-.adminRightBody{
+.adminRightBody {
   height: 90%;
 }

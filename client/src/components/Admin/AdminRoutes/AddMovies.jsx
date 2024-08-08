@@ -12,6 +12,38 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { BeatLoader } from "react-spinners";
 
+const customStyles = {
+  control: (provided) => ({
+    ...provided,
+    backgroundColor: "#4242428b",
+    border: "none",
+    boxShadow: "none",
+    minHeight: "40px",
+    height: "40px",
+    paddingLeft: "10px",
+    color: "#ffffff",
+  }),
+  menu: (provided) => ({
+    ...provided,
+    backgroundColor: "#ffffff",
+    border: "none",
+    boxShadow: "none",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? "#424242c6" : "#ffffff8a",
+    border: "none",
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: "#ffffff", // Ensures the selected value's text color is white
+  }),
+  input: (provided) => ({
+    ...provided,
+    color: "#ffffff", // Ensures the input's text color is white
+  }),
+};
+
 function AddMovies({ isUpdate, movieData }) {
   const [title, settitle] = useState("");
   const [genereList, setGenereList] = useState([]);
@@ -84,7 +116,18 @@ function AddMovies({ isUpdate, movieData }) {
         );
         if (response.status === 201) {
           toast.success("Movie added successfully");
-          console.log(response.data);
+          settitle("");
+          setGenereList([]);
+          setduration("");
+          setlanguageList([]);
+          setcbfcRating("");
+          setdate(null);
+          setSynopsis("");
+          setrating(null);
+          setposter("");
+          setrating("");
+          setdisplayCategory(null);
+          setcastList([]);
         }
       } catch (error) {
         toast.warning("Something went wrong!!!");
@@ -156,6 +199,7 @@ function AddMovies({ isUpdate, movieData }) {
     { value: "action", label: "Action" },
     { value: "comedy", label: "Comedy" },
     { value: "drama", label: "Drama" },
+    { value: "crime", label: "Crime" },
     { value: "horror", label: "Horror" },
     { value: "romance", label: "Romance" },
     { value: "sci-fi", label: "Science Fiction" },
@@ -163,6 +207,8 @@ function AddMovies({ isUpdate, movieData }) {
     { value: "thriller", label: "Thriller" },
     { value: "documentary", label: "Documentary" },
     { value: "animation", label: "Animation" },
+    { value: "adventure", label: "Adventure" },
+    { value: "biography", label: "Biography" },
   ];
 
   const movieLanguages = [
@@ -211,10 +257,10 @@ function AddMovies({ isUpdate, movieData }) {
       settrailer(movieData.trailerUrl || "");
       setdisplayCategory(movieData.categories || null);
       setcastList(movieData.cast || []);
-      document
-        .querySelector("#cbfcRating")
-        .querySelector(".css-1jqq78o-placeholder").innerHTML =
-        movieData.CBFCratnig;
+      // document
+      //   .querySelector("#cbfcRating")
+      //   .querySelector(".css-1jqq78o-placeholder").innerHTML =
+      //   movieData.CBFCratnig;
       document
         .querySelector("#displayCategory")
         .querySelector(".css-1jqq78o-placeholder").innerHTML =
@@ -237,12 +283,13 @@ function AddMovies({ isUpdate, movieData }) {
           <div className="flex gap-[20px] items-center">
             <p className="text-[18px] font-[500] w-[200px]">Genre</p>
             <Select
-              className="text-black min-w-[150px]"
+              className="text-black w-[300px]"
+              styles={customStyles}
               options={movieGenres}
               value={genereList}
               onChange={(selectedOptions) => {
-                if (selectedOptions.length > 3) {
-                  setGenereList(selectedOptions.slice(0, 3));
+                if (selectedOptions.length > 2) {
+                  setGenereList(selectedOptions.slice(0, 2));
                 } else {
                   setGenereList(selectedOptions);
                 }
@@ -261,12 +308,13 @@ function AddMovies({ isUpdate, movieData }) {
           <div className="flex gap-[20px] items-center">
             <p className="text-[18px] font-[500] w-[200px]">Language</p>
             <Select
-              className="text-black min-w-[150px]"
+              className="text-black w-[300px]"
               options={movieLanguages}
               value={languageList}
+              styles={customStyles}
               onChange={(item) => {
-                if (item.length > 3) {
-                  setlanguageList(item.slice(0, 3));
+                if (item.length > 2) {
+                  setlanguageList(item.slice(0, 2));
                 } else {
                   setlanguageList(item);
                 }
@@ -275,11 +323,13 @@ function AddMovies({ isUpdate, movieData }) {
             />
           </div>
           {/* CBFC rating */}
-          <div className="flex gap-[20px] items-center">
+          <div className="flex gap-[20px] items-center ">
             <p className="text-[18px] font-[500] w-[200px]">CBFC Rating</p>
             <Select
               id="cbfcRating"
-              className="text-black w-[150px]"
+              placeholder={cbfcRating === "" ? "Enter age group" : cbfcRating}
+              styles={customStyles}
+              className="text-black w-[300px]"
               options={cbfcRatings}
               value={cbfcRating}
               onChange={(item) => {
@@ -287,26 +337,53 @@ function AddMovies({ isUpdate, movieData }) {
               }}
               ref={cbfcRatnigRef}
             />
+            {/* <Select
+              className="text-black w-[300px]"
+              classNamePrefix="select"
+              styles={customStyles}
+              options={cbfcRatings}
+              value={cbfcRating}
+              onChange={(item) => {
+                setcbfcRating(item);
+              }}
+            /> */}
           </div>
           {/* release date */}
           <div className="flex gap-[20px] items-center">
             <p className="text-[18px] font-[500] w-[200px]">Release Date</p>
             <DatePicker
-              className="w-[150px] text-center py-[5px] rounded-[5px]"
+              className="w-[300px] py-[5px] rounded-[5px] px-[20px] outline-none h-[40px]"
               selected={date}
               onChange={(date) => {
                 setdate(date);
               }}
+              dateFormat="dd/MM/yyyy"
+              placeholderText="Select a date"
             />
           </div>
 
           {/* synopsis */}
-          <TitleAndInput
+          {/* <TitleAndInput
             name={"Snyopsis"}
             changeName={setSynopsis}
             place={"Enter movie snyopsis"}
             val={synopsis}
-          />
+          /> */}
+          <div className="flex gap-[20px] items-centerex">
+            <p className="text-[18px] font-[500] w-[200px]">Summary</p>
+            <textarea
+              value={synopsis}
+              onChange={(e) => {
+                setSynopsis(e.target.value);
+              }}
+              name=""
+              id=""
+              cols="30"
+              rows="3"
+              className="rounded-[7px] py-[10px] px-[20px] w-[300px]"
+              placeholder="Enter movie symmary"
+            ></textarea>
+          </div>
           {/* rating */}
           <TitleAndInput
             name={"IMDB Rating"}
@@ -315,19 +392,21 @@ function AddMovies({ isUpdate, movieData }) {
             val={rating}
           />
         </div>
-        <button
-          style={{ pointerEvents: isLoading ? "none" : "auto" }}
-          className=" py-[7px] font-[500] rounded-[7px] border border-white hover:bg-white hover:text-black"
-          onClick={isUpdate ? handleUpdateMovie : handleAddMovieToDatabase}
-        >
-          {isLoading ? (
-            <BeatLoader color="white" margin={2} size={7} />
-          ) : isUpdate ? (
-            <span>Update Movie</span>
-          ) : (
-            <span>Add Movie to Database</span>
-          )}
-        </button>
+        <div className="w-full ">
+          <button
+            style={{ pointerEvents: isLoading ? "none" : "auto" }}
+            className="w-[300px] bg-[#e67e22] hover:bg-[#cc701f] h-[40px] font-[500] rounded-[7px]"
+            onClick={isUpdate ? handleUpdateMovie : handleAddMovieToDatabase}
+          >
+            {isLoading ? (
+              <BeatLoader color="white" margin={2} size={7} />
+            ) : isUpdate ? (
+              <span>Update Movie</span>
+            ) : (
+              <span>Add Movie to Database</span>
+            )}
+          </button>
+        </div>
       </div>
       <div className="flex flex-col gap-[2rem]">
         {/* posterurl */}
@@ -349,8 +428,9 @@ function AddMovies({ isUpdate, movieData }) {
         <div className="flex gap-[20px] items-center">
           <p className="text-[18px] font-[500] w-[200px]">Display Category</p>
           <Select
-            className="text-black min-w-[150px]"
+            className="text-black w-[300px] "
             id="displayCategory"
+            styles={customStyles}
             options={movieTags}
             value={displayCategory}
             onChange={(item) => {

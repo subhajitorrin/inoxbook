@@ -41,7 +41,11 @@ function UpdateCards({ item, settoggle, settoggleDelete }) {
         />
       </div>
       <p className="relative z-[101] text-[22px] font-[500] text-center  py-[10px] text-whtie">
-        {item.title}
+        {item.title.length > 25 ? (
+          <span>{item.title.slice(0, 25)}...</span>
+        ) : (
+          item.title
+        )}
       </p>
       <div className="flex">
         <button

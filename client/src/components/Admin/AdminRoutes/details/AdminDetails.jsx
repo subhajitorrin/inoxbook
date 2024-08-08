@@ -131,7 +131,7 @@ function AdminDetails() {
             cols="30"
             value={address}
             rows="3"
-            className="bg-transparent p-[20px] border border-white rounded-[7px] outline-none h-[170px]"
+            className=" p-[20px]  rounded-[7px] outline-none h-[170px] "
             placeholder="Enter theater address"
           ></textarea>
         </div>
