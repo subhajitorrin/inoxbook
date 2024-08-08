@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { IoTicketOutline } from "react-icons/io5";
 import { PiDeviceMobile } from "react-icons/pi";
+import LoaderPayment from "./LoaderPayment";
 
-function Payment({ handleBookTicket, paymentData }) {
+function Payment({ handleBookTicket, paymentData, isLoading }) {
   const [totalPrice, setTotalPrice] = useState(0);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(paymentData);
-  },[paymentData])
+  }, [paymentData]);
 
   useEffect(() => {
     const calculatedPrice =
@@ -19,7 +20,8 @@ function Payment({ handleBookTicket, paymentData }) {
 
   return (
     paymentData && (
-      <div className="w-full bg-white flex justify-evenly px-[2rem]">
+      <div className="w-full bg-white flex justify-evenly px-[2rem] relative">
+        {isLoading && <LoaderPayment />}
         <div className="w-[40%]"></div>
         <div className="relative rounded-[10px] w-[20%] h-[80vh] border border-[#0000002f]  flex flex-col gap-[1rem] shadow-xl">
           <div className="flex flex-col gap-[1rem] p-[1.5rem]">

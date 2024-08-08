@@ -32,7 +32,7 @@ function MyBookings() {
       {" "}
       <div
         style={{ background: "linear-gradient(to bottom, white 10%, #dfdfdf)" }}
-        className="h-[91.3vh] select-none"
+        className="min-h-[91.3vh] select-none"
       >
         <p className="text-center my-[10px] font-[500] pt-[1rem]">
           * Click to download your tickets

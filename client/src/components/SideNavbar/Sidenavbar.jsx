@@ -5,6 +5,7 @@ import { IoTicketOutline } from "react-icons/io5";
 import { MdOutlineArrowRight } from "react-icons/md";
 import { MdHelpOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { RiAdminLine } from "react-icons/ri";
 
 function Sidenavbar({
   toggleSideNavbar,
@@ -109,6 +110,15 @@ function Sidenavbar({
           )}
         </div>
         <div className="w-full px-[1rem] absolute bottom-[20px]">
+          <div
+            onClick={() => {
+              window.open("/admin", "_blank");
+            }}
+            className="hover:bg-[#e4e4e4] hover:text-[black] mb-[1rem] w-full transition-all ease-linear duration-100 cursor-pointer flex items-center justify-center border border-[#00000054] rounded-[5px] text-center py-[5px] font-[500]"
+          >
+            <RiAdminLine className="absolute left-[20px]" />
+            <p>Admin Login</p>
+          </div>
           {!user ? (
             <button
               className="w-full rounded-[7px] bg-[#da4b63] text-white py-[5px] font-[500]"

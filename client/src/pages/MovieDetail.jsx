@@ -76,7 +76,7 @@ function MovieDetail() {
     movieDetail && (
       <>
         {/* <Navbar /> */}
-        <div className="min-h-screen px-[15%] my-[1rem]">
+        <div className="min-h-screen px-[15%] my-[1rem] mb-[5rem]">
           <div className="flex justify-between w-full ">
             <div className="w-[30%] flex flex-col gap-[10px]">
               <div className="h-[550px] w-[90%]  rounded-[10px] overflow-hidden">

@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-[1rem] select-none mt-[5rem]">
+    <footer className="bg-gray-800 text-white py-[1rem] select-none">
       <div className="container mx-auto pt-[2rem]">
         <div className="flex justify-between w-full">
           {/* Contact Section */}

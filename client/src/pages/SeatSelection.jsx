@@ -31,6 +31,7 @@ function SeatSelection({ user, settoggleLogin }) {
   const [toggle, settoggle] = useState(false);
   const [paymentToggle, setPaymentToggle] = useState(false);
   const [paymentData, setPaymentData] = useState(null);
+  const [isLoading, setisLoading] = useState(false);
 
   useEffect(() => {
     const params = id.split("-");
@@ -237,6 +238,8 @@ function SeatSelection({ user, settoggleLogin }) {
       return;
     }
 
+    setisLoading(true);
+
     try {
       const res = await axios.post("http://localhost:5000/bookticket", {
         user,
@@ -253,6 +256,8 @@ function SeatSelection({ user, settoggleLogin }) {
       }
     } catch (Err) {
       console.log("Error while booking ticket", Err);
+    } finally {
+      setisLoading(false);
     }
   }
 
@@ -352,6 +357,7 @@ function SeatSelection({ user, settoggleLogin }) {
           <Payment
             handleBookTicket={handleBookTicket}
             paymentData={paymentData}
+            isLoading={isLoading}
           />
         )}
       </div>

@@ -96,7 +96,7 @@ function Home({ settoggleLogin, toggleSideNavbar }) {
 
   return (
     <>
-      <div className=" min-h-screen  w-full overflow-y-hidden ">
+      <div className=" min-h-screen  w-full overflow-y-hidden mb-[5rem]">
         <div className="w-full overflow-x-hidden relative">
           <div className="h-full w-full absolute flex justify-center items-end pb-[2rem]">
             <div className="flex gap-[5px] z-[10]">
