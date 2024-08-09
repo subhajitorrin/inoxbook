@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import Navbar from "../components/Navbar";
 import MovieCardsRow from "../components/MovieCardsRow";
 import axios from "axios";
 import Footer from "../components/Footer";

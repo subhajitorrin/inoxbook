@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import YouTube from "react-youtube";
 import MovieCardsRow from "../components/MovieCardsRow";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import { BeatLoader, FadeLoader } from "react-spinners";
 import Footer from "../components/Footer";
 

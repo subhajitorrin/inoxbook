@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
 import MovieTiming from "./pages/MovieTiming";
 import SeatSelection from "./pages/SeatSelection";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/TopNavbar_Search/Navbar";
 import Login from "./components/Login/Login";
 import "./App.css";
 import gsap from "gsap";

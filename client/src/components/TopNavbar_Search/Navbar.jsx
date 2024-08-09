@@ -5,10 +5,11 @@ import { CgMenuRightAlt } from "react-icons/cg";
 import { IoTicketOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";
-import { MdOpenInNew } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import SearchCards from "./SearchCards";
+import NotFound from "./NotFound";
+import { InfinitySpin } from "react-loader-spinner";
 
 function Navbar({ settoggleLogin, user, settoggleSideNavbar }) {
   const [movieName, setMovieName] = useState("");
@@ -22,7 +23,8 @@ function Navbar({ settoggleLogin, user, settoggleSideNavbar }) {
       const res = await axios.get(
         `http://localhost:5000/searchmovie?query=${query}`
       );
-      setResult(res.data);
+      if (res.status === 200) setResult(res.data);
+      if (res.status === 201) setResult([]);
     } catch (err) {
       console.log("Error while searching movie", err);
     }
@@ -31,12 +33,6 @@ function Navbar({ settoggleLogin, user, settoggleSideNavbar }) {
   useEffect(() => {
     handleSearchMovie();
   }, [movieName]);
-
-  function formatMinutesToHours(minutes) {
-    const hours = Math.floor(minutes / 60);
-    const mins = minutes % 60;
-    return `${hours}hr ${mins}m`;
-  }
 
   useEffect(() => {
     if (movieName.length > 0) {
@@ -65,71 +61,23 @@ function Navbar({ settoggleLogin, user, settoggleSideNavbar }) {
         BOOK
       </div>
       <div className=" border border-[#bcbcbc] rounded-[20px] items-center flex h-[40px]">
-        {movieName.length > 0 && (
+        {movieName !== "" ? (
           <div className=" flex justify-center transition-all ease-linear duration-200 h-screen fixed w-full top-[7%] left-0 z-[100] bg-white">
-            <div className="scrollNone flex flex-col gap-[20px] py-[1rem] max-h-[90vh] overflow-y-auto top-[8%] z-[101]  w-[60%] bg-white rounded-[5px]">
-              {result &&
-                result.map((item, index) => {
-                  return (
-                    <Link to={`moviedetail/${item._id}`}>
-                      <div
-                        onClick={() => {
-                          setMovieName("");
-                        }}
-                        key={index}
-                        className="hover:bg-[#d3d3d3] relative transition-all ease-linear duration-200 hover:border-transparent border-b border-[#00000039] rounded-[7px] py-[10px] px-[2rem] flex gap-[20px] items-start cursor-pointer"
-                      >
-                        <div className="h-[200px] w-[130px] rounded-[5px] overflow-hidden">
-                          <img
-                            src={item.posterUrl}
-                            alt=""
-                            className=" h-full w-full object-cover"
-                          />
-                        </div>
-                        <div className="flex flex-col gap-[3px]">
-                          <p className="text-[17px]">
-                            {item.title} •{" "}
-                            <span className="text-[.9rem]">
-                              {item.CBFCratnig}
-                            </span>
-                          </p>
-                          <p>
-                            <span className="">IMDB</span>
-                            {item.rating}
-                          </p>
-                          <p className="text-[15px]">{item.releaseDate}</p>
-                          <div className="flex gap-[10px]">
-                            {item.genre.map((gen, i) => {
-                              return (
-                                <p
-                                  key={`${index}-${i}`}
-                                  className="border border-black text-center px-[10px] py-[3px] rounded-[5px]"
-                                >
-                                  {gen}
-                                </p>
-                              );
-                            })}
-                          </div>
-                          <div className="flex gap-[10px]">
-                            {item.language.map((lan, i) => {
-                              return (
-                                <p key={`${index}-${i}`} className="">
-                                  {lan}
-                                </p>
-                              );
-                            })}
-                          </div>
-                          <p>{formatMinutesToHours(item.duration)}</p>
-                        </div>
-                        <div className="h-full absolute right-0 flex items-center mr-[2rem]">
-                          <MdOpenInNew className="text-[20px]" />
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
-            </div>
+            {result === null ? (
+              <></>
+            ) : result.length > 0 ? (
+              <div className="scrollNone flex flex-col gap-[20px] py-[1rem] max-h-[90vh] overflow-y-auto top-[8%] z-[101]  w-[60%] bg-white rounded-[5px]">
+                {result &&
+                  result.map((item, index) => {
+                    return <SearchCards key={index} item={item} setMovieName={setMovieName}/>;
+                  })}
+              </div>
+            ) : (
+              <NotFound />
+            )}
           </div>
+        ) : (
+          <></>
         )}
         <input
           onChange={(e) => {
