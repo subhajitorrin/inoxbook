@@ -96,7 +96,6 @@ function MovieTiming() {
   return (
     movieDetail && (
       <>
-        {/* <Navbar /> */}
         <div className="min-h-screen my-[1rem] px-[15%] w-full flex select-none flex-col">
           <div className="flex pb-[1.5rem]  border-b border-[#00000057] w-full h-[200px]">
             <div className="flex flex-col gap-[7px] h-full justify-center">

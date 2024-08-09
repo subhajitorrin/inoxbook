@@ -6,19 +6,8 @@ import { IoTicketOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";
 
-function Navbar({
-  settoggleLogin,
-  user,
-  setuser,
-  setWrappersArr,
-  settoggleSideNavbar,
-}) {
+function Navbar({ settoggleLogin, user, settoggleSideNavbar }) {
   const navigate = useNavigate();
-  function handleLogout() {
-    localStorage.removeItem("userid");
-    setuser(null);
-    setWrappersArr([true, false, false, false]);
-  }
   return (
     <div className="select-none flex justify-between items-center text-[14px] font-[500] py-[1rem] px-[15%]">
       <div
@@ -45,22 +34,28 @@ function Navbar({
           <IoIosSearch />
         </button>
       </div>
-      <div className="flex items-center gap-[20px] ">
+      <div className="text-[15px] flex items-center gap-[20px] justify-end">
         <button className="flex items-center gap-[3px]">
           Kolkata
           <div className="relative text-[20px] top-[1px]">
             <RiArrowDropDownFill />
           </div>
         </button>
-        {user ? (
+        {user === null ? (
+          <div className="w-[150px]"></div>
+        ) : user ? (
           <p
-            className="flex gap-[10px] items-center cursor-pointer"
+            className="w-[150px] flex gap-[10px] items-center cursor-pointer justify-end"
             onClick={() => {
               settoggleSideNavbar(true);
             }}
           >
             <FaRegCircleUser className="text-[20px]" />
-            {user.name}
+            {user.name.length > 14 ? (
+              <span>{user.name.slice(0, 14)}...</span>
+            ) : (
+              <span>{user.name}</span>
+            )}
           </p>
         ) : (
           <button
@@ -79,7 +74,7 @@ function Navbar({
             settoggleSideNavbar(true);
           }}
         >
-          <CgMenuRightAlt />
+          <CgMenuRightAlt className="text-[25px]" />
         </div>
       </div>
     </div>

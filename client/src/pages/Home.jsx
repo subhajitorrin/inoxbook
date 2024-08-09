@@ -4,7 +4,7 @@ import MovieCardsRow from "../components/MovieCardsRow";
 import axios from "axios";
 import Footer from "../components/Footer";
 
-function Home({ settoggleLogin, toggleSideNavbar }) {
+function Home() {
   const [currentMovies, setcurrentMovies] = useState([]);
   const [bengaliMovies, setBengaliMovies] = useState([]);
   const [hotmovies, setHotmovies] = useState([]);

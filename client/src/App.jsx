@@ -16,6 +16,7 @@ import Admin from "./pages/Admin";
 import Sidenavbar from "./components/SideNavbar/Sidenavbar";
 import MyBookings from "./pages/MyBookings";
 import Footer from "./components/Footer";
+import PageNotFound404 from "./pages/PageNotFound404";
 
 function App() {
   const [toggleLogin, settoggleLogin] = useState(false);
@@ -84,10 +85,12 @@ function App() {
     }
     getUserAtRender();
   }, [toggleLogin]);
-  const shouldHideNavbar =
-    location.pathname.startsWith("/seatmatrix") ||
-    location.pathname.startsWith("/admin") ||
-    location.pathname.startsWith("/payment");
+
+  const shouldShowNavbar =
+    location.pathname === "/" ||
+    location.pathname.startsWith("/moviedetail") ||
+    location.pathname.startsWith("/mybookings") ||
+    location.pathname.startsWith("/timings");
 
   return (
     <div className="">
@@ -105,25 +108,15 @@ function App() {
         setuser={setuser}
         setWrappersArr={setWrappersArr}
       />
-      {!shouldHideNavbar && (
+      {shouldShowNavbar && (
         <Navbar
           settoggleLogin={settoggleLogin}
           user={user}
-          setuser={setuser}
-          setWrappersArr={setWrappersArr}
           settoggleSideNavbar={settoggleSideNavbar}
         />
       )}
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              settoggleLogin={settoggleLogin}
-              toggleSideNavbar={toggleSideNavbar}
-            />
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route path="/moviedetail/:id" element={<MovieDetail />} />
         <Route path="/timings/:id" element={<MovieTiming />} />
         <Route path="/admin/*" element={<Admin />} />
@@ -134,8 +127,8 @@ function App() {
             <SeatSelection user={user} settoggleLogin={settoggleLogin} />
           }
         />
+        <Route path="*" element={<PageNotFound404 />} />
       </Routes>
-      {/* {!shouldHideNavbar && <Footer />} */}
       <ToastifyContainer />
     </div>
   );
