@@ -128,4 +128,19 @@ async function getMoviePosterLink(req, res) {
     }
 }
 
-export { getAllMovies, getMovieDetailById, addNewMovie, updateMovieById, deleteMovieById, getMoviePosterLink }
+async function searchMovie(req, res) {
+    try {
+        const { query } = req.query
+        const dbres = await movieModel.find({ title: { $regex: query, $options: 'i' } });
+        if (dbres.length > 0) {
+            res.status(200).json(dbres)
+        } else {
+            res.status(201).json([])
+        }
+    } catch (err) {
+        console.log("Error while searching movie");
+        res.status(500).json({ msg: "Error while searching movie" })
+    }
+}
+
+export { getAllMovies, getMovieDetailById, addNewMovie, updateMovieById, deleteMovieById, getMoviePosterLink, searchMovie }

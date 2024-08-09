@@ -104,6 +104,7 @@ function Home() {
                 if (index > 0 && index < carousolList.length - 1) {
                   return (
                     <div
+                    key={index}
                       style={{
                         backgroundColor:
                           currentSlide === index - 1 ? "white" : "grey",
