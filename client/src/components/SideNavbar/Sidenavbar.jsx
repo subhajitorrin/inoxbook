@@ -30,7 +30,7 @@ function Sidenavbar({
   ]);
   function handleLogout() {
     localStorage.removeItem("userid");
-    setuser(null);
+    setuser("");
     setWrappersArr([true, false, false, false]);
     settoggleSideNavbar(false);
   }
@@ -119,7 +119,7 @@ function Sidenavbar({
             <RiAdminLine className="absolute left-[20px]" />
             <p>Admin Login</p>
           </div>
-          {!user ? (
+          {user !== null && user.name === "" ? (
             <button
               className="w-full rounded-[7px] bg-[#da4b63] text-white py-[5px] font-[500]"
               onClick={() => {

@@ -9,7 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 import axios from "axios";
 import SearchCards from "./SearchCards";
 import NotFound from "./NotFound";
-import { InfinitySpin } from "react-loader-spinner";
+import { TfiLocationPin } from "react-icons/tfi";
 
 function Navbar({ settoggleLogin, user, settoggleSideNavbar }) {
   const [movieName, setMovieName] = useState("");
@@ -69,7 +69,13 @@ function Navbar({ settoggleLogin, user, settoggleSideNavbar }) {
               <div className="scrollNone flex flex-col gap-[20px] py-[1rem] max-h-[90vh] overflow-y-auto top-[8%] z-[101]  w-[60%] bg-white rounded-[5px]">
                 {result &&
                   result.map((item, index) => {
-                    return <SearchCards key={index} item={item} setMovieName={setMovieName}/>;
+                    return (
+                      <SearchCards
+                        key={index}
+                        item={item}
+                        setMovieName={setMovieName}
+                      />
+                    );
                   })}
               </div>
             ) : (
@@ -106,6 +112,9 @@ function Navbar({ settoggleLogin, user, settoggleSideNavbar }) {
       </div>
       <div className="text-[15px] flex items-center gap-[20px] justify-end">
         <button className="flex items-center gap-[3px]">
+          <div className="relative text-[16px] top-[1px]">
+            <TfiLocationPin />
+          </div>
           Kolkata
           <div className="relative text-[20px] top-[1px]">
             <RiArrowDropDownFill />
@@ -113,7 +122,7 @@ function Navbar({ settoggleLogin, user, settoggleSideNavbar }) {
         </button>
         {user === null ? (
           <div className="w-[150px]"></div>
-        ) : user ? (
+        ) : user && user.name !== "" ? (
           <p
             className="w-[150px] flex gap-[10px] items-center cursor-pointer justify-end"
             onClick={() => {
@@ -128,14 +137,16 @@ function Navbar({ settoggleLogin, user, settoggleSideNavbar }) {
             )}
           </p>
         ) : (
-          <button
-            className="bg-[#da4b63] rounded-[5px] px-[10px] py-[2px] text-white"
-            onClick={() => {
-              settoggleLogin(true);
-            }}
-          >
-            Login
-          </button>
+          <div className="w-[150px] flex justify-end items-center gap-[10px]">
+            <button
+              className="bg-[#da4b63] rounded-[5px] px-[30px] py-[2px] text-white"
+              onClick={() => {
+                settoggleLogin(true);
+              }}
+            >
+              Login
+            </button>
+          </div>
         )}
 
         <div

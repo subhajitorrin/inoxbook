@@ -63,7 +63,10 @@ function App() {
   useEffect(() => {
     async function getUserAtRender() {
       const userid = localStorage.getItem("userid");
-      if (!userid) return;
+      if (!userid) {
+        setuser({ name: "" });
+        return;
+      }
       try {
         const serverRes = await axios.post(
           `http://localhost:5000/getuser`,
