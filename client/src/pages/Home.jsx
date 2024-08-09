@@ -12,13 +12,14 @@ function Home() {
   const sliderRefs = useRef([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [carousolList, setCarousolList] = useState([
-    "https://i.ytimg.com/vi/BVGZ-ZVuWWs/maxresdefault.jpg",
-    "https://assets-in.bmscdn.com/discovery-catalog/events/et00374797-eudtdmbxxn-landscape.jpg",
-    "https://i.ytimg.com/vi/Idh8n5XuYIA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLASVHZQZdujw8GwNy9xPvlzTp-puw",
-    "https://static.tnn.in/thumb/msid-111236559,thumbsize-90518,width-1280,height-720,resizemode-75/111236559.jpg?quality=100",
-    "https://i.ytimg.com/vi/BVGZ-ZVuWWs/maxresdefault.jpg",
-    "https://i.ytimg.com/vi/lU_NKNZljoQ/maxresdefault.jpg",
-    "https://assets-in.bmscdn.com/discovery-catalog/events/et00374797-eudtdmbxxn-landscape.jpg",
+    "https://res.cloudinary.com/difxhccup/image/upload/v1723224616/5_ivc7si.jpg",
+    "https://res.cloudinary.com/difxhccup/image/upload/v1723224616/1_na4rzn.jpg",
+    "https://res.cloudinary.com/difxhccup/image/upload/v1723224616/2_stxhj5.jpg",
+    "https://res.cloudinary.com/difxhccup/image/upload/v1723224616/3_ley4h8.jpg",
+    "https://res.cloudinary.com/difxhccup/image/upload/v1723224616/4_oagr6s.jpg",
+    "https://res.cloudinary.com/difxhccup/image/upload/v1723224616/6_nudwvi.jpg",
+    "https://res.cloudinary.com/difxhccup/image/upload/v1723224616/5_ivc7si.jpg",
+    "https://res.cloudinary.com/difxhccup/image/upload/v1723224616/1_na4rzn.jpg",
   ]);
 
   useEffect(() => {
@@ -103,7 +104,7 @@ function Home() {
                 if (index > 0 && index < carousolList.length - 1) {
                   return (
                     <div
-                    key={index}
+                      key={index}
                       style={{
                         backgroundColor:
                           currentSlide === index - 1 ? "white" : "grey",

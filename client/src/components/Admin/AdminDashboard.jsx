@@ -11,7 +11,7 @@ import { Routes, Route, Link, useLocation } from "react-router-dom";
 function AdminDashboard({ setisLoggedInAdmin }) {
   const navList = useMemo(
     () => [
-      { name: "Dashboard", path: "/admin/dashboard" },
+      { name: "Dashboard", path: "/admin" },
       { name: "Add Movies", path: "/admin/addmovies" },
       { name: "Edit Movies", path: "/admin/editmovies" },
       { name: "Schedule", path: "/admin/schedule" },
@@ -90,7 +90,7 @@ function AdminDashboard({ setisLoggedInAdmin }) {
           </div>
           <div className="adminRightBody text-white">
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/addmovies" element={<AddMovies />} />
               <Route
                 path="/editmovies"

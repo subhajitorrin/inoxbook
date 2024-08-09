@@ -28,7 +28,6 @@ function AdminLogin({ setisLoggedInAdmin }) {
         localStorage.setItem("isAdminLoggedIn", "true");
         localStorage.setItem("theaterId", response.data.theaterId);
         setisLoggedInAdmin(true);
-        navigate("/admin/dashboard");
         toast.success("Admin login successful");
         setemail(null);
         setpassword(null);
