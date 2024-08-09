@@ -3,13 +3,23 @@ import AdminLogin from "../components/Admin/AdminLogin";
 import AdminDashboard from "../components/Admin/AdminDashboard";
 
 function Admin() {
-  const [isLoggedInAdmin, setisLoggedInAdmin] = useState(false);
+  const [isLoggedInAdmin, setisLoggedInAdmin] = useState(null);
   useEffect(() => {
-    const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn");
-    if (isAdminLoggedIn) {
-      setisLoggedInAdmin(true);
+    function isAdminLoggedIn() {
+      const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn");
+      if (isAdminLoggedIn) {
+        setisLoggedInAdmin(true);
+      } else {
+        setisLoggedInAdmin(false);
+      }
     }
+    isAdminLoggedIn();
   }, []);
+
+  if (isLoggedInAdmin === null) {
+    return <div className="h-screen bg-[#111111]"></div>;
+  }
+
   return (
     <div className="">
       {isLoggedInAdmin ? (

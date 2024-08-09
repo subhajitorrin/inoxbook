@@ -9,10 +9,6 @@ function Screen({ screenData, theaterId, settoggleFetchScreens }) {
   const [categories, setCategories] = useState([]);
   const [seatGapToggles, setSeatGapToggles] = useState({});
 
-  useEffect(() => {
-    console.log(categories);
-  }, [categories]);
-
   const handleCategoryChange = (id, field, value) => {
     if (field == "seats" || field == "price" || field == "rowBreak") {
       const numArr = value.split("");

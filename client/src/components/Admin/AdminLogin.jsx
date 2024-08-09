@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function AdminLogin({ setisLoggedInAdmin }) {
+  const navigate = useNavigate();
   const [email, setemail] = useState(null);
   const [password, setpassword] = useState(null);
   async function handleAdminLogin() {
@@ -26,6 +28,7 @@ function AdminLogin({ setisLoggedInAdmin }) {
         localStorage.setItem("isAdminLoggedIn", "true");
         localStorage.setItem("theaterId", response.data.theaterId);
         setisLoggedInAdmin(true);
+        navigate("/admin/dashboard");
         toast.success("Admin login successful");
         setemail(null);
         setpassword(null);
@@ -36,7 +39,7 @@ function AdminLogin({ setisLoggedInAdmin }) {
       }
     } catch (error) {
       toast.error("An error occurred during login");
-      console.error("Login error:", error); // Log the error for debugging
+      console.error("Login error:", error);
     }
   }
 

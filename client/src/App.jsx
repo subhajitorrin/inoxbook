@@ -126,7 +126,7 @@ function App() {
         />
         <Route path="/moviedetail/:id" element={<MovieDetail />} />
         <Route path="/timings/:id" element={<MovieTiming />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/*" element={<Admin />} />
         <Route path="/mybookings/:id" element={<MyBookings />} />
         <Route
           path="/seatmatrix/:id"

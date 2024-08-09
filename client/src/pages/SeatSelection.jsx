@@ -310,7 +310,7 @@ function SeatSelection({ user, settoggleLogin }) {
             {/* Seat flags header */}
             <SeatFlagHeader date={date} />
             {/* Body portion */}
-            <div className="flex w-[60%] flex-wrap  ">
+            <div className="flex w-[60%] flex-wrap ">
               {seatMatrix.map((item, index) => {
                 return (
                   <SeatCategory

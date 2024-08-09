@@ -6,61 +6,32 @@ import UpdateMovies from "./AdminRoutes/UpdateMovies";
 import Schedule from "./AdminRoutes/schedule/Schedule";
 import AdminDetails from "./AdminRoutes/details/AdminDetails";
 import { IoIosArrowBack } from "react-icons/io";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 
 function AdminDashboard({ setisLoggedInAdmin }) {
-  const navList = [
-    "Dashboard",
-    "Add Movies",
-    "Edit Movies",
-    "Schedule",
-    "Admin Details",
-  ];
+  const navList = useMemo(
+    () => [
+      { name: "Dashboard", path: "/admin/dashboard" },
+      { name: "Add Movies", path: "/admin/addmovies" },
+      { name: "Edit Movies", path: "/admin/editmovies" },
+      { name: "Schedule", path: "/admin/schedule" },
+      { name: "Admin Details", path: "/admin/info" },
+    ],
+    []
+  );
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
   const [isBackActive, setisBackActive] = useState(false);
   const [toggle, settoggle] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const savedIndex = localStorage.getItem("activeIndex");
-    if (savedIndex) {
-      setActiveIndex(Number(savedIndex));
+    const currentPath = location.pathname;
+    const index = navList.findIndex((item) => item.path === currentPath);
+    if (index !== -1) {
+      setActiveIndex(index);
     }
-  }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("activeIndex", activeIndex);
-  // }, [activeIndex]);
-
-  function renderContent() {
-    switch (activeIndex) {
-      case 0:
-        return <Dashboard />;
-      case 1:
-        return <AddMovies />;
-      case 2:
-        return (
-          <UpdateMovies
-            setisBackActive={setisBackActive}
-            toggle={toggle}
-            settoggle={settoggle}
-          />
-        );
-      case 3:
-        return <Schedule />;
-      case 4:
-        return <AdminDetails />;
-    }
-  }
-
-  // useEffect(() => {
-  //   window.addEventListener("beforeunload", (event) => {
-  //     setisLoggedInAdmin(false);
-  //     localStorage.removeItem("updateMovieId");
-  //     localStorage.removeItem("isAdminLoggedIn");
-  //     localStorage.removeItem("activeIndex");
-  //     localStorage.removeItem("theaterId");
-  //   });
-  // }, []);
+  }, [location, navList]);
 
   return (
     <div className="adminDashboardContainer">
@@ -70,36 +41,39 @@ function AdminDashboard({ setisLoggedInAdmin }) {
             <p className="welcomeText">Welcome ADMIN</p>
             {navList.map((item, index) => {
               return (
-                <div
-                  className={`navItem`}
-                  style={{
-                    border:
-                      activeIndex === index
-                        ? "1px solid rgba(255, 255, 255, 0.7)"
-                        : "1px solid transparent",
-                  }}
-                  onClick={() => {
-                    setActiveIndex(index);
-                  }}
-                  key={index}
-                >
-                  <p>{item}</p>
-                </div>
+                <Link to={item.path} key={index}>
+                  <div
+                    className={`navItem`}
+                    style={{
+                      border:
+                        activeIndex === index
+                          ? "1px solid rgba(255, 255, 255, 0.7)"
+                          : "1px solid transparent",
+                    }}
+                    onClick={() => {
+                      setActiveIndex(index);
+                    }}
+                  >
+                    <p>{item.name}</p>
+                  </div>
+                </Link>
               );
             })}
           </div>
-          <div
-            className="logoutButton"
-            onClick={() => {
-              setisLoggedInAdmin(false);
-              localStorage.removeItem("updateMovieId");
-              localStorage.removeItem("isAdminLoggedIn");
-              localStorage.removeItem("activeIndex");
-              localStorage.removeItem("theaterId");
-            }}
-          >
-            Logout
-          </div>
+          <Link to="/admin">
+            <div
+              className="logoutButton"
+              onClick={() => {
+                setisLoggedInAdmin(false);
+                localStorage.removeItem("updateMovieId");
+                localStorage.removeItem("isAdminLoggedIn");
+                localStorage.removeItem("activeIndex");
+                localStorage.removeItem("theaterId");
+              }}
+            >
+              Logout
+            </div>
+          </Link>
         </div>
         <div className="mainContent">
           <div className="header relative">
@@ -114,7 +88,24 @@ function AdminDashboard({ setisLoggedInAdmin }) {
             )}
             <p className="headerText">ADMIN PANEL</p>
           </div>
-          <div className="adminRightBody text-white">{renderContent()}</div>
+          <div className="adminRightBody text-white">
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/addmovies" element={<AddMovies />} />
+              <Route
+                path="/editmovies"
+                element={
+                  <UpdateMovies
+                    setisBackActive={setisBackActive}
+                    toggle={toggle}
+                    settoggle={settoggle}
+                  />
+                }
+              />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/info" element={<AdminDetails />} />
+            </Routes>
+          </div>
         </div>
       </div>
     </div>

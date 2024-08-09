@@ -48,7 +48,7 @@ function SeatCategory({
   }
 
   return (
-    <div className=" w-[100%] flex flex-col gap-[1rem] ">
+    <div className=" w-[100%] flex flex-col gap-[1rem] items-center relative">
       <p className="text-[17px] font-bold uppercase text-center mt-[2rem]">
         {category.category}: &#8377;{category.price}
       </p>
@@ -56,7 +56,7 @@ function SeatCategory({
         {category.seatrows.map((item, index) => {
           return (
             <div key={index} className="flex items-center ">
-              <p className="w-[50px] font-bold text-[17px] ">{item.row}</p>
+              <p className="w-[50px] font-bold text-[17px] absolute left-0">{item.row}</p>
               <div className="flex gap-[10px]">
                 {item.columns.map((s, i) => {
                   return (
@@ -74,21 +74,21 @@ function SeatCategory({
                             }
                           )}
                           <Seat
-                          key={`${item.row}-${s.column}`}
-                          row={item.row}
-                          seatNumber={s.column}
-                          available={checkIfSeatAlreadyBooked(
-                            item.row,
-                            s.column
-                          )}
-                          seatid={s.seatCode}
-                          setSelectedSeats={setSelectedSeats}
-                          categoryname={category.category}
-                          activeCategory={activeCategory}
-                          selectedSeats={selectedSeats}
-                          setactiveCategory={setactiveCategory}
-                          price={category.price}
-                        />
+                            key={`${item.row}-${s.column}`}
+                            row={item.row}
+                            seatNumber={s.column}
+                            available={checkIfSeatAlreadyBooked(
+                              item.row,
+                              s.column
+                            )}
+                            seatid={s.seatCode}
+                            setSelectedSeats={setSelectedSeats}
+                            categoryname={category.category}
+                            activeCategory={activeCategory}
+                            selectedSeats={selectedSeats}
+                            setactiveCategory={setactiveCategory}
+                            price={category.price}
+                          />
                         </div>
                       ) : (
                         <Seat
